@@ -9,16 +9,19 @@ if (!isLoggedIn()) {
     exit;
 }
 
-$pagina='dashboard';
+$pagina = 'dashboard';
 
 include('includes/header.php');
 ?>
 
-    <main>
-        <section>
-            <h2>Resumen del sistema</h2>
-            <p>Este es tu panel de control. Aquí podrás gestionar usuarios, revisar logs y configurar tu blog íntimo.</p>
-        </section>
-    </main>
+<main>
+    <section>
+        <h2>Resumen del sistema</h2>
+        <p>Este es tu panel de control. Aquí podrás gestionar usuarios, revisar logs y configurar tu blog íntimo.</p>
+    </section>
+</main>
 </body>
+
 </html>
+
+<?php include('includes/footer.php');
