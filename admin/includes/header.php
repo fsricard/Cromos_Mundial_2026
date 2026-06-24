@@ -11,7 +11,7 @@ if (!isset($pagina)) {
     <title>Admin | <?= htmlspecialchars(ucfirst($pagina)) ?></title>
 
     <!-- Estilos globales del panel -->
-    <link rel="stylesheet" href="/admin/css/panel.css">
+    <link rel="stylesheet" href="<?= asset('/admin/css/panel.css') ?>">
 </head>
 
 <body>
@@ -28,7 +28,7 @@ if (!isset($pagina)) {
         </nav>
 
         <div class="logout">
-            <a href="/admin/logout.php">Cerrar sesión</a>
+            <!-- <a href="/admin/logout.php">Cerrar sesión</a> -->
         </div>
     </aside>
 
