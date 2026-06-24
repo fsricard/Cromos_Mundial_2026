@@ -17,7 +17,7 @@ include('includes/header.php');
 <main>
     <section>
         <h2>Resumen del sistema</h2>
-        <p>Este es tu panel de control. Aquí podrás gestionar usuarios, revisar logs y configurar tu blog íntimo.</p>
+        <p>Este es tu panel de administración. Aquí podrás gestionar usuarios, revisar logs y configurar tu página web.</p>
     </section>
 </main>
 </body>
