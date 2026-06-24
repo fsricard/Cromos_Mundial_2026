@@ -34,7 +34,7 @@ function CopyrightRicardFS($startYear = 2021)
 {
     $currentYear = date('Y');
     $yearDisplay = ($startYear == $currentYear) ? $currentYear : "$startYear – $currentYear";
-    return "&copy; $yearDisplay Riqui Mundial 2026 - Todos los derechos reservados";
+    return "&copy; $yearDisplay Cromos Mundial 2026 - Todos los derechos reservados";
 }
 
 // Función para crear un sistema de paginación modular

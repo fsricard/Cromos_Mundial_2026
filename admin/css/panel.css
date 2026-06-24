@@ -17,14 +17,33 @@ body {
     min-height: 100vh;
 }
 
+/* Layout general */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* COLUMNA DERECHA (header + main + footer) */
+.page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 240px;
+}
+
 /* SIDEBAR */
 .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 240px;
     background: var(--panel);
     padding: 20px;
     display: flex;
     flex-direction: column;
     border-right: 1px solid rgba(255, 255, 255, 0.06);
+    overflow-y: auto;
 }
 
 .sidebar .logo {
@@ -73,9 +92,6 @@ body {
 
 /* TOPBAR */
 .topbar {
-    position: fixed;
-    left: 240px;
-    right: 0;
     height: 60px;
     background: var(--panel);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -91,15 +107,91 @@ body {
 
 /* CONTENIDO */
 .content {
-    margin-left: 240px;
-    padding: 80px 40px 40px;
+    flex: 1;
+    margin-left: 40px;
+    padding: 40px;
 }
 
 /* FOOTER */
 .footer {
-    margin-left: 240px;
+    background: var(--panel);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: 20px;
     text-align: center;
     color: var(--muted);
-    font-size: 14px;
+}
+
+/* ============================
+   RESPONSIVE PANEL
+   ============================ */
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 26px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+/* BREAKPOINT PRINCIPAL */
+@media (max-width: 900px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 240px;
+        background: var(--panel);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid rgba(255,255,255,0.06);
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform .3s ease;
+        z-index: 2000;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .topbar {
+        left: 0;
+        justify-content: space-between;
+        padding-left: 15px;
+        z-index: 3000;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 4000;
+    }
+
+    .page {
+        margin-left: 0;
+    }
+
+    .content {
+        padding: 80px 20px 40px;
+    }
+
+    .footer {
+        margin-left: 0;
+    }
+}
+
+/* MÓVILES PEQUEÑOS */
+@media (max-width: 480px) {
+    .content {
+        padding: 70px 15px 30px;
+    }
+
+    .topbar-user {
+        font-size: 14px;
+    }
 }

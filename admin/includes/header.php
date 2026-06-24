@@ -8,17 +8,17 @@ if (!isset($pagina)) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin | <?= htmlspecialchars(ucfirst($pagina)) ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <!-- Estilos globales del panel -->
+    <title>Admin | <?= htmlspecialchars(ucfirst($pagina)) ?></title>
+    
     <link rel="stylesheet" href="<?= asset('/admin/css/panel.css') ?>">
 </head>
 
-<body>
+<body class="layout">
+
     <aside class="sidebar">
-        <div class="logo">
-            <span>Cromos Mundial 2026</span>
-        </div>
+        <div class="logo">Cromos 2026</div>
 
         <nav>
             <a href="/admin/dashboard.php" class="<?= $pagina === 'dashboard' ? 'active' : '' ?>">Dashboard</a>
@@ -28,14 +28,18 @@ if (!isset($pagina)) {
         </nav>
 
         <div class="logout">
-            <!-- <a href="/admin/logout.php">Cerrar sesión</a> -->
+            <a href="<?= asset('/admin/logout.php') ?>">Cerrar sesión</a>
         </div>
     </aside>
 
-    <header class="topbar">
-        <div class="topbar-user">
-            <span>👤 <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Usuario') ?></span>
-        </div>
-    </header>
+    <div class="page">
+        <header class="topbar">
 
-    <main class="content">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+
+            <div class="topbar-user">
+                👤 <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Usuario') ?>
+            </div>
+        </header>
+
+        <main class="content">
