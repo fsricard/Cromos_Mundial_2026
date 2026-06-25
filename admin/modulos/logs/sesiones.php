@@ -49,7 +49,7 @@ include('../../includes/header.php');
                             <td><?= htmlspecialchars($archivo) ?></td>
                             <td><?= filesize($rutaLogs . $archivo) ?> bytes</td>
                             <td>
-                                <a href="ver.php?f=<?= urlencode($archivo) ?>" class="btn btn-sm btn-info">Ver</a>
+                                <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-sm btn-info">Ver</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
