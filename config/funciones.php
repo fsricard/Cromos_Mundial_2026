@@ -175,3 +175,16 @@ function guardarLog($nombre, $mensaje)
 
     file_put_contents($archivo, $linea, FILE_APPEND);
 }
+
+// Función universal para cargar el editor visual de Quill
+function editor_quill($nombreCampo, $valor = '')
+{
+    $id = htmlspecialchars($nombreCampo);
+
+    return '
+        <div class="quill-editor" data-target="descripcion" id="editor-descripcion"></div>
+        <textarea id="descripcion" name="' . $id . '" class="editor-html form-control" style="display:none;">'
+        . $valor .
+        '</textarea>
+    ';
+}
