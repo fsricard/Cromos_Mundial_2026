@@ -11,7 +11,7 @@ if (!isset($pagina)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Admin | <?= htmlspecialchars(ucfirst($pagina)) ?></title>
-    
+
     <link rel="stylesheet" href="<?= asset('/admin/css/panel.css') ?>">
 </head>
 
@@ -41,5 +41,3 @@ if (!isset($pagina)) {
                 👤 <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Usuario') ?>
             </div>
         </header>
-
-        <main class="content">

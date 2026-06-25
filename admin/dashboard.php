@@ -14,9 +14,11 @@ $pagina = 'dashboard';
 include('includes/header.php');
 ?>
 
-<section>
-    <h2>Resumen del sistema</h2>
-    <p>Este es tu panel de administración. Aquí podrás gestionar usuarios, revisar logs y configurar tu página web.</p>
-</section>
+<main class="content">
+    <section>
+        <h2>Resumen del sistema</h2>
+        <p>Este es tu panel de administración. Aquí podrás gestionar usuarios, revisar logs y configurar tu página web.</p>
+    </section>
+</main>
 
 <?php include('includes/footer.php');
