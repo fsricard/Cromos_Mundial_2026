@@ -15,7 +15,20 @@
     --sidebar-icons-active: #b32f2f;
 }
 
+/* General */
+html {
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
 body {
+    font-size: 2.4rem;
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background: var(--bg);
@@ -23,6 +36,8 @@ body {
     display: flex;
     min-height: 100vh;
 }
+
+/* END general */
 
 /* Layout general */
 .layout {
@@ -93,14 +108,106 @@ body {
 
 /* END iconos */
 
-/* Tablas */
+/* Botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #1a1f27;
+    color: #e5e5e5;
+    text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
 
+.btn i {
+    font-size: 1.2rem;
+    transition: transform .25s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+.btn-generar {
+    background: linear-gradient(135deg, #007bff, #00a2ff);
+    color: #fff;
+}
+
+.btn-generar:hover {
+    background: linear-gradient(135deg, #0090ff, #00b8ff);
+}
+
+.btn-ver {
+    background: linear-gradient(135deg, #28a745, #3ddc84);
+    color: #fff;
+}
+
+.btn-ver:hover {
+    background: linear-gradient(135deg, #2ec653, #47f092);
+}
+
+.btn-volver {
+    background: linear-gradient(135deg, #6c757d, #8a99a6);
+    color: #fff;
+}
+
+.btn-volver:hover {
+    background: linear-gradient(135deg, #7b8790, #9aa8b5);
+}
+
+
+/* END botones */
+
+/* Tablas */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #151A21;
+    color: #E5E5E5;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 1.5rem;
+}
+
+.tabla thead {
+    background: #1C222B;
+}
+
+.tabla th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #AAB4C0;
+    border-bottom: 1px solid #222831;
+}
+
+.tabla td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #1A1F25;
+}
+
+.tabla tbody tr:hover {
+    background: #1A1F25;
+}
 
 /* END tablas */
 
 /* Sidebar */
 .sidebar {
     position: fixed;
+    font-size: 1.6rem;
     left: 0;
     top: 0;
     bottom: 0;
@@ -114,7 +221,7 @@ body {
 }
 
 .sidebar .logo {
-    font-size: 20px;
+    font-size: 3.0rem;
     font-weight: 600;
     margin-bottom: 30px;
 }
@@ -163,8 +270,6 @@ body {
 
 /* END sidebar */
 
-/* END iconos */
-
 /* Topbar */
 .topbar {
     height: 60px;
@@ -177,6 +282,7 @@ body {
 }
 
 .topbar-user {
+    font-size: 1.8rem;
     color: var(--muted);
 }
 
@@ -189,10 +295,34 @@ body {
     padding: 40px;
 }
 
+.content a.pulse {
+    color: #4F7CFF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color .25s ease, transform .25s ease;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.content a.pulse:hover {
+    color: #82a2ff;
+    transform: scale(1.06);
+}
+
+.content h2 {
+    font-size: 3.0rem;
+    margin: 20px 0;
+}
+
+.content p {
+    font-size: 1.8rem;
+}
+
 /* END contenido */
 
 /* Footer */
 .footer {
+    font-size: 1.4rem;
     background: var(--panel);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: 20px;
@@ -205,6 +335,7 @@ body {
 /* Módulo logs */
 .log-view {
     background: #111;
+    font-size: 1.6rem;
     color: #0f0;
     padding: 20px;
     border-radius: 8px;
@@ -217,8 +348,6 @@ body {
 /* ============================
    RESPONSIVE PANEL
    ============================ */
-
-/* Botón hamburguesa */
 .menu-toggle {
     display: none;
     background: none;
@@ -227,6 +356,12 @@ body {
     font-size: 26px;
     cursor: pointer;
     margin-right: auto;
+}
+
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* END botón hamburguesa */
@@ -282,6 +417,42 @@ body {
 
 /* END breakpoint principal */
 
+/* Móviles: tabla tipo “cards” */
+@media (max-width: 768px) {
+
+    .tabla thead {
+        display: none;
+    }
+
+    .tabla tr {
+        display: block;
+        margin-bottom: 14px;
+        background: #151A21;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .tabla td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 6px;
+        border-bottom: 1px solid #1F242B;
+    }
+
+    .tabla td:last-child {
+        border-bottom: none;
+    }
+
+    .tabla td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #AAB4C0;
+        margin-right: 10px;
+    }
+}
+
+/* END móviles: tabla tipo “cards” */
+
 /* Móviles pequeños */
 @media (max-width: 480px) {
     .content {
@@ -290,6 +461,15 @@ body {
 
     .topbar-user {
         font-size: 14px;
+    }
+
+    .tabla td {
+        font-size: 1.4rem;
+    }
+
+    .tabla .btn {
+        font-size: 1.3rem;
+        padding: 5px 10px;
     }
 }
 

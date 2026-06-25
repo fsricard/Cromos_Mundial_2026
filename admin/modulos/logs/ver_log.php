@@ -35,7 +35,10 @@ include('../../includes/header.php');
 
         <pre class="log-view"><?php echo $contenido = trim(file_get_contents($ruta)); ?></pre>
 
-        <a href="sesiones.php" class="btn btn-secondary">Volver</a>
+        <a href="sesiones.php" class="btn btn-volver">
+            <i class="fa-solid fa-arrow-left"></i>
+            Volver
+        </a>
     </section>
 </main>
 

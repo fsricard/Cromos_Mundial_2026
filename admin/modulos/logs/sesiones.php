@@ -27,35 +27,43 @@ include('../../includes/header.php');
         <h2>Logs del sistema</h2>
 
         <div style="margin-bottom:20px;">
-            <a href="guardar_log.php?test=1" class="btn btn-primary">Generar log de prueba</a>
+            <a href="guardar_log.php?test=1" class="btn btn-generar">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                Generar log de prueba
+            </a>
         </div>
 
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th>Archivo</th>
-                    <th>Tamaño</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (empty($archivos)): ?>
+        <div class="tabla-responsive">
+            <table class="tabla">
+                <thead>
                     <tr>
-                        <td>No hay logs generados.</td>
+                        <th>Archivo</th>
+                        <th>Tamaño</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php else: ?>
-                    <?php foreach ($archivos as $archivo): ?>
+                </thead>
+                <tbody>
+                    <?php if (empty($archivos)): ?>
                         <tr>
-                            <td><?= htmlspecialchars($archivo) ?></td>
-                            <td><?= filesize($rutaLogs . $archivo) ?> bytes</td>
-                            <td>
-                                <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-info">Ver</a>
-                            </td>
+                            <td data-label="Archivo">No hay logs generados.</td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                    <?php else: ?>
+                        <?php foreach ($archivos as $archivo): ?>
+                            <tr>
+                                <td data-label="Archivo"><?= htmlspecialchars($archivo) ?></td>
+                                <td data-label="Tamaño"><?= filesize($rutaLogs . $archivo) ?> bytes</td>
+                                <td data-label="Acciones">
+                                    <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-ver">
+                                        <i class="fa-solid fa-eye"></i>
+                                        Ver
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
     </section>
 </main>
