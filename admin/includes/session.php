@@ -22,7 +22,7 @@ function logSessionEvent($evento, $usuario = null) {
     $fecha = date('Y-m-d H:i:s');
     $ip    = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $linea = "[$fecha] [$ip] [$usuario] $evento" . PHP_EOL;
-    file_put_contents(__DIR__ . '/../../log/session.log', $linea, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../../log/servidor_session.log', $linea, FILE_APPEND);
 }
 
 // Verificar expiración de sesión

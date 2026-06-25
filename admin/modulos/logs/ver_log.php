@@ -22,7 +22,10 @@ if (!file_exists($ruta)) {
     die("El archivo no existe.");
 }
 
-$contenido = file_get_contents($ruta);
+// Leer líneas, ignorar vacías, invertir orden
+$lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$lineas = array_reverse($lineas);
+$contenido = implode(PHP_EOL, $lineas);
 
 $pagina = 'ver logs';
 
@@ -33,7 +36,7 @@ include('../../includes/header.php');
     <section>
         <h2>Viendo: <?= htmlspecialchars($archivo) ?></h2>
 
-        <pre class="log-view"><?php echo $contenido = trim(file_get_contents($ruta)); ?></pre>
+        <pre class="log-view"><?php echo htmlspecialchars($contenido); ?></pre>
 
         <a href="sesiones.php" class="btn btn-volver">
             <i class="fa-solid fa-arrow-left"></i>
