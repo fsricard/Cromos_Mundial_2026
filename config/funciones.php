@@ -75,47 +75,6 @@ function paginador($total_registros, $por_pagina, $pagina_actual, $filtros = [],
     return $html;
 }
 
-// Función para el sistema de mensajes de alerta modular
-function mostrarAlerta(string $mensaje, string $tipo = 'success'): string
-{
-    $tipos = [
-        'success' => [
-            'icon' => 'fa-circle-check',
-            'color' => 'var(--color-success)',
-            'bg'    => 'var(--bg-success)'
-        ],
-        'error' => [
-            'icon' => 'fa-circle-xmark',
-            'color' => 'var(--color-danger)',
-            'bg'    => 'var(--bg-danger)'
-        ],
-        'info' => [
-            'icon' => 'fa-circle-info',
-            'color' => 'var(--color-info)',
-            'bg'    => 'var(--bg-info)'
-        ],
-        'warning' => [
-            'icon' => 'fa-triangle-exclamation',
-            'color' => 'var(--color-warning)',
-            'bg'    => 'var(--bg-warning)'
-        ]
-    ];
-
-    $t = $tipos[$tipo] ?? $tipos['success'];
-
-    return '
-        <div class="alerta-global" 
-             style="
-                background:' . $t['bg'] . ';
-                border-left:4px solid ' . $t['color'] . ';
-                color:' . $t['color'] . ';
-             ">
-            <i class="fa-solid ' . $t['icon'] . '"></i>
-            ' . htmlspecialchars($mensaje) . '
-        </div>
-    ';
-}
-
 // Función para crear rutas absolutas
 function base_url(): string
 {

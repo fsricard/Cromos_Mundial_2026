@@ -140,6 +140,12 @@ body {
     transform: translateX(3px);
 }
 
+.acciones-botones {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
 .btn-generar {
     background: linear-gradient(135deg, #007bff, #00a2ff);
     color: #fff;
@@ -165,6 +171,24 @@ body {
 
 .btn-volver:hover {
     background: linear-gradient(135deg, #7b8790, #9aa8b5);
+}
+
+.btn-descargar {
+    background: linear-gradient(135deg, #17a2b8, #1fc8e3);
+    color: #fff;
+}
+
+.btn-descargar:hover {
+    background: linear-gradient(135deg, #1bb6cd, #29d8f4);
+}
+
+.btn-borrar {
+    background: linear-gradient(135deg, #dc3545, #ff4f5e);
+    color: #fff;
+}
+
+.btn-borrar:hover {
+    background: linear-gradient(135deg, #e74a59, #ff6b78);
 }
 
 

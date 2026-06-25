@@ -41,6 +41,17 @@ include('../../includes/header.php');
             </a>
         </div>
 
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] === 'borrado') {
+                echo '<p class="alerta-exito">Log borrado correctamente.</p>';
+            }
+            if ($_GET['msg'] === 'noexiste') {
+                echo '<p class="alerta-error">El archivo no existe.</p>';
+            }
+        }
+        ?>
+
         <div class="tabla-responsive">
             <table class="tabla">
                 <thead>
@@ -60,10 +71,24 @@ include('../../includes/header.php');
                             <tr>
                                 <td data-label="Archivo"><?= htmlspecialchars($archivo) ?></td>
                                 <td data-label="Tamaño"><?= filesize($rutaLogs . $archivo) ?> bytes</td>
-                                <td data-label="Acciones">
+                                <td class="acciones-botones">
                                     <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-ver">
                                         <i class="fa-solid fa-eye"></i>
                                         Ver
+                                    </a>
+
+                                    <a href="<?= '../../../log/' . urlencode($archivo) ?>"
+                                        download="<?= htmlspecialchars($archivo) ?>"
+                                        class="btn btn-descargar">
+                                        <i class="fa-solid fa-download"></i>
+                                        Descargar
+                                    </a>
+
+                                    <a href="borrar_log.php?f=<?= urlencode($archivo) ?>"
+                                        class="btn btn-borrar"
+                                        onclick="return confirm('¿Seguro que deseas borrar este log?');">
+                                        <i class="fa-solid fa-trash"></i>
+                                        Borrar
                                     </a>
                                 </td>
                             </tr>
