@@ -146,7 +146,7 @@ function base_url(): string
     return rtrim($protocolo . $host . $subcarpeta, '/');
 }
 
-// Genera rutas absolutas correctas para assets.
+// Función que genera rutas absolutas correctas para assets.
 function asset(string $ruta): string
 {
     // Asegura que base_url() NO termina con "/"
@@ -156,4 +156,22 @@ function asset(string $ruta): string
     $ruta = '/' . ltrim($ruta, '/');
 
     return $base . $ruta;
+}
+
+// Función universal para guardar logs del panel de administración
+function guardarLog($nombre, $mensaje)
+{
+    $rutaLogs = __DIR__ . '/../logs/';
+
+    if (!file_exists($rutaLogs)) {
+        mkdir($rutaLogs, 0777, true);
+    }
+
+    $fecha = date('Y-m-d');
+    $archivo = $rutaLogs . "{$nombre}-{$fecha}.log";
+
+    $hora = date('H:i:s');
+    $linea = "[$hora] $mensaje" . PHP_EOL;
+
+    file_put_contents($archivo, $linea, FILE_APPEND);
 }
