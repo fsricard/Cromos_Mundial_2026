@@ -17,20 +17,7 @@ if (!isset($pagina)) {
 
 <body class="layout">
 
-    <aside class="sidebar">
-        <div class="logo">Cromos 2026</div>
-
-        <nav>
-            <a href="/admin/dashboard.php" class="<?= $pagina === 'dashboard' ? 'active' : '' ?>">Dashboard</a>
-            <a href="/admin/usuarios/listar.php" class="<?= $pagina === 'usuarios' ? 'active' : '' ?>">Usuarios</a>
-            <a href="/admin/logs/sesiones.php" class="<?= $pagina === 'logs' ? 'active' : '' ?>">Logs</a>
-            <a href="/admin/configuracion.php" class="<?= $pagina === 'config' ? 'active' : '' ?>">Configuración</a>
-        </nav>
-
-        <div class="logout">
-            <a href="<?= asset('/admin/logout.php') ?>">Cerrar sesión</a>
-        </div>
-    </aside>
+    <?php include('aside.php'); ?>
 
     <div class="page">
         <header class="topbar">
