@@ -18,7 +18,7 @@
             <div class="submenu">
                 <a href="<?= asset('/admin/modulos/contacto/contacto_intro.php') ?>"
                     class="<?= $pagina === 'contacto_intro' ? 'active' : '' ?>">
-                    <i class="fa-solid fa-hand-point-right icon-submenu"></i> Contacto intro
+                    <i class="fa-solid fa-message-text icon-submenu"></i> Contacto intro
                 </a>
             </div>
         </div>

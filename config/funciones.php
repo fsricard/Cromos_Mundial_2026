@@ -141,8 +141,8 @@ function editor_quill($nombreCampo, $valor = '')
     $id = htmlspecialchars($nombreCampo);
 
     return '
-        <div class="quill-editor" data-target="descripcion" id="editor-descripcion"></div>
-        <textarea id="descripcion" name="' . $id . '" class="editor-html form-control" style="display:none;">'
+        <div class="quill-editor" data-target="' . $id . '"></div>
+        <textarea id="' . $id . '" name="' . $id . '" class="editor-html" style="display:none;">'
         . $valor .
         '</textarea>
     ';

@@ -49,6 +49,9 @@ if (!isset($pagina)) {
     <link href="<?= asset('css/fontawesome/css/whiteboard-semibold.css') ?>" rel="stylesheet" />
 
     <link rel="stylesheet" href="<?= asset('/admin/css/panel.css') ?>">
+
+    <!-- Quill Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body class="layout">
