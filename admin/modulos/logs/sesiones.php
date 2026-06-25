@@ -10,7 +10,7 @@ if (!isLoggedIn()) {
 }
 
 // Carpeta de logs
-$rutaLogs = __DIR__ . '/../../../logs/';
+$rutaLogs = __DIR__ . '/../../../log/';
 $archivos = [];
 
 if (file_exists($rutaLogs)) {
