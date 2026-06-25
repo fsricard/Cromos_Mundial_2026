@@ -18,10 +18,11 @@ define('SESSION_TIMEOUT', 1800); // 1800 segundos = 30 min
 
 // Función de logs
 function logSessionEvent($evento, $usuario = null) {
+    date_default_timezone_set('Europe/Madrid');
     $fecha = date('Y-m-d H:i:s');
     $ip    = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $linea = "[$fecha] [$ip] [$usuario] $evento" . PHP_EOL;
-    file_put_contents(__DIR__ . '/../../logs/session.log', $linea, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../../log/session.log', $linea, FILE_APPEND);
 }
 
 // Verificar expiración de sesión

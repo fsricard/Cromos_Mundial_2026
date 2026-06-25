@@ -2,6 +2,7 @@
 require_once __DIR__ . '/includes/session.php';
 require_once __DIR__ . '/includes/auth.php';
 
+// Si no está logueado, redirigimos al login
 if (isLoggedIn()) {
     header("Location: dashboard.php");
     exit;
