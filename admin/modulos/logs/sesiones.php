@@ -41,7 +41,7 @@ include('../../includes/header.php');
             <tbody>
                 <?php if (empty($archivos)): ?>
                     <tr>
-                        <td colspan="3">No hay logs generados.</td>
+                        <td>No hay logs generados.</td>
                     </tr>
                 <?php else: ?>
                     <?php foreach ($archivos as $archivo): ?>
@@ -49,7 +49,7 @@ include('../../includes/header.php');
                             <td><?= htmlspecialchars($archivo) ?></td>
                             <td><?= filesize($rutaLogs . $archivo) ?> bytes</td>
                             <td>
-                                <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-sm btn-info">Ver</a>
+                                <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-info">Ver</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

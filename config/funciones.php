@@ -161,7 +161,7 @@ function asset(string $ruta): string
 // Función universal para guardar logs del panel de administración
 function guardarLog($nombre, $mensaje)
 {
-    $rutaLogs = __DIR__ . '/../logs/';
+    $rutaLogs = __DIR__ . '/../log/';
 
     if (!file_exists($rutaLogs)) {
         mkdir($rutaLogs, 0777, true);

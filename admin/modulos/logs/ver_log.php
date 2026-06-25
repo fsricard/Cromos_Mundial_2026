@@ -33,9 +33,7 @@ include('../../includes/header.php');
     <section>
         <h2>Viendo: <?= htmlspecialchars($archivo) ?></h2>
 
-        <pre style="background:#111; color:#0f0; padding:20px; border-radius:8px; white-space:pre-wrap;">
-            <?= htmlspecialchars($contenido) ?>
-        </pre>
+        <pre class="log-view"><?php echo $contenido = trim(file_get_contents($ruta)); ?></pre>
 
         <a href="sesiones.php" class="btn btn-secondary">Volver</a>
     </section>

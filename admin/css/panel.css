@@ -93,6 +93,11 @@ body {
 
 /* END iconos */
 
+/* Tablas */
+
+
+/* END tablas */
+
 /* Sidebar */
 .sidebar {
     position: fixed;
@@ -196,6 +201,18 @@ body {
 }
 
 /* END footer */
+
+/* Módulo logs */
+.log-view {
+    background: #111;
+    color: #0f0;
+    padding: 20px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+/* END módulo logs */
 
 /* ============================
    RESPONSIVE PANEL
