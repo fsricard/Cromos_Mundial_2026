@@ -7,7 +7,7 @@
 # ------------------------------
 admin/panel_infernal/
 admin/includes/php/
-logs/
+log/
 
 # Archivos privados específicos
 admin/aa.php
