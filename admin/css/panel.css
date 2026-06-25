@@ -62,24 +62,28 @@ body {
     color: var(--topbar-user);
 }
 
+.icon-contact,
 .icon-sessions,
 .icon-users,
 .icon-dashboard {
     color: var(--sidebar-icons);
 }
 
+.sidebar nav a:hover:not(.active) .icon-contact,
 .sidebar nav a:hover:not(.active) .icon-sessions,
 .sidebar nav a:hover:not(.active) .icon-users,
 .sidebar nav a:hover:not(.active) .icon-dashboard {
     color: var(--sidebar-icons-hover);
 }
 
+.sidebar nav a:active:not(.active) .icon-contact,
 .sidebar nav a:active:not(.active) .icon-sessions,
 .sidebar nav a:active:not(.active) .icon-users,
 .sidebar nav a:active:not(.active) .icon-dashboard {
     color: var(--sidebar-icons-active);
 }
 
+.sidebar nav a.active .icon-contact,
 .sidebar nav a.active .icon-sessions,
 .sidebar nav a.active .icon-users,
 .sidebar nav a.active .icon-dashboard {
