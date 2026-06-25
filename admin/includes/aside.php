@@ -23,6 +23,12 @@
             </div>
         </div>
 
+        <!-- Política de pribacidad -->
+        <a href="<?= asset('/admin/modulos/politica-privacidad/politica_de_privacidad.php') ?>" class="<?= $pagina === 'politica_de_privacidad' ? 'active' : '' ?>">
+            <i class="fa-jelly-fill fa-regular fa-lock icon-policy"></i>
+            Política privacidad
+        </a>
+
         <!--  Logs -->
         <a href="<?= asset('/admin/modulos/logs/sesiones.php') ?>" class="<?= $pagina === 'logs' ? 'active' : '' ?>">
             <i class="fa-solid fa-circle-user-clock icon-sessions"></i>
