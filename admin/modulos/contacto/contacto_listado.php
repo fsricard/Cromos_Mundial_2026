@@ -98,6 +98,15 @@ include('../../includes/header.php');
             <a href="contacto_listado.php" class="btn btn-limpiar"><i class="fa-solid fa-eraser"></i> Limpiar</a>
         </form>
 
+        <div class="pdf-container">
+            <?php
+            $query_pdf = http_build_query($_GET);
+            ?>
+            <a href="contacto_pdf.php?<?= $query_pdf ?>" class="btn btn-pdf" target="_blank">
+                <i class="fa-solid fa-file-pdf"></i> Descargar en PDF
+            </a>
+        </div>
+
         <!-- Tabla -->
         <div class="tabla-responsive">
             <table class="tabla">
