@@ -27,7 +27,7 @@ $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $lineas = array_reverse($lineas);
 $contenido = implode(PHP_EOL, $lineas);
 
-$pagina = 'ver logs';
+$pagina = 'logs';
 
 include('../../includes/header.php');
 ?>

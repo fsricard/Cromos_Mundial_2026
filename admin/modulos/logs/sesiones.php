@@ -34,12 +34,10 @@ include('../../includes/header.php');
     <section>
         <h2>Logs del sistema</h2>
 
-        <div style="margin-bottom:20px;">
-            <a href="guardar_log.php?test=1" class="btn btn-generar">
-                <i class="fa-solid fa-file-circle-plus"></i>
-                Generar log de prueba
-            </a>
-        </div>
+        <a href="guardar_log.php?test=1" class="btn btn-generar">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            Generar log de prueba
+        </a>
 
         <?php
         if (isset($_GET['msg'])) {

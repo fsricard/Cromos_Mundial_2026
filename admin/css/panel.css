@@ -12,7 +12,7 @@
     --topbar-user: #553685;
     --sidebar-icons: #e05959;
     --sidebar-icons-hover: #4F7CFF;
-    --sidebar-icons-active: #b32f2f;
+    --sidebar-icons-active: #0a0a0a;
 }
 
 /* General */
@@ -121,6 +121,7 @@ body {
     cursor: pointer;
     background: #1a1f27;
     color: #e5e5e5;
+    margin: 0 5px 0 0;
     text-decoration: none;
     transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
@@ -149,6 +150,7 @@ body {
 .btn-generar {
     background: linear-gradient(135deg, #007bff, #00a2ff);
     color: #fff;
+    margin-bottom: 20px;
 }
 
 .btn-generar:hover {
@@ -165,12 +167,12 @@ body {
 }
 
 .btn-volver {
-    background: linear-gradient(135deg, #6c757d, #8a99a6);
-    color: #fff;
+    background: linear-gradient(135deg, #c6df3b, #d0df7c);
+    color: #000;
 }
 
 .btn-volver:hover {
-    background: linear-gradient(135deg, #7b8790, #9aa8b5);
+    background: linear-gradient(135deg, #c6df3b, #9aa8b5);
 }
 
 .btn-descargar {
@@ -191,6 +193,23 @@ body {
     background: linear-gradient(135deg, #e74a59, #ff6b78);
 }
 
+.btn-filtrar {
+    background: linear-gradient(135deg, #ff4fb6, #e977b9);
+    color: #fff;
+}
+
+.btn-filtrar:hover {
+    background: linear-gradient(135deg, #9e1665, #994476);
+}
+
+.btn-limpiar {
+    background: linear-gradient(135deg, #6c757d, #8a99a6);
+    color: #fff;
+}
+
+.btn-limpiar:hover {
+    background: linear-gradient(135deg, #7b8790, #9aa8b5);
+}
 
 /* END botones */
 
@@ -274,6 +293,68 @@ body {
 }
 
 /* END paginación */
+
+/* Formularios */
+.form-admin {
+    max-width: 500px;
+    margin-top: 20px;
+    background: #151a21;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-grupo {
+    margin-bottom: 15px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-grupo input,
+.form-grupo select {
+    width: 100%;
+    padding: 10px;
+    background: #0f1217;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+}
+
+/* END formularios */
+
+/* Filtros */
+.filtros-admin {
+    max-width: 500px;
+    margin: 20px 0;
+    background: #151a21;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.filtros-admin .form-grupo {
+    margin-bottom: 15px;
+}
+
+.filtros-admin .form-grupo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.filtros-admin input,
+.filtros-admin select {
+    width: 100%;
+    padding: 10px;
+    background: #0f1217;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+}
+
+/* END filtros */
 
 /* Sidebar */
 .sidebar {
@@ -389,6 +470,11 @@ body {
     font-size: 1.8rem;
 }
 
+.content .p-warning {
+    margin: 20px 0;
+    color: #e05959;
+}
+
 /* END contenido */
 
 /* Footer */
@@ -415,6 +501,25 @@ body {
 }
 
 /* END módulo logs */
+
+/* Módulo usuarios sistema */
+.badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.badge-admin {
+    background: #e05959;
+}
+
+.badge-visitante {
+    background: #4F7CFF;
+}
+
+/* END módulo usuarios sistema */
 
 /* ============================
    RESPONSIVE PANEL
