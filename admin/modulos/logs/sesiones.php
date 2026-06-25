@@ -14,8 +14,16 @@ $rutaLogs = __DIR__ . '/../../../log/';
 $archivos = [];
 
 if (file_exists($rutaLogs)) {
-    $archivos = array_diff(scandir($rutaLogs), ['.', '..']);
+    $archivos = array_values(array_diff(scandir($rutaLogs), ['.', '..']));
 }
+
+// Paginación
+$por_pagina = 10;
+$pagina_actual = max(1, intval($_GET['p'] ?? 1));
+$total_registros = count($archivos);
+$offset = ($pagina_actual - 1) * $por_pagina;
+
+$archivos_pagina = array_slice($archivos, $offset, $por_pagina);
 
 $pagina = 'logs';
 
@@ -48,7 +56,7 @@ include('../../includes/header.php');
                             <td data-label="Archivo">No hay logs generados.</td>
                         </tr>
                     <?php else: ?>
-                        <?php foreach ($archivos as $archivo): ?>
+                        <?php foreach ($archivos_pagina as $archivo): ?>
                             <tr>
                                 <td data-label="Archivo"><?= htmlspecialchars($archivo) ?></td>
                                 <td data-label="Tamaño"><?= filesize($rutaLogs . $archivo) ?> bytes</td>
@@ -64,6 +72,12 @@ include('../../includes/header.php');
                 </tbody>
             </table>
         </div>
+
+        <?php
+        if ($total_registros > $por_pagina) {
+            echo paginador($total_registros, $por_pagina, $pagina_actual, $_GET);
+        }
+        ?>
 
     </section>
 </main>

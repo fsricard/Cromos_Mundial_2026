@@ -204,6 +204,53 @@ body {
 
 /* END tablas */
 
+/* Paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 25px 0;
+}
+
+.paginacion .btn-pag {
+    background: #1a1f27;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border: 1px solid #2a2f38;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginacion .btn-pag:hover {
+    background: #4F7CFF;
+    border-color: #4F7CFF;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(79, 124, 255, 0.4);
+}
+
+.paginacion .btn-pag.activo {
+    background: #4F7CFF;
+    border-color: #4F7CFF;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: default;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(79, 124, 255, 0.5);
+}
+
+.paginacion .btn-pag.activo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(79, 124, 255, 0.5);
+}
+
+/* END paginación */
+
 /* Sidebar */
 .sidebar {
     position: fixed;
@@ -470,6 +517,11 @@ body {
     .tabla .btn {
         font-size: 1.3rem;
         padding: 5px 10px;
+    }
+
+    .paginacion .btn-pag {
+        padding: 7px 10px;
+        font-size: 1.0rem;
     }
 }
 
