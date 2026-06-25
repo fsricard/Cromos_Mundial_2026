@@ -10,6 +10,9 @@
 
     /* Iconos */
     --topbar-user: #553685;
+    --sidebar-icons: #e05959;
+    --sidebar-icons-hover: #4F7CFF;
+    --sidebar-icons-active: #b32f2f;
 }
 
 body {
@@ -27,7 +30,9 @@ body {
     min-height: 100vh;
 }
 
-/* COLUMNA DERECHA (header + main + footer) */
+/* END layout general */
+
+/* Columna derecha (header + main + footer) */
 .page {
     display: flex;
     flex-direction: column;
@@ -35,7 +40,60 @@ body {
     margin-left: 240px;
 }
 
-/* SIDEBAR */
+/* END columna derecha (header + main + footer) */
+
+/* Iconos */
+.icon-topbar-user {
+    color: var(--topbar-user);
+}
+
+.icon-sessions,
+.icon-users,
+.icon-dashboard {
+    color: var(--sidebar-icons);
+}
+
+.sidebar nav a:hover:not(.active) .icon-sessions,
+.sidebar nav a:hover:not(.active) .icon-users,
+.sidebar nav a:hover:not(.active) .icon-dashboard {
+    color: var(--sidebar-icons-hover);
+}
+
+.sidebar nav a:active:not(.active) .icon-sessions,
+.sidebar nav a:active:not(.active) .icon-users,
+.sidebar nav a:active:not(.active) .icon-dashboard {
+    color: var(--sidebar-icons-active);
+}
+
+.sidebar nav a.active .icon-sessions,
+.sidebar nav a.active .icon-users,
+.sidebar nav a.active .icon-dashboard {
+    color: var(--sidebar-icons-active);
+}
+
+.sidebar nav a.active i {
+    color: var(--sidebar-icons-active);
+    animation: pulseIcon 2.5s infinite ease-in-out;
+    transition: color .25s ease;
+}
+
+@keyframes pulseIcon {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* END iconos */
+
+/* Sidebar */
 .sidebar {
     position: fixed;
     left: 0;
@@ -76,6 +134,10 @@ body {
     color: white;
 }
 
+.sidebar nav i {
+    margin-right: 10px;
+}
+
 .sidebar .logout {
     margin-top: auto;
 }
@@ -94,7 +156,11 @@ body {
     background: #ff5c5c33;
 }
 
-/* TOPBAR */
+/* END sidebar */
+
+/* END iconos */
+
+/* Topbar */
 .topbar {
     height: 60px;
     background: var(--panel);
@@ -109,19 +175,18 @@ body {
     color: var(--muted);
 }
 
-/* Iconos */
-.icon-topbar-user {
-    color: var(--topbar-user);
-}
+/* END topbar */
 
-/* CONTENIDO */
+/* Contenido */
 .content {
     flex: 1;
     margin-left: 40px;
     padding: 40px;
 }
 
-/* FOOTER */
+/* END contenido */
+
+/* Footer */
 .footer {
     background: var(--panel);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -130,11 +195,13 @@ body {
     color: var(--muted);
 }
 
+/* END footer */
+
 /* ============================
    RESPONSIVE PANEL
    ============================ */
 
-/* BOTÓN HAMBURGUESA */
+/* Botón hamburguesa */
 .menu-toggle {
     display: none;
     background: none;
@@ -145,7 +212,9 @@ body {
     margin-right: auto;
 }
 
-/* BREAKPOINT PRINCIPAL */
+/* END botón hamburguesa */
+
+/* Breakpoint principal */
 @media (max-width: 900px) {
     .sidebar {
         position: fixed;
@@ -157,7 +226,7 @@ body {
         padding: 20px;
         display: flex;
         flex-direction: column;
-        border-right: 1px solid rgba(255,255,255,0.06);
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
         overflow-y: auto;
         transform: translateX(-100%);
         transition: transform .3s ease;
@@ -194,7 +263,9 @@ body {
     }
 }
 
-/* MÓVILES PEQUEÑOS */
+/* END breakpoint principal */
+
+/* Móviles pequeños */
 @media (max-width: 480px) {
     .content {
         padding: 70px 15px 30px;
@@ -204,3 +275,5 @@ body {
         font-size: 14px;
     }
 }
+
+/* END móviles pequeños */
