@@ -1,4 +1,5 @@
 :root {
+    /* General */
     --bg: #0f1217;
     --panel: #1b2230;
     --panel-light: #232b3d;
@@ -6,6 +7,9 @@
     --muted: #9aa7bd;
     --accent: #4f7cff;
     --accent-hover: #3e68df;
+
+    /* Iconos */
+    --topbar-user: #553685;
 }
 
 body {
@@ -103,6 +107,11 @@ body {
 
 .topbar-user {
     color: var(--muted);
+}
+
+/* Iconos */
+.icon-topbar-user {
+    color: var(--topbar-user);
 }
 
 /* CONTENIDO */

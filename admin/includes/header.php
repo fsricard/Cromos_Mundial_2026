@@ -61,6 +61,6 @@ if (!isset($pagina)) {
             <button class="menu-toggle" id="menuToggle">☰</button>
 
             <div class="topbar-user">
-                👤 <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Usuario') ?>
+                <i class="fa-jelly-fill fa-regular fa-user icon-topbar-user"></i> <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Usuario') ?>
             </div>
         </header>
