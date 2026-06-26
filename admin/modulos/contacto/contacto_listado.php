@@ -133,17 +133,21 @@ include('../../includes/header.php');
                                 <td><?= htmlspecialchars($m['email']) ?></td>
                                 <td><?= htmlspecialchars($m['asunto']) ?></td>
                                 <td><?= date("d/m/Y H:i", strtotime($m['fecha'])) ?></td>
-                                <td>
-                                    <a href="contacto_editar.php?id=<?= $m['id'] ?>" class="btn btn-ver">
-                                        <i class="fa-solid fa-pen-to-square"></i> Editar
-                                    </a>
 
-                                    <a href="contacto_borrar.php?id=<?= $m['id'] ?>"
-                                        class="btn btn-borrar"
-                                        onclick="return confirm('¿Seguro que deseas borrar este mensaje?');">
-                                        <i class="fa-solid fa-trash"></i> Borrar
-                                    </a>
-                                </td>
+                                <?php if (esAdmin()): ?>
+                                    <td>
+                                        <a href="contacto_editar.php?id=<?= $m['id'] ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-pen-to-square"></i> Editar
+                                        </a>
+
+                                        <a href="contacto_borrar.php?id=<?= $m['id'] ?>"
+                                            class="btn btn-borrar"
+                                            onclick="return confirm('¿Seguro que deseas borrar este mensaje?');">
+                                            <i class="fa-solid fa-trash"></i> Borrar
+                                        </a>
+                                    </td>
+                                <?php endif; ?>
+
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

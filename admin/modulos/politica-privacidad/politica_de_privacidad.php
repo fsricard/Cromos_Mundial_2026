@@ -50,9 +50,13 @@ include('../../includes/header.php');
             </div>
 
             <div class="acciones">
-                <button type="submit" class="btn btn-ver">
-                    <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
-                </button>
+
+                <?php if (esAdmin()): ?>
+                    <button type="submit" class="btn btn-ver">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
+                    </button>
+                <?php endif; ?>
+
             </div>
         </form>
 

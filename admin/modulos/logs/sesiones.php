@@ -82,12 +82,15 @@ include('../../includes/header.php');
                                         Descargar
                                     </a>
 
-                                    <a href="borrar_log.php?f=<?= urlencode($archivo) ?>"
-                                        class="btn btn-borrar"
-                                        onclick="return confirm('¿Seguro que deseas borrar este log?');">
-                                        <i class="fa-solid fa-trash"></i>
-                                        Borrar
-                                    </a>
+                                    <?php if (esAdmin()): ?>
+                                        <a href="borrar_log.php?f=<?= urlencode($archivo) ?>"
+                                            class="btn btn-borrar"
+                                            onclick="return confirm('¿Seguro que deseas borrar este log?');">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Borrar
+                                        </a>
+                                    <?php endif; ?>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -70,9 +70,11 @@ include('../../includes/header.php');
     <section>
         <h2>Gestión de usuarios del sistema</h2>
 
-        <a href="crear.php" class="btn btn-generar">
-            <i class="fa-solid fa-user-plus"></i> Crear usuario
-        </a>
+        <?php if (esAdmin()): ?>
+            <a href="crear.php" class="btn btn-generar">
+                <i class="fa-solid fa-user-plus"></i> Crear usuario
+            </a>
+        <?php endif; ?>
 
         <form method="GET" class="filtros-admin">
 
@@ -138,19 +140,23 @@ include('../../includes/header.php');
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $u['creado_en'] ?></td>
-                                <td>
-                                    <a href="editar.php?id=<?= $u['id'] ?>" class="btn btn-ver">
-                                        <i class="fa-solid fa-eye"></i>
-                                        Editar
-                                    </a>
 
-                                    <a href="eliminar.php?id=<?= $u['id'] ?>"
-                                        class="btn btn-borrar"
-                                        onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
-                                        <i class="fa-solid fa-trash"></i>
-                                        Borrar
-                                    </a>
-                                </td>
+                                <?php if (esAdmin()): ?>
+                                    <td>
+                                        <a href="editar.php?id=<?= $u['id'] ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-eye"></i>
+                                            Editar
+                                        </a>
+
+                                        <a href="eliminar.php?id=<?= $u['id'] ?>"
+                                            class="btn btn-borrar"
+                                            onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Borrar
+                                        </a>
+                                    </td>
+                                <?php endif; ?>
+
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

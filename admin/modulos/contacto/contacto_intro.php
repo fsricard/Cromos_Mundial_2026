@@ -51,9 +51,12 @@ include('../../includes/header.php');
             </div>
 
             <div class="acciones">
-                <button type="submit" class="btn btn-ver">
-                    <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
-                </button>
+
+                <?php if (esAdmin()): ?>
+                    <button type="submit" class="btn btn-ver">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
+                    </button>
+                <?php endif; ?>
 
                 <a href="contacto_listado.php" class="btn btn-volver">
                     <i class="fa-solid fa-arrow-left"></i> Volver
