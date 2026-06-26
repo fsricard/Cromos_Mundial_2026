@@ -178,9 +178,11 @@ include('../../includes/header.php');
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-generar">
-                <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
-            </button>
+            <?php if (esAdmin()): ?>
+                <button type="submit" class="btn btn-generar">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
+                </button>
+            <?php endif; ?>
 
         </form>
 
