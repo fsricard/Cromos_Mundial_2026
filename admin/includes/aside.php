@@ -35,10 +35,25 @@
             Logs
         </a>
 
-        <!-- Usuarios del panel de administración -->
+        <!-- Usuario del FrontEnd -->
+        <div class="menu-group">
+            <a href="<?= asset('/admin/modulos/usuarios-frontend/usuarios_frontend_listado.php') ?>" class="<?= $pagina === 'usuarios_frontend_listado' ? 'active' : '' ?>">
+                <i class="fa-solid fa-futbol icon-soccer"></i>
+                Users de la página
+            </a>
+
+            <div class="submenu">
+                <a href="<?= asset('/admin/modulos/contacto/contacto_intro.php') ?>"
+                    class="<?= $pagina === 'contacto_intro' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-message-text icon-submenu"></i> Contacto intro
+                </a>
+            </div>
+        </div>
+
+        <!-- Usuarios del sistema -->
         <a href="<?= asset('/admin/modulos/usuarios-panel/users_panel.php') ?>" class="<?= $pagina === 'users_panel' ? 'active' : '' ?>">
             <i class="fa-solid fa-users icon-users"></i>
-            Usuarios del sistema
+            Users del sistema
         </a>
     </nav>
 
