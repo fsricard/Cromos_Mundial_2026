@@ -1,10 +1,8 @@
 <?php
 // Función para restringir contenido solo para el rol "admin"
-function tienePermiso(): bool
+function esAdmin()
 {
-    $rolesPermitidos = ['admin'];
-
-    return in_array($_SESSION['rol'], $rolesPermitidos, true);
+    return isset($_SESSION['usuario_rol']) && $_SESSION['usuario_rol'] === 'admin';
 }
 
 // Función para detectar dispositos móviles
