@@ -145,3 +145,13 @@ function editor_quill($nombreCampo, $valor = '')
         '</textarea>
     ';
 }
+
+// Función para limpiar cadenas de texto
+function limpiar($cadena)
+{
+    if (!isset($cadena)) return '';
+    $cadena = trim($cadena);
+    $cadena = stripslashes($cadena);
+    $cadena = htmlspecialchars($cadena, ENT_QUOTES, 'UTF-8');
+    return $cadena;
+}
