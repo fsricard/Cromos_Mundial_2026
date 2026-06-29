@@ -43,9 +43,13 @@
             </a>
 
             <div class="submenu">
-                <a href="<?= asset('/admin/modulos/contacto/contacto_intro.php') ?>"
-                    class="<?= $pagina === 'contacto_intro' ? 'active' : '' ?>">
-                    <i class="fa-solid fa-message-text icon-submenu"></i> Contacto intro
+                <a href="<?= asset('/admin/modulos/usuarios-frontend/usuarios_frontend_favoritos.php') ?>"
+                    class="<?= $pagina === 'usuarios_frontend_favoritos' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-bookmark icon-favorite"></i> Ver favoritos
+                </a>
+                <a href="<?= asset('/admin/modulos/usuarios-frontend/usuarios_frontend_intercambios.php') ?>"
+                    class="<?= $pagina === 'usuarios_frontend_intercambios' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-arrows-turn-to-dots icon-interchange"></i> Ver intercambios
                 </a>
             </div>
         </div>

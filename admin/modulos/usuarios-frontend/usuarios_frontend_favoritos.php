@@ -77,7 +77,7 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $favoritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$pagina = 'usuarios_frontend_listado';
+$pagina = 'usuarios_frontend_favoritos';
 
 include('../../includes/header.php');
 ?>

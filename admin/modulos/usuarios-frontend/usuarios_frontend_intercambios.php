@@ -92,7 +92,7 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $intercambios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$pagina = 'usuarios_frontend_listado';
+$pagina = 'usuarios_frontend_intercambios';
 
 include('../../includes/header.php');
 ?>
