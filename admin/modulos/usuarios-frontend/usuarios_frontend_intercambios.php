@@ -146,6 +146,7 @@ include('../../includes/header.php');
                         <th>Receptor</th>
                         <th>Estado</th>
                         <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,6 +198,12 @@ include('../../includes/header.php');
 
                             <td>
                                 <?= date("d/m/Y H:i", strtotime($i['fecha'])) ?>
+                            </td>
+
+                            <td>
+                                <a href="usuarios_frontend_ver_intercambios.php?id=<?= $i['id'] ?>" class="btn btn-ver">
+                                    <i class="fa-solid fa-eye"></i> Ver
+                                </a>
                             </td>
                         </tr>
 
