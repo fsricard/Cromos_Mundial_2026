@@ -154,11 +154,11 @@ include('../../includes/header.php');
 
                         <?php
                         $img_ofrecido = $i['ofrecido_imagen']
-                            ? "uploads/cromos/" . $i['ofrecido_imagen']
+                            ? asset($i['ofrecido_imagen'])
                             : asset("uploads/cromos/default/Default.png");
 
                         $img_solicitado = $i['solicitado_imagen']
-                            ? "uploads/cromos/" . $i['solicitado_imagen']
+                            ? asset($i['solicitado_imagen'])
                             : asset("uploads/cromos/default/Default.png");
                         ?>
 

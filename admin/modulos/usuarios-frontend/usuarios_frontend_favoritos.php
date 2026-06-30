@@ -131,7 +131,7 @@ include('../../includes/header.php');
 
                         <?php
                         $img = $fav['cromo_imagen']
-                            ? "uploads/cromos/" . $fav['cromo_imagen']
+                            ? asset($fav['cromo_imagen'])
                             : asset("uploads/cromos/default/Default.png");
                         ?>
 
