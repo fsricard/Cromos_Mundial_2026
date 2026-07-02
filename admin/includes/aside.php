@@ -41,10 +41,26 @@
             Sistemas de pago
         </a>
 
+        <!-- Cromos -->
+        <div class="menu-group">
+            <a href="<?= asset('/admin/modulos/cromos/cromos_listado.php') ?>" class="<?= $pagina === 'cromos_listado' ? 'active' : '' ?>">
+                <i class="fa-solid fa-futbol icon-cromos-listado"></i>
+                Listado de cromos
+            </a>
+
+            <div class="submenu">
+                <a href="<?= asset('/admin/modulos/cromos/cromos_subir.php') ?>"
+                    class="<?= $pagina === 'cromos_subir' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-upload icon-cromos-up"></i>
+                     Añadir cromos
+                </a>
+            </div>
+        </div>
+
         <!-- Usuario del FrontEnd -->
         <div class="menu-group">
             <a href="<?= asset('/admin/modulos/usuarios-frontend/usuarios_frontend_listado.php') ?>" class="<?= $pagina === 'usuarios_frontend_listado' ? 'active' : '' ?>">
-                <i class="fa-solid fa-futbol icon-soccer"></i>
+                <i class="fa-solid fa-person-soccer icon-soccer"></i>
                 Users de la página
             </a>
 
