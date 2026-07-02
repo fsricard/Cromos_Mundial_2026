@@ -496,6 +496,10 @@ body {
     padding: 40px;
 }
 
+.content hr {
+    margin: 20px 0;
+}
+
 .content a.pulse {
     color: #4F7CFF;
     text-decoration: none;

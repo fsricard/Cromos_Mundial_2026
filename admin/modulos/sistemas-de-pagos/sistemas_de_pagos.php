@@ -25,6 +25,15 @@ include('../../includes/header.php');
         <h2>Sistemas de Pago</h2>
 
         <h3>Añadir nuevo método</h3>
+
+        <?php if (isset($_GET['exito'])): ?>
+            <p class="mensaje-exito"><?= htmlspecialchars($_GET['exito']) ?></p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error'])): ?>
+            <p class="mensaje-error"><?= htmlspecialchars($_GET['error']) ?></p>
+        <?php endif; ?>
+
         <form action="procesar_pago.php" method="POST" class="filtros-admin">
 
             <div class="form-grupo">
