@@ -35,6 +35,12 @@
             Logs
         </a>
 
+        <!-- Sistema de pago -->
+        <a href="<?= asset('/admin/modulos/sistemas-de-pagos/sistemas_de_pagos.php') ?>" class="<?= $pagina === 'sistemas-de-pagos' ? 'active' : '' ?>">
+            <i class="fa-solid fa-coins icon-pay"></i>
+            Sistemas de pago
+        </a>
+
         <!-- Usuario del FrontEnd -->
         <div class="menu-group">
             <a href="<?= asset('/admin/modulos/usuarios-frontend/usuarios_frontend_listado.php') ?>" class="<?= $pagina === 'usuarios_frontend_listado' ? 'active' : '' ?>">
