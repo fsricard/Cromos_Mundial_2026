@@ -528,6 +528,47 @@ body {
     color: #e05959;
 }
 
+.content ul,
+.content ol {
+    margin: 1rem 0;
+    padding-left: 1.4rem;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.45;
+    transition: transform .25s ease, color .25s ease;
+}
+
+.content li:hover {
+    transform: scale(1.03);
+    color: #82a2ff;
+}
+
+.content ol {
+    list-style: decimal;
+}
+
+.content ul {
+    list-style: disc;
+}
+
+.content ul.custom-bullets li {
+    list-style: none;
+    position: relative;
+}
+
+.content ul.custom-bullets li::before {
+    content: "•";
+    position: absolute;
+    left: -1rem;
+    color: #4F7CFF;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 /* END contenido */
 
 /* Footer */
