@@ -78,8 +78,14 @@ include('../../includes/header.php');
                     <?= htmlspecialchars($m['valor']) ?>
 
                     <a href="editar_pago.php?id=<?= $m['id'] ?>" class="btn btn-ver">
-                        <i class="fa-solid fa-pen"></i> 
+                        <i class="fa-solid fa-pen"></i>
                         Editar
+                    </a>
+
+                    <a href="eliminar_pago.php?id=<?= $m['id'] ?>" 
+                        class="btn btn-borrar" 
+                        onclick="return confirm('¿Seguro que deseas eliminar este método de pago?');">
+                        <i class="fa-solid fa-trash"></i> Borrar
                     </a>
                 </li>
             <?php endforeach; ?>
