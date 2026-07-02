@@ -76,6 +76,11 @@ include('../../includes/header.php');
                     <strong><?= htmlspecialchars($m['etiqueta']) ?></strong>
                     (<?= htmlspecialchars($m['tipo']) ?>):
                     <?= htmlspecialchars($m['valor']) ?>
+
+                    <a href="editar_pago.php?id=<?= $m['id'] ?>" class="btn btn-ver">
+                        <i class="fa-solid fa-pen"></i> 
+                        Editar
+                    </a>
                 </li>
             <?php endforeach; ?>
         </ul>

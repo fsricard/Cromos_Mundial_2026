@@ -163,7 +163,7 @@ include('../../includes/header.php');
                                     </a>
 
                                     <?php if (esAdmin()): ?>
-                                        <a href="usuarios_frontend_editar.php?id=<?= $u['id'] ?>" class="btn btn-ver" style="background:#f1c40f; color:black;">
+                                        <a href="usuarios_frontend_editar.php?id=<?= $u['id'] ?>" class="btn btn-ver">
                                             <i class="fa-solid fa-pen"></i> Editar
                                         </a>
 
