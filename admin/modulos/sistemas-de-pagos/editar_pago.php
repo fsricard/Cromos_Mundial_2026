@@ -36,6 +36,14 @@ include('../../includes/header.php');
     <section>
         <h2>Editar método de pago</h2>
 
+        <?php if (isset($_GET['exito'])): ?>
+            <p class="mensaje-exito"><?= htmlspecialchars($_GET['exito']) ?></p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error'])): ?>
+            <p class="mensaje-error"><?= htmlspecialchars($_GET['error']) ?></p>
+        <?php endif; ?>
+
         <form action="actualizar_pago.php" method="POST" class="filtros-admin">
             <input type="hidden" name="id" value="<?= $metodo['id'] ?>">
 
@@ -66,6 +74,10 @@ include('../../includes/header.php');
             <button type="submit" class="btn btn-generar">
                 <i class="fa-solid fa-floppy-disk"></i> Actualizar método
             </button>
+
+            <a href="sistemas_de_pagos.php?id=<?= $metodo['id'] ?>" class="btn btn-volver">
+                <i class="fa-solid fa-arrow-left"></i> Volver al listado
+            </a>
         </form>
     </section>
 </main>
