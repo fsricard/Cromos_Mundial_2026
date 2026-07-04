@@ -60,6 +60,12 @@
                     <i class="fa-solid fa-transgender icon-queer"></i>
                     Listado de rarezas
                 </a>
+
+                <a href="<?= asset('/admin/modulos/cromos/importar_csv.php') ?>"
+                    class="<?= $pagina === 'cromos_importar_csv' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-file-csv icon-csv"></i>
+                    Importar CSV
+                </a>
             </div>
         </div>
 
