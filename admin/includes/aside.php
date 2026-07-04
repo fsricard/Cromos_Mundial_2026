@@ -54,6 +54,12 @@
                     <i class="fa-solid fa-upload icon-cromos-up"></i>
                     Añadir cromos
                 </a>
+
+                <a href="<?= asset('/admin/modulos/cromos/rareza_listado.php') ?>"
+                    class="<?= $pagina === 'rareza_listado' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-transgender icon-queer"></i>
+                    Listado de rarezas
+                </a>
             </div>
         </div>
 
