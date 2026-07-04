@@ -20,11 +20,31 @@
 }
 
 /* General */
-body {
+html {
+    font-size: 62.5%;
+}
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: 3.2px;
+    line-height: 1.4;
     font-family: var(--font-texto);
+    overflow-x: hidden;
     background-color: var(--color-negro);
     color: var(--color-blanco);
+    margin: auto;
+}
+
+.content p {
+    font-size: 1.6rem;
 }
 
 /* END general */
@@ -103,7 +123,7 @@ body {
 
 .sections-footer h3 {
     font-family: var(--font-titulos);
-    font-size: 1.3rem;
+    font-size: 2.0rem;
     margin-bottom: 1rem;
     color: var(--color-blanco);
 }
@@ -121,7 +141,7 @@ body {
 .sections-footer ul li a {
     text-decoration: none;
     color: var(--color-gris-claro);
-    font-size: 0.95rem;
+    font-size: 1.4rem;
     transition: color 0.3s ease;
 }
 
@@ -149,7 +169,7 @@ body {
 
 .footer h4 {
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 1.0rem;
     color: var(--color-gris-claro);
     font-weight: 400;
 }
@@ -169,7 +189,7 @@ body {
     text-decoration: none;
     color: var(--color-gris-claro);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.4rem;
     transition: color 0.3s ease;
 }
 
@@ -179,9 +199,104 @@ body {
 
 /* END menú */
 
+/* Módulo contacto */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 20px;
+}
+
+.contact-intro {
+    background: #151A21;
+    padding: 25px;
+    border-radius: 10px;
+    color: #E5E5E5;
+    line-height: 1.6;
+}
+
+.contact-form {
+    background: #1C222A;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.form-contact .form-group {
+    margin-bottom: 20px;
+}
+
+.form-contact label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #E5E5E5;
+    font-size: 1.4rem;
+}
+
+.form-contact input,
+.form-contact textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #2C333D;
+    background: #0F1318;
+    color: #E5E5E5;
+    font-size: 1.4rem;
+}
+
+.form-contact input:focus,
+.form-contact textarea:focus {
+    outline: none;
+    border-color: #4C8BF5;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 14px;
+    background: #4C8BF5;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.btn-enviar:hover {
+    background: #3A6FD1;
+}
+
+.ajax-respuesta {
+    margin-top: 20px;
+}
+
+.msg-ok {
+    background: #1F3D22;
+    color: #A6E6A6;
+    padding: 12px;
+    border-left: 4px solid #4CAF50;
+    border-radius: 6px;
+}
+
+.msg-error {
+    background: #3D1F1F;
+    color: #E6A6A6;
+    padding: 12px;
+    border-left: 4px solid #F44336;
+    border-radius: 6px;
+}
+
+/* RND módulo contacto */
+
 /* ============================
    RESPONSIVE
 ============================ */
+@media (max-width: 900px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 768px) {
     .logo img {
         width: 90px;

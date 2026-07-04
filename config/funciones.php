@@ -21,6 +21,7 @@ function mostrarTextoPersonalizado()
     // Define los textos personalizados
     $textos = [
         ''                          => 'Cromos Mundial 2026',
+        'contacto'                  => 'Contacto - Cromos Mundial 2026',
     ];
 
     // Imprime el texto correspondiente o uno por defecto
