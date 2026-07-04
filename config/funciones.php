@@ -20,11 +20,11 @@ function mostrarTextoPersonalizado()
 
     // Define los textos personalizados
     $textos = [
-        ''                          => 'Yo soy el Diablillo y usted ... no lo es',
+        ''                          => 'Cromos Mundial 2026',
     ];
 
     // Imprime el texto correspondiente o uno por defecto
-    echo $textos[$pagina] ?? 'Yo soy el Diablillo y usted ... no lo es';
+    echo $textos[$pagina] ?? 'Cromos Mundial 2026';
 }
 
 // Función para mostrar el CopyRight en el footer
