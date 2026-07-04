@@ -55,12 +55,12 @@ require_once(__DIR__ . '/../config/funciones.php');
     <header class="header-container">
 
         <div class="img-relative">
-            <img src="<?= asset('/img/header-cromos-mexico-2026.png') ?>" alt="Cromos Mundial 2026" class="header-img" />
+            <img src="<?= asset('/img/header-cromos-mundial-2026.png') ?>" alt="Cromos Mundial 2026" class="header-img" />
         </div>
 
         <div class="header-content">
             <div class="logo">
-                <img src="<?= asset('/img/cromos-mexico-2026.png') ?>" alt="Logotipo Cromos Munidal 2026" />
+                <img src="<?= asset('/img/cromos-mundial-2026.png') ?>" alt="Logotipo Cromos Munidal 2026" />
             </div>
 
             <nav class="menu-desktop">
