@@ -49,8 +49,8 @@
             </a>
 
             <div class="submenu">
-                <a href="<?= asset('/admin/modulos/cromos/cromos_subir.php') ?>"
-                    class="<?= $pagina === 'cromos_subir' ? 'active' : '' ?>">
+                <a href="<?= asset('/admin/modulos/cromos/cromo_nuevo.php') ?>"
+                    class="<?= $pagina === 'cromo_nuevo' ? 'active' : '' ?>">
                     <i class="fa-solid fa-upload icon-cromos-up"></i>
                      Añadir cromos
                 </a>
