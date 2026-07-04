@@ -63,7 +63,7 @@ require_once(__DIR__ . '/../config/funciones.php');
 
         <div class="header-content">
             <div class="logo">
-                <img src="<?= asset('/img/cromos-mundial-2026.png') ?>" alt="Logotipo Cromos Munidal 2026" />
+                <img src="<?= asset('/img/cromos-mundial-2026-0002.png') ?>" alt="Logotipo Cromos Munidal 2026" />
             </div>
 
             <nav class="menu-desktop">

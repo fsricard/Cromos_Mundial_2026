@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="sections-footer-right">
-                        <img src="<?= asset('/img/cromos-mundial-2026.png') ?>" alt="Logotipo Cromos Mundial 2026" class="footer-logo" />
+                        <img src="<?= asset('/img/cromos-mundial-2026-0002.png') ?>" alt="Logotipo Cromos Mundial 2026" class="footer-logo" />
                     </div>
                 </div>
 
