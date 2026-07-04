@@ -34,10 +34,12 @@ include('../../includes/header.php');
     <section>
         <h2>Logs del sistema</h2>
 
-        <a href="guardar_log.php?test=1" class="btn btn-generar">
-            <i class="fa-solid fa-file-circle-plus"></i>
-            Generar log de prueba
-        </a>
+        <?php if (esAdmin()): ?>
+            <a href="guardar_log.php?test=1" class="btn btn-generar">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                Generar log de prueba
+            </a>
+        <?php endif; ?>
 
         <?php
         if (isset($_GET['msg'])) {
@@ -70,19 +72,22 @@ include('../../includes/header.php');
                                 <td data-label="Archivo"><?= htmlspecialchars($archivo) ?></td>
                                 <td data-label="Tamaño"><?= filesize($rutaLogs . $archivo) ?> bytes</td>
                                 <td class="acciones-botones">
-                                    <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-ver">
-                                        <i class="fa-solid fa-eye"></i>
-                                        Ver
-                                    </a>
-
-                                    <a href="<?= '../../../log/' . urlencode($archivo) ?>"
-                                        download="<?= htmlspecialchars($archivo) ?>"
-                                        class="btn btn-descargar">
-                                        <i class="fa-solid fa-download"></i>
-                                        Descargar
-                                    </a>
 
                                     <?php if (esAdmin()): ?>
+                                        <a href="ver_log.php?f=<?= urlencode($archivo) ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-eye"></i>
+                                            Ver
+                                        </a>
+
+
+                                        <a href="<?= '../../../log/' . urlencode($archivo) ?>"
+                                            download="<?= htmlspecialchars($archivo) ?>"
+                                            class="btn btn-descargar">
+                                            <i class="fa-solid fa-download"></i>
+                                            Descargar
+                                        </a>
+
+
                                         <a href="borrar_log.php?f=<?= urlencode($archivo) ?>"
                                             class="btn btn-borrar"
                                             onclick="return confirm('¿Seguro que deseas borrar este log?');">

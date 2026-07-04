@@ -201,9 +201,13 @@ include('../../includes/header.php');
                             </td>
 
                             <td>
-                                <a href="usuarios_frontend_ver_intercambios.php?id=<?= $i['id'] ?>" class="btn btn-ver">
-                                    <i class="fa-solid fa-eye"></i> Ver
-                                </a>
+
+                                <?php if (esAdmin()): ?>
+                                    <a href="usuarios_frontend_ver_intercambios.php?id=<?= $i['id'] ?>" class="btn btn-ver">
+                                        <i class="fa-solid fa-eye"></i> Ver
+                                    </a>
+                                <?php endif; ?>
+
                             </td>
                         </tr>
 

@@ -171,15 +171,19 @@ include('../../includes/header.php');
                                 <td><?= ucfirst($c['rareza']) ?></td>
 
                                 <td>
-                                    <a href="cromo_editar.php?id=<?= $c['id'] ?>" class="btn btn-ver">
-                                        <i class="fa-solid fa-pen"></i> Editar
-                                    </a>
 
-                                    <a href="cromo_eliminar.php?id=<?= $c['id'] ?>"
-                                        class="btn btn-borrar"
-                                        onclick="return confirm('¿Seguro que deseas eliminar este cromo?');">
-                                        <i class="fa-solid fa-trash"></i> Borrar
-                                    </a>
+                                    <?php if (esAdmin()): ?>
+                                        <a href="cromo_editar.php?id=<?= $c['id'] ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-pen"></i> Editar
+                                        </a>
+
+                                        <a href="cromo_eliminar.php?id=<?= $c['id'] ?>"
+                                            class="btn btn-borrar"
+                                            onclick="return confirm('¿Seguro que deseas eliminar este cromo?');">
+                                            <i class="fa-solid fa-trash"></i> Borrar
+                                        </a>
+                                    <?php endif; ?>
+
                                 </td>
 
                             </tr>

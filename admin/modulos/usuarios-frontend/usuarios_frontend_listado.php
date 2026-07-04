@@ -158,11 +158,13 @@ include('../../includes/header.php');
                                 <td><?= $u['creado_en'] ?></td>
 
                                 <td>
-                                    <a href="usuarios_frontend_ver.php?id=<?= $u['id'] ?>" class="btn btn-ver">
-                                        <i class="fa-solid fa-eye"></i> Ver
-                                    </a>
 
                                     <?php if (esAdmin()): ?>
+                                        <a href="usuarios_frontend_ver.php?id=<?= $u['id'] ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-eye"></i> Ver
+                                        </a>
+
+
                                         <a href="usuarios_frontend_editar.php?id=<?= $u['id'] ?>" class="btn btn-ver">
                                             <i class="fa-solid fa-pen"></i> Editar
                                         </a>
@@ -173,6 +175,7 @@ include('../../includes/header.php');
                                             <i class="fa-solid fa-trash"></i> Borrar
                                         </a>
                                     <?php endif; ?>
+                                    
                                 </td>
 
                             </tr>

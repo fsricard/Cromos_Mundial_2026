@@ -105,9 +105,12 @@ include('../../includes/header.php');
             <div class="ficha-bloque">
                 <h3>Otros módulos</h3>
 
-                <a href="usuarios_frontend_sesiones.php?id=<?= $usuario['id'] ?>" class="btn btn-ver">
-                    <i class="fa-solid fa-mobile-screen"></i> Ver sesiones activas
-                </a>
+                <?php if (esAdmin()): ?>
+                    <a href="usuarios_frontend_sesiones.php?id=<?= $usuario['id'] ?>" class="btn btn-ver">
+                        <i class="fa-solid fa-mobile-screen"></i> Ver sesiones activas
+                    </a>
+                <?php endif; ?>
+
             </div>
 
         </div>

@@ -52,7 +52,7 @@
                 <a href="<?= asset('/admin/modulos/cromos/cromo_nuevo.php') ?>"
                     class="<?= $pagina === 'cromo_nuevo' ? 'active' : '' ?>">
                     <i class="fa-solid fa-upload icon-cromos-up"></i>
-                     Añadir cromos
+                    Añadir cromos
                 </a>
             </div>
         </div>
@@ -76,11 +76,14 @@
             </div>
         </div>
 
-        <!-- Usuarios del sistema -->
-        <a href="<?= asset('/admin/modulos/usuarios-panel/users_panel.php') ?>" class="<?= $pagina === 'users_panel' ? 'active' : '' ?>">
-            <i class="fa-solid fa-users icon-users"></i>
-            Users del sistema
-        </a>
+        <?php if (esAdmin()): ?>
+            <!-- Usuarios del sistema -->
+            <a href="<?= asset('/admin/modulos/usuarios-panel/users_panel.php') ?>" class="<?= $pagina === 'users_panel' ? 'active' : '' ?>">
+                <i class="fa-solid fa-users icon-users"></i>
+                Users del sistema
+            </a>
+        <?php endif; ?>
+
     </nav>
 
     <div class="logout">

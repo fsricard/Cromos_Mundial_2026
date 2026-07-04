@@ -157,9 +157,11 @@ include('../../includes/header.php');
                 <small>Si no subes ninguna imagen, se asignará la imagen por defecto.</small>
             </div>
 
-            <button type="submit" class="btn btn-ver">
-                <i class="fa-solid fa-floppy-disk"></i> Guardar cromo
-            </button>
+            <?php if (esAdmin()): ?>
+                <button type="submit" class="btn btn-ver">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar
+                </button>
+            <?php endif; ?>
 
             <a href="cromos_listado.php" class="btn btn-volver">
                 <i class="fa-solid fa-arrow-left"></i> Volver al listado
