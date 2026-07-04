@@ -143,11 +143,17 @@ include('../../includes/header.php');
 
             <div class="form-grupo">
                 <label>Rareza *</label>
+                <?php
+                $stmt_r = $pdo->query("SELECT * FROM rarezas_cromos WHERE activo = 1 ORDER BY nombre ASC");
+                $rarezas = $stmt_r->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
                 <select name="rareza" required>
-                    <option value="comun">Común</option>
-                    <option value="raro">Raro</option>
-                    <option value="epico">Épico</option>
-                    <option value="legendario">Legendario</option>
+                    <?php foreach ($rarezas as $r): ?>
+                        <option value="<?= $r['nombre'] ?>" <?= ($cromo['rareza'] ?? '') === $r['nombre'] ? 'selected' : '' ?>>
+                            <?= ucfirst($r['nombre']) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 

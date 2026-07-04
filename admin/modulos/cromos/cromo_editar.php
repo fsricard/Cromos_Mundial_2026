@@ -165,11 +165,17 @@ include('../../includes/header.php');
 
             <div class="form-grupo">
                 <label>Rareza *</label>
+                <?php
+                $stmt_r = $pdo->query("SELECT * FROM rarezas_cromos WHERE activo = 1 ORDER BY nombre ASC");
+                $rarezas = $stmt_r->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
                 <select name="rareza" required>
-                    <option value="comun" <?= $cromo['rareza'] === 'comun' ? 'selected' : '' ?>>Común</option>
-                    <option value="raro" <?= $cromo['rareza'] === 'raro' ? 'selected' : '' ?>>Raro</option>
-                    <option value="epico" <?= $cromo['rareza'] === 'epico' ? 'selected' : '' ?>>Épico</option>
-                    <option value="legendario" <?= $cromo['rareza'] === 'legendario' ? 'selected' : '' ?>>Legendario</option>
+                    <?php foreach ($rarezas as $r): ?>
+                        <option value="<?= $r['nombre'] ?>" <?= ($cromo['rareza'] ?? '') === $r['nombre'] ? 'selected' : '' ?>>
+                            <?= ucfirst($r['nombre']) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
@@ -188,6 +194,11 @@ include('../../includes/header.php');
                 <button type="submit" class="btn btn-ver">
                     <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
                 </button>
+
+                <a href="duplicar_cromo.php?id=<?php echo $id; ?>"
+                    class="btn btn-duplicar">
+                    <i class="fa-solid fa-clone"></i> Duplicar cromo
+                </a>
             <?php endif; ?>
 
             <a href="cromos_listado.php" class="btn btn-volver">

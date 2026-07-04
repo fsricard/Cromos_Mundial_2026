@@ -155,3 +155,24 @@ function limpiar($cadena)
     $cadena = htmlspecialchars($cadena, ENT_QUOTES, 'UTF-8');
     return $cadena;
 }
+
+// Función para limpiar los nombres de los archivos
+function limpiarNombreArchivo($nombre)
+{
+    // Pasar a minúsculas
+    $nombre = mb_strtolower($nombre, 'UTF-8');
+
+    // Reemplazar espacios por guiones
+    $nombre = preg_replace('/\s+/', '-', $nombre);
+
+    // Eliminar caracteres no permitidos (solo letras, números, guiones y guiones bajos)
+    $nombre = preg_replace('/[^a-z0-9\-_.]/', '', $nombre);
+
+    // Evitar múltiples guiones seguidos
+    $nombre = preg_replace('/-+/', '-', $nombre);
+
+    // Trim de guiones al principio y final
+    $nombre = trim($nombre, '-');
+
+    return $nombre;
+}

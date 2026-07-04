@@ -232,6 +232,15 @@ body {
     background: linear-gradient(135deg, #7b8790, #9aa8b5);
 }
 
+.btn-duplicar {
+    background: linear-gradient(135deg, #4ceaf5, #9cf2f8);
+    color: #000;
+}
+
+.btn-duplicar:hover {
+    background: linear-gradient(135deg, #24b0bd, #69dce4);
+}
+
 /* END botones */
 
 /* Tablas */
