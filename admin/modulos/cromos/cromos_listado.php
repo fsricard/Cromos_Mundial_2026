@@ -173,6 +173,11 @@ include('../../includes/header.php');
                                 <td>
 
                                     <?php if (esAdmin()): ?>
+                                        <a href="cromo_ver.php?id=<?= $c['id'] ?>" class="btn btn-ver">
+                                            <i class="fa-solid fa-eye"></i>
+                                            Ver
+                                        </a>
+
                                         <a href="cromo_editar.php?id=<?= $c['id'] ?>" class="btn btn-ver">
                                             <i class="fa-solid fa-pen"></i> Editar
                                         </a>
