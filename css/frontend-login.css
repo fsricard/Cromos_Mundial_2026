@@ -10,7 +10,6 @@
 body {
     background: var(--color-bg);
     color: var(--color-text);
-    font-family: 'Inter', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +24,15 @@ body {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.registro-container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
 }
 
 .login-title {

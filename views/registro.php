@@ -1,72 +1,15 @@
 <?php
 require_once __DIR__ . '/../includes/session.php';
-require_once __DIR__ . '/../includes/auth.php';
 require_once(__DIR__ . '/../config/funciones.php');
-
-// Si ya está logueado, redirigir al panel personal
-if (isLoggedIn()) {
-    header("Location: /panel");
-    exit;
-}
-
-// Generar token CSRF
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
-}
-
-$error = '';
-$expiredMsg = isset($_GET['expired']) ? 'Tu sesión ha expirado por inactividad. Vuelve a iniciar sesión.' : '';
-
-// Inicializar intentos
-if (!isset($_SESSION['login_attempts'])) {
-    $_SESSION['login_attempts'] = 0;
-}
-if (!isset($_SESSION['lock_until'])) {
-    $_SESSION['lock_until'] = 0;
-}
-
-// Bloqueo temporal
-if (time() < $_SESSION['lock_until']) {
-    $error = 'Demasiados intentos fallidos. Espera unos minutos antes de volver a intentarlo.';
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
-    $email = trim($_POST['email'] ?? '');
-    $clave = $_POST['clave'] ?? '';
-    $csrf  = $_POST['csrf_token'] ?? '';
-
-    if (!hash_equals($_SESSION['csrf_token'], $csrf)) {
-        $error = 'Solicitud no válida. Inténtalo de nuevo.';
-    } elseif ($email === '' || $clave === '') {
-        $error = 'Por favor, introduce tu email y contraseña.';
-    } else {
-        if (login($email, $clave, 'frontend')) { // login adaptado para frontend
-            secureSessionRegenerate();
-            $_SESSION['login_attempts'] = 0;
-            logSessionEvent("Login correcto (frontend)", $email);
-            header("Location: /panel");
-            exit;
-        } else {
-            $_SESSION['login_attempts']++;
-            logSessionEvent("Login fallido (frontend)", $email);
-
-            if ($_SESSION['login_attempts'] >= 5) {
-                $_SESSION['lock_until'] = time() + 300;
-                $error = 'Has superado el número máximo de intentos. Espera 5 minutos.';
-            } else {
-                $error = 'Email o contraseña incorrectos. Intento ' . $_SESSION['login_attempts'] . ' de 5.';
-            }
-        }
-    }
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso | Cromos Mundial 2026</title>
+    <title>Registro de Usuario</title>
 
     <!-- FontAwesome 7.0.1 CSS -->
     <link href="<?= asset('/css/fontawesome/css/brands.css') ?>" rel="stylesheet" />
@@ -103,44 +46,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     <link href="<?= asset('/css/fontawesome/css/v4-shims.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/v5-font-face.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/whiteboard-semibold.css') ?>" rel="stylesheet" />
-    
+
     <link rel="stylesheet" href="css/frontend-login.css">
 </head>
 
 <body>
 
     <main class="login-container">
-        <form method="post" class="login-form" autocomplete="off" novalidate>
 
-            <h1 class="login-title">Accede a tu cuenta</h1>
+        <?php if (isset($_GET['error'])): ?>
+            <p class="error"><?= htmlspecialchars($_GET['error']) ?></p>
+        <?php endif; ?>
 
-            <?php if ($expiredMsg): ?>
-                <p class="alert alert-warning"><?= htmlspecialchars($expiredMsg) ?></p>
-            <?php endif; ?>
+        <?php if (isset($_GET['ok'])): ?>
+            <p class="success">Registro completado correctamente.</p>
+        <?php endif; ?>
 
-            <?php if ($error): ?>
-                <p class="alert alert-error"><?= htmlspecialchars($error) ?></p>
-            <?php endif; ?>
+        <form action="registro_procesar.php" method="POST" enctype="multipart/form-data" class="login-form">
 
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required autofocus>
+            <h1 class="login-title">Crear cuenta</h1>
 
-            <label for="clave">Contraseña</label>
-            <input type="password" id="clave" name="clave" required>
+            <!-- Token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required minlength="3">
 
-            <button type="submit" class="btn-login">
-                <i class="fa-sharp fa-light fa-person-to-portal"></i> Entrar
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Teléfono</label>
+            <input type="text" name="telefono" required pattern="[0-9]{6,15}">
+
+            <label>Ciudad</label>
+            <input type="text" name="ciudad">
+
+            <label>Provincia</label>
+            <input type="text" name="provincia">
+
+            <label>Contraseña</label>
+            <input type="password" name="clave" required minlength="6">
+
+            <label>Foto de perfil (opcional)</label>
+            <input type="file" name="foto" accept="image/*">
+
+            <!-- Estado NO lo elige el usuario, siempre "activo" -->
+            <input type="hidden" name="estado" value="activo">
+
+            <button type="submit" class="btn-login" >
+                <i class="fa-thin fa-person-circle-plus"></i> Registrarme
             </button>
-
-            <div class="login-links">
-                <a href=<?= asset('/restablecer'); ?>>¿Olvidaste tu contraseña?</a>
-                <a href=<?= asset('/registro'); ?>>Crear una cuenta nueva</a>
-            </div>
-
         </form>
-    </main>
+     </main>
 
 </body>
 
