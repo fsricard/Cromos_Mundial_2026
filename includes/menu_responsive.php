@@ -7,6 +7,7 @@
                     <ul>
                         <li><a href="<?= asset('/') ?>"><i class="fa-chisel fa-regular fa-house"></i> Inicio</a></li>
                         <li><a href="<?= asset('/contacto') ?>"><i class="fa-chisel fa-regular fa-at"></i> Contacto</a></li>
+                        <li><a href="<?= asset('/login') ?>"><i class="fa-regular fa-user-gear"></i> Tu espacio</a></li>
                     </ul>
                 </nav>
             </div>

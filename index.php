@@ -15,7 +15,16 @@ $extra = isset($_GET['extra']) ? trim($_GET['extra']) : null;
 $rutas_validas = [
     'inicio',
     'contacto',
-    'politica-de-privacidad'
+    'politica-de-privacidad',
+
+    // Autenticación frontend
+    'login',
+    'registro',
+    'restablecer',
+    'logout',
+    'panel',
+    'verificar-email',
+    'cambiar-clave'
 ];
 
 // Si la vista no existe → 404
@@ -29,46 +38,90 @@ if (!in_array($view, $rutas_validas)) {
 $GLOBALS['pagina_actual'] = $view;
 
 // ==========================================
-//  CARGAR HEADER
-// ==========================================
-require_once __DIR__ . '/includes/header.php';
-
-// ==========================================
-//  LÓGICA DEL ROUTER
+//  EXCLUSIONES DE HEADER Y FOOTER
 // ==========================================
 
-// ---------------------------
-//  PÁGINA DE INICIO
-//  /inicio
-// ---------------------------
-if ($view === 'inicio') {
-    require __DIR__ . '/views/inicio.php';
-}
+$exclusiones_header_footer = [
+    'login',
+    'registro',
+    'restablecer',
+    'logout',
+    'panel',
+    'verificar-email',
+    'cambiar-clave'
+];
 
-// ---------------------------
-//  CONTACTO
-//  /contacto
-// ---------------------------
-elseif ($view === 'contacto') {
-    require __DIR__ . '/views/contacto.php';
-}
+// ==========================================
+//  CARGAR HEADER (si procede)
+// ==========================================
 
-// ---------------------------
-//  POLITICA DE PRIVACIDAD
-//  /politica-de-privacidad
-// ---------------------------
-elseif ($view === 'politica-de-privacidad') {
-    require __DIR__ . '/views/politica-de-privacidad.php';
-}
-
-// ---------------------------
-//  404
-// ---------------------------
-else {
-    require __DIR__ . '/views/404.php';
+if (!in_array($view, $exclusiones_header_footer)) {
+    require_once __DIR__ . '/includes/header.php';
 }
 
 // ==========================================
-//  CARGAR FOOTER
+//  ROUTER DE VISTAS
 // ==========================================
-require_once __DIR__ . '/includes/footer.php';
+
+switch ($view) {
+
+    case 'inicio':
+        require __DIR__ . '/views/inicio.php';
+        break;
+
+    case 'contacto':
+        require __DIR__ . '/views/contacto.php';
+        break;
+
+    case 'politica-de-privacidad':
+        require __DIR__ . '/views/politica-de-privacidad.php';
+        break;
+
+    // ============================
+    //  AUTENTICACIÓN FRONTEND
+    // ============================
+
+    case 'login':
+        require __DIR__ . '/views/login.php';
+        break;
+
+    case 'registro':
+        require __DIR__ . '/views/registro.php';
+        break;
+
+    case 'restablecer':
+        require __DIR__ . '/views/restablecer.php';
+        break;
+
+    case 'logout':
+        require __DIR__ . '/views/logout.php';
+        break;
+
+    case 'panel':
+        require __DIR__ . '/views/panel.php';
+        break;
+
+    case 'verificar-email':
+        require __DIR__ . '/views/verificar-email.php';
+        break;
+
+    case 'cambiar-clave':
+        require __DIR__ . '/views/cambiar-clave.php';
+        break;
+
+    // ============================
+    //  404
+    // ============================
+
+    default:
+        require __DIR__ . '/views/404.php';
+        break;
+}
+
+// ==========================================
+//  CARGAR FOOTER (si procede)
+// ==========================================
+
+if (!in_array($view, $exclusiones_header_footer)) {
+    require_once __DIR__ . '/includes/footer.php';
+}
