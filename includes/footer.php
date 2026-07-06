@@ -34,6 +34,14 @@
             </div>
         </footer>
 
+        <script>
+            // Script para el menú responsive
+            function toggleMobileMenu() {
+                const menu = document.getElementById('menuMovil');
+                menu.style.left = (menu.style.left === '0px') ? '-100%' : '0px';
+            }
+        </script>
+
         </body>
 
         </html>
