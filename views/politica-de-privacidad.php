@@ -10,6 +10,13 @@
 
                         <div class="content-block">
 
+                            <?php
+                            $stmt = $pdo->query("SELECT contenido FROM politica_privacidad ORDER BY id DESC LIMIT 1");
+                            $politica = $stmt->fetchColumn();
+
+                            echo $politica;
+                            ?>
+
                         </div>
 
                     </article>

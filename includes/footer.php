@@ -4,14 +4,13 @@
                     <div class="sections-footer-left">
                         <h3>Esas cosillas legales</h3>
                         <ul>
-                            <li><a href="<?= asset('/') ?>">Así es Noemí</a></li>
-                            <li><a href="<?= asset('/') ?>">Contacta con Noemí</a></li>
-                            <li><a href="<?= asset('/') ?>">Política de privacidad</a></li>
+                            <li><a href="<?= asset('/contacto') ?>">Contacta con nosotros</a></li>
+                            <li><a href="<?= asset('/politica-de-privacidad') ?>">Política de privacidad</a></li>
                         </ul>
                     </div>
 
                     <div class="sections-footer-center">
-                        <h3>Apoya a El Arca</h3>
+                        <h3>Vuestro espacio</h3>
                         <ul>
                             <li><a href="<?= asset('/') ?>">Danos tu opinión</a></li>
                             <li><a href="<?= asset('/') ?>">Adopta un bichi</a></li>

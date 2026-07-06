@@ -64,11 +64,16 @@ body {
 }
 
 .content p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .content h2 {
     font-family: var(--font-titulos);
+}
+
+.content-block {
+    width: 100%;
+    margin: 20px 0;
 }
 
 /* END general */
