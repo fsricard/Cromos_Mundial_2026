@@ -76,6 +76,80 @@ body {
     margin: 20px 0;
 }
 
+.content blockquote {
+    font-family: var(--font-texto);
+    font-size: 1.6rem;
+    color: var(--color-gris-claro);
+    background: var(--color-negro);
+    border-left: 4px solid var(--color-rojo);
+    padding: 1.2rem 1.6rem;
+    margin: 1.8rem auto;
+    width: 85%;
+    line-height: 1.6;
+    border-radius: 6px;
+}
+
+.content ul {
+    font-family: var(--font-texto);
+    font-size: 1.5rem;
+    color: var(--color-gris-claro);
+    margin: 1.6rem auto;
+    width: 85%;
+    padding-left: 2rem;
+    list-style: none;
+}
+
+.content ul li {
+    position: relative;
+    margin-bottom: 0.8rem;
+    padding-left: 1.4rem;
+}
+
+.content ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-rojo);
+    font-size: 2.4rem;
+    line-height: 1rem;
+}
+
+.content ol {
+    font-family: var(--font-texto);
+    font-size: 1.5rem;
+    color: var(--color-gris-claro);
+    margin: 1.6rem auto;
+    width: 85%;
+    padding-left: 2rem;
+    counter-reset: lista-elegante;
+    list-style: none;
+}
+
+.content ol li {
+    counter-increment: lista-elegante;
+    margin-bottom: 1rem;
+    padding-left: 2.8rem;
+    position: relative;
+}
+
+.content ol li::before {
+    content: counter(lista-elegante);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--color-negro);
+    color: var(--color-rojo);
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
 /* END general */
 
 /* Iconos */
