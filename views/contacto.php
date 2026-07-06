@@ -4,7 +4,9 @@
                 <section class="content">
                     <article>
 
-                        <h2 class="content-title">Contacto</h2>
+                        <h2 class="content-title">
+                            <i class="fa-chisel fa-regular fa-at"></i> Contacto
+                        </h2>
 
                         <div class="contact-wrapper">
 

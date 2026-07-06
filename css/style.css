@@ -21,7 +21,7 @@
 
     /* Botnoes */
     --boton-form: #1FAF6B;
-    --boton-form-hover:  #E64545;
+    --boton-form-hover: #E64545;
 
     /* Mensajes */
     --fondo-ok: #1F3D22;
@@ -72,6 +72,55 @@ body {
 }
 
 /* END general */
+
+/* Iconos */
+.content-title i {
+    color: #E5E5E5;
+    margin-right: 8px;
+    font-size: 1.4em;
+    display: inline-block;
+    animation: iconPulse 3.8s ease-in-out infinite,
+        iconFlare 3.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgba(229, 229, 229, 0.45));
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes iconFlare {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(229, 229, 229, 0.65));
+    }
+
+    40% {
+        filter: drop-shadow(0 0 7px rgba(255, 180, 80, 0.85));
+    }
+
+    60% {
+        filter: drop-shadow(0 0 10px rgba(255, 120, 40, 0.95));
+    }
+
+    80% {
+        filter: drop-shadow(0 0 6px rgba(255, 180, 80, 0.80));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px rgba(229, 229, 229, 0.65));
+    }
+}
+
+/* END iconos */
 
 /* Header */
 .header-container {
