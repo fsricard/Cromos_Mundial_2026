@@ -1,5 +1,5 @@
             <div class="hamburguesa-movil" id="hamburguesa" onclick="toggleMobileMenu()">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-notdog-duo fa-solid fa-bars"></i>
             </div>
 
             <div class="menu-movil" id="menuMovil">
