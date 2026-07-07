@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     } elseif ($email === '' || $clave === '') {
         $error = 'Por favor, introduce tu email y contraseña.';
     } else {
-        if (login($email, $clave, 'frontend')) { // login adaptado para frontend
+        if (login($email, $clave)) {
             secureSessionRegenerate();
             $_SESSION['login_attempts'] = 0;
             logSessionEvent("Login correcto (frontend)", $email);
