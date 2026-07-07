@@ -67,6 +67,7 @@ input {
     border: none;
     border-radius: 8px;
     color: #000;
+    font-size: 1.0rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
