@@ -177,3 +177,34 @@ function limpiarNombreArchivo($nombre)
 
     return $nombre;
 }
+
+// Función para cargar los datos de los usuarios del FrontEnd
+function cargarDatosUsuarioFrontend($email)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("
+        SELECT *
+        FROM usuarios_frontend
+        WHERE email = :email
+        LIMIT 1
+    ");
+    $stmt->execute(['email' => $email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario) {
+        $_SESSION['usuario_frontend'] = [
+            'id'             => $usuario['id'],
+            'nombre'         => $usuario['nombre'],
+            'email'          => $usuario['email'],
+            'telefono'       => $usuario['telefono'],
+            'ciudad'         => $usuario['ciudad'],
+            'provincia'      => $usuario['provincia'],
+            'foto'           => $usuario['foto'],
+            'creado_en'      => $usuario['creado_en'],
+            'actualizado_en' => $usuario['actualizado_en'],
+            'ultimo_acceso'  => $usuario['ultimo_acceso'],
+            'estado'         => $usuario['estado']
+        ];
+    }
+}
