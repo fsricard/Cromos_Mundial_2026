@@ -112,6 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     <main class="login-container">
         <form method="post" class="login-form" autocomplete="off" novalidate>
 
+            <div class="login-links">
+                <a href=<?= asset('/') ?>><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Volver a la página de inicio</a>
+            </div>
+
             <h1 class="login-title">Accede a tu cuenta</h1>
 
             <?php if ($expiredMsg): ?>

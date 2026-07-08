@@ -183,6 +183,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="post" autocomplete="off" novalidate>
 
+            <div class="login-links">
+                <a href=<?= asset('/') ?>><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Volver a la página de inicio</a>
+            </div>
+
             <h1 class="login-title">Crear una cuenta</h1>
 
             <label for="nombre">Nombre completo *</label>
