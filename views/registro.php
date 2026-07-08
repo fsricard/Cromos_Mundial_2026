@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" autocomplete="off" novalidate>
+        <form method="post" autocomplete="off" novalidate enctype="multipart/form-data">
 
             <div class="login-links">
                 <a href=<?= asset('/') ?>><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Volver a la página de inicio</a>
