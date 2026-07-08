@@ -98,7 +98,7 @@ switch ($view) {
         break;
 
     case 'panel':
-        require __DIR__ . '/views/panel.php';
+        require __DIR__ . '/views/panel/panel.php';
         break;
 
     case 'verificar-email':

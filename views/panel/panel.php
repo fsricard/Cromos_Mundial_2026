@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../includes/session.php';
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../config/funciones.php';
+require_once __DIR__ . '/../../includes/session.php';
+require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../../config/funciones.php';
 
 // Proteger el panel
 if (!isLoggedIn()) {
@@ -27,10 +27,10 @@ if (!in_array($modulo, $modulos_validos)) {
 }
 
 // Cargar header universal del panel
-require __DIR__ . '/panel/header.php';
+require __DIR__ . '/header.php';
 
 // Cargar módulo
-require __DIR__ . "/panel/{$modulo}.php";
+require __DIR__ . "/{$modulo}.php";
 
 // Cargar footer universal del panel
-require __DIR__ . '/panel/footer.php';
+require __DIR__ . '/footer.php';
