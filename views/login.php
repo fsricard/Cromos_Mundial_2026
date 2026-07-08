@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../config/funciones.php');
 
 // Si ya está logueado, redirigir al panel personal
 if (isLoggedIn()) {
-    header("Location: /panel");
+    header("Location: " . asset('/panel'));
     exit;
 }
 
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
             secureSessionRegenerate();
             $_SESSION['login_attempts'] = 0;
             logSessionEvent("Login correcto (frontend)", $email);
-            header("Location: /panel");
+            header("Location: " . asset('/panel'));
             exit;
         } else {
             $_SESSION['login_attempts']++;
