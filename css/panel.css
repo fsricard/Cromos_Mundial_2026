@@ -103,6 +103,56 @@ body {
 
 /* END footer */
 
+/* Logout */
+.logout-confirm-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.logout-card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.logout-card h2 {
+    margin-bottom: 15px;
+}
+
+.logout-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cancelar {
+    background: #444;
+    color: #fff;
+}
+
+.btn-confirmar {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+/* END logout */
+
 /* =========================
    RESPONSIVE
    ========================= */
