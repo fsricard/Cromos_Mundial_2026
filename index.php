@@ -19,13 +19,15 @@ $rutas_validas = [
 
     // Autenticación frontend
     'login',
+    'panel',
+    'perfil',
+    'logout',
     'registro',
     'restablecer',
-    'logout',
-    'panel',
-    'verificar-email',
     'cambiar-clave',
-    'logout-confirm'
+    'logout-confirm',
+    'verificar-email',
+    'perfil-actualizar'
 ];
 
 // Si la vista no existe → 404
@@ -44,13 +46,15 @@ $GLOBALS['pagina_actual'] = $view;
 
 $exclusiones_header_footer = [
     'login',
+    'panel',
+    'perfil',
+    'logout',
     'registro',
     'restablecer',
-    'logout',
-    'panel',
-    'verificar-email',
     'cambiar-clave',
-    'logout-confirm'
+    'logout-confirm',
+    'verificar-email',
+    'perfil-actualizar'
 ];
 
 // ==========================================
@@ -89,6 +93,14 @@ switch ($view) {
 
     case 'registro':
         require __DIR__ . '/views/registro.php';
+        break;
+
+    case 'perfil':
+        require __DIR__ . '/views/panel/perfil.php';
+        break;
+
+    case 'perfil-actualizar':
+        require __DIR__ . '/views/perfil-actualizar.php';
         break;
 
     case 'restablecer':
