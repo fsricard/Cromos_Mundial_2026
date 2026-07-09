@@ -24,7 +24,8 @@ $rutas_validas = [
     'logout',
     'panel',
     'verificar-email',
-    'cambiar-clave'
+    'cambiar-clave',
+    'logout-confirm'
 ];
 
 // Si la vista no existe → 404
@@ -48,7 +49,8 @@ $exclusiones_header_footer = [
     'logout',
     'panel',
     'verificar-email',
-    'cambiar-clave'
+    'cambiar-clave',
+    'logout-confirm'
 ];
 
 // ==========================================
@@ -95,6 +97,10 @@ switch ($view) {
 
     case 'logout':
         require __DIR__ . '/views/logout.php';
+        break;
+
+    case 'logout-confirm':
+        require __DIR__ . '/views/logout-confirm.php';
         break;
 
     case 'panel':
