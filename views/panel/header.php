@@ -57,6 +57,10 @@ $foto    = $_SESSION['usuario_foto'] ? asset('/' . $_SESSION['usuario_foto']) : 
         <span class="panel-username"><?= htmlspecialchars($usuario) ?></span>
     </div>
 
+    <button class="panel-menu-toggle" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
     <nav class="panel-nav">
         <a href="<?= asset('/panel?mod=dashboard') ?>">Inicio</a>
         <a href="<?= asset('/panel?mod=perfil') ?>">Perfil</a>

@@ -1,0 +1,143 @@
+:root {
+    --panel-bg: #0e0e0e;
+    --panel-header-bg: #111;
+    --panel-card-bg: #1a1a1a;
+    --panel-text: #eaeaea;
+    --panel-accent: #00b4d8;
+    --panel-danger: #ff4d4d;
+}
+
+/* Layout general */
+body {
+    margin: 0;
+    background: var(--panel-bg);
+    color: var(--panel-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.panel-header {
+    background: var(--panel-header-bg);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.panel-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--panel-accent);
+}
+
+.panel-username {
+    font-weight: 600;
+}
+
+/* END layout general */
+
+/* Menú desktop */
+.panel-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.panel-nav a {
+    color: var(--panel-accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.panel-nav a.logout {
+    color: var(--panel-danger);
+}
+
+/* END menú desktop */
+
+/* Botón menú móvil */
+.panel-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--panel-text);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* END botón menú móvil */
+
+/* Contenido principal */
+.layout-main {
+    padding: 25px 20px;
+}
+
+.content-title {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+}
+
+.content-block {
+    background: var(--panel-card-bg);
+    padding: 18px;
+    border-radius: 10px;
+}
+
+/* END contenido principal */
+
+/* Footer */
+.panel-footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* END footer */
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .panel-header {
+        padding: 10px 15px;
+    }
+
+    .panel-nav {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 240px;
+        height: 100vh;
+        background: #050505;
+        flex-direction: column;
+        padding: 70px 20px 20px;
+        gap: 12px;
+        transition: left 0.25s ease;
+        z-index: 1000;
+    }
+
+    .panel-nav a {
+        font-size: 1rem;
+    }
+
+    .panel-nav.is-open {
+        left: 0;
+    }
+
+    .panel-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
