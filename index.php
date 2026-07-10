@@ -30,6 +30,7 @@ $rutas_validas = [
     'verificar-email',
     'perfil-actualizar',
     'restablecer-confirmar',
+    'ajustes-guardar-visual',
     'seguridad-cerrar-sesiones',
     'seguridad-actualizar-clave'
 ];
@@ -61,6 +62,7 @@ $exclusiones_header_footer = [
     'verificar-email',
     'perfil-actualizar',
     'restablecer-confirmar',
+    'ajustes-guardar-visual',
     'seguridad-cerrar-sesiones',
     'seguridad-actualizar-clave'
 ];
@@ -99,56 +101,60 @@ switch ($view) {
         require __DIR__ . '/views/login.php';
         break;
 
-    case 'registro':
-        require __DIR__ . '/views/registro.php';
-        break;
-
-    case 'perfil-actualizar':
-        require __DIR__ . '/views/perfil-actualizar.php';
-        break;
-
-    case 'restablecer':
-        require __DIR__ . '/views/restablecer.php';
-        break;
-
-    case 'restablecer-confirmar':
-        require __DIR__ . '/views/restablecer-confirmar.php';
-        break;
-
     case 'logout':
         require __DIR__ . '/views/logout.php';
         break;
 
-    case 'logout-confirm':
-        require __DIR__ . '/views/logout-confirm.php';
-        break;
-
-    case 'verificar-email':
-        require __DIR__ . '/views/verificar-email.php';
-        break;
-
-    case 'cambiar-clave':
-        require __DIR__ . '/views/cambiar-clave.php';
-        break;
-
-    case 'perfil':
-        require __DIR__ . '/views/panel/perfil.php';
-        break;
-
-    case 'seguridad-actualizar-clave':
-        require __DIR__ . '/views/seguridad-actualizar-clave.php';
-        break;
-
-    case 'seguridad-cerrar-sesiones':
-        require __DIR__ . '/views/seguridad-cerrar-sesiones.php';
+    case 'registro':
+        require __DIR__ . '/views/registro.php';
         break;
 
     case 'panel':
         require __DIR__ . '/views/panel/panel.php';
         break;
 
+    case 'restablecer':
+        require __DIR__ . '/views/restablecer.php';
+        break;
+
+    case 'perfil':
+        require __DIR__ . '/views/panel/perfil.php';
+        break;
+
+    case 'cambiar-clave':
+        require __DIR__ . '/views/cambiar-clave.php';
+        break;
+
+    case 'logout-confirm':
+        require __DIR__ . '/views/logout-confirm.php';
+        break;
+
     case 'seguridad':
         require __DIR__ . '/views/panel/seguridad.php';
+        break;
+
+    case 'verificar-email':
+        require __DIR__ . '/views/verificar-email.php';
+        break;
+
+    case 'perfil-actualizar':
+        require __DIR__ . '/views/perfil-actualizar.php';
+        break;
+
+    case 'restablecer-confirmar':
+        require __DIR__ . '/views/restablecer-confirmar.php';
+        break;
+
+    case 'ajustes-guardar-visual':
+        require __DIR__ . '/views/ajustes-guardar-visual.php';
+        break;
+
+    case 'seguridad-cerrar-sesiones':
+        require __DIR__ . '/views/seguridad-cerrar-sesiones.php';
+        break;
+
+    case 'seguridad-actualizar-clave':
+        require __DIR__ . '/views/seguridad-actualizar-clave.php';
         break;
 
     // ============================

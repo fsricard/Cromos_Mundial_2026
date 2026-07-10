@@ -18,7 +18,9 @@ $foto = $usuario['foto']
 <section class="content">
     <article>
 
-        <h2 class="content-title">Mi perfil</h2>
+        <h2 class="content-title">
+            <i class="fa-light fa-user-doctor-hair"></i> Mi perfil
+        </h2>
 
         <div class="content-block perfil-block">
 
@@ -32,7 +34,7 @@ $foto = $usuario['foto']
                         <input type="file" name="foto" accept="image/*">
                     </label>
 
-                    <button type="submit" class="btn-guardar-foto">
+                    <button type="submit" class="btn btn-guardar-foto">
                         Guardar foto
                     </button>
                 </form>
@@ -56,7 +58,7 @@ $foto = $usuario['foto']
                 <label>Provincia</label>
                 <input type="text" name="provincia" value="<?= htmlspecialchars($usuario['provincia']) ?>">
 
-                <button type="submit" class="btn-guardar">
+                <button type="submit" class="btn btn-guardar">
                     <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
                 </button>
 

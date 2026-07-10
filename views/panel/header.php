@@ -1,6 +1,27 @@
 <?php
 $usuario = $_SESSION['usuario_nombre'];
 $foto    = $_SESSION['usuario_foto'] ? asset('/' . $_SESSION['usuario_foto']) : asset('/img/default-user.png');
+
+$usuario_id = $_SESSION['usuario_id'];
+
+// Cargar ajustes visuales
+$stmt = $pdo->prepare("SELECT tema, fuente, animaciones FROM usuarios_ajustes WHERE usuario_id = ?");
+$stmt->execute([$usuario_id]);
+$ajustes = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Valores por defecto si no existen
+if (!$ajustes) {
+    $ajustes = [
+        'tema'        => 'oscuro',
+        'fuente'      => 'normal',
+        'animaciones' => 1
+    ];
+}
+
+// Convertimos los ajustes en clases CSS
+$clase_tema        = $ajustes['tema'] === 'claro' ? 'tema-claro' : 'tema-oscuro';
+$clase_fuente      = $ajustes['fuente'] === 'grande' ? 'fuente-grande' : 'fuente-normal';
+$clase_animaciones = $ajustes['animaciones'] ? 'animaciones-on' : 'animaciones-off';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,7 +69,7 @@ $foto    = $_SESSION['usuario_foto'] ? asset('/' . $_SESSION['usuario_foto']) : 
 
     <link rel="stylesheet" href="<?= asset('/css/panel.css') ?>">
 </head>
-<body>
+<body class="<?= $clase_tema ?> <?= $clase_fuente ?> <?= $clase_animaciones ?>">
 
 <header class="panel-header">
 
