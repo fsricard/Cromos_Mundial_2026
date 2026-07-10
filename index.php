@@ -23,12 +23,15 @@ $rutas_validas = [
     'perfil',
     'logout',
     'registro',
+    'segyrudad',
     'restablecer',
     'cambiar-clave',
     'logout-confirm',
     'verificar-email',
     'perfil-actualizar',
-    'restablecer-confirmar'
+    'restablecer-confirmar',
+    'seguridad-cerrar-sesiones',
+    'seguridad-actualizar-clave'
 ];
 
 // Si la vista no existe → 404
@@ -51,12 +54,15 @@ $exclusiones_header_footer = [
     'perfil',
     'logout',
     'registro',
+    'segyrudad',
     'restablecer',
     'cambiar-clave',
     'logout-confirm',
     'verificar-email',
     'perfil-actualizar',
-    'restablecer-confirmar'
+    'restablecer-confirmar',
+    'seguridad-cerrar-sesiones',
+    'seguridad-actualizar-clave'
 ];
 
 // ==========================================
@@ -97,10 +103,6 @@ switch ($view) {
         require __DIR__ . '/views/registro.php';
         break;
 
-    case 'perfil':
-        require __DIR__ . '/views/panel/perfil.php';
-        break;
-
     case 'perfil-actualizar':
         require __DIR__ . '/views/perfil-actualizar.php';
         break;
@@ -121,16 +123,32 @@ switch ($view) {
         require __DIR__ . '/views/logout-confirm.php';
         break;
 
-    case 'panel':
-        require __DIR__ . '/views/panel/panel.php';
-        break;
-
     case 'verificar-email':
         require __DIR__ . '/views/verificar-email.php';
         break;
 
     case 'cambiar-clave':
         require __DIR__ . '/views/cambiar-clave.php';
+        break;
+
+    case 'perfil':
+        require __DIR__ . '/views/panel/perfil.php';
+        break;
+
+    case 'seguridad-actualizar-clave':
+        require __DIR__ . '/views/seguridad-actualizar-clave.php';
+        break;
+
+    case 'seguridad-cerrar-sesiones':
+        require __DIR__ . '/views/seguridad-cerrar-sesiones.php';
+        break;
+
+    case 'panel':
+        require __DIR__ . '/views/panel/panel.php';
+        break;
+
+    case 'seguridad':
+        require __DIR__ . '/views/panel/seguridad.php';
         break;
 
     // ============================
