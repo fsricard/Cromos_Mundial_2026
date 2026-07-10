@@ -242,13 +242,13 @@ function enviarCorreo($destinatario, $asunto, $mensajeHTML)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'ricardofernandezsoriano@gmail.com';
-        $mail->Password   = 'ofnx sluc mtev hzwg';
+        $mail->Username   = 'alnaseos@gmail.com';
+        $mail->Password   = 'vcpz hcvj kmyv jybm';
         $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
         // Remitente
-        $mail->setFrom('ricardofernandezsoriano@gmail.com', 'Cromos Mundial 2026');
+        $mail->setFrom('alnaseos@gmail.com', 'Cromos Mundial 2026');
 
         // Destinatario
         $mail->addAddress($destinatario);
