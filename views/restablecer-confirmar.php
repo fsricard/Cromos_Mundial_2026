@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/session.php';
-require_once __DIR__ . '/../includes/database.php';
+require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/funciones.php';
 
 $token = $_GET['token'] ?? '';
