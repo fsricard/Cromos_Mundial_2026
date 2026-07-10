@@ -1,73 +1,70 @@
 <?php
 require_once __DIR__ . '/../includes/session.php';
-require_once __DIR__ . '/../includes/auth.php';
-require_once(__DIR__ . '/../config/funciones.php');
+require_once __DIR__ . '/../includes/database.php';
+require_once __DIR__ . '/../config/funciones.php';
 
-// Si ya está logueado, redirigir al panel personal
-if (isLoggedIn()) {
-    header("Location: " . asset('/views/panel/panel.php'));
-    exit;
-}
-
-// Generar token CSRF
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
-}
-
+$token = $_GET['token'] ?? '';
 $error = '';
-$expiredMsg = isset($_GET['expired']) ? 'Tu sesión ha expirado por inactividad. Vuelve a iniciar sesión.' : '';
+$mensaje = '';
 
-// Inicializar intentos
-if (!isset($_SESSION['login_attempts'])) {
-    $_SESSION['login_attempts'] = 0;
-}
-if (!isset($_SESSION['lock_until'])) {
-    $_SESSION['lock_until'] = 0;
-}
+if ($token === '') {
+    $error = 'Token no válido.';
+} else {
 
-// Bloqueo temporal
-if (time() < $_SESSION['lock_until']) {
-    $error = 'Demasiados intentos fallidos. Espera unos minutos antes de volver a intentarlo.';
-}
+    // Buscar token
+    $stmt = $pdo->prepare("
+        SELECT rc.id, rc.usuario_id, rc.expira_en, rc.usado, u.email
+        FROM recuperacion_clave rc
+        JOIN usuarios_frontend u ON u.id = rc.usuario_id
+        WHERE token = ?
+    ");
+    $stmt->execute([$token]);
+    $data = $stmt->fetch();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
-    $email = trim($_POST['email'] ?? '');
-    $clave = $_POST['clave'] ?? '';
-    $csrf  = $_POST['csrf_token'] ?? '';
+    if (!$data) {
+        $error = 'Token no válido.';
+    } elseif ($data['usado']) {
+        $error = 'Este enlace ya ha sido utilizado.';
+    } elseif (strtotime($data['expira_en']) < time()) {
+        $error = 'El enlace ha expirado.';
+    }
 
-    if (!hash_equals($_SESSION['csrf_token'], $csrf)) {
-        $error = 'Solicitud no válida. Inténtalo de nuevo.';
-    } elseif ($email === '' || $clave === '') {
-        $error = 'Por favor, introduce tu email y contraseña.';
-    } else {
-        if (login($email, $clave)) {
-            secureSessionRegenerate();
-            $_SESSION['login_attempts'] = 0;
-            logSessionEvent("Login correcto (frontend)", $email);
-            header("Location: " . asset('/views/panel/panel.php'));
-            exit;
+    // Si el token es válido y no hay error
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
+
+        $clave1 = $_POST['clave1'] ?? '';
+        $clave2 = $_POST['clave2'] ?? '';
+
+        if ($clave1 === '' || $clave2 === '') {
+            $error = 'Introduce ambas contraseñas.';
+        } elseif ($clave1 !== $clave2) {
+            $error = 'Las contraseñas no coinciden.';
         } else {
-            $_SESSION['login_attempts']++;
-            logSessionEvent("Login fallido (frontend)", $email);
 
-            if ($_SESSION['login_attempts'] >= 5) {
-                $_SESSION['lock_until'] = time() + 300;
-                $error = 'Has superado el número máximo de intentos. Espera 5 minutos.';
-            } else {
-                $error = 'Email o contraseña incorrectos. Intento ' . $_SESSION['login_attempts'] . ' de 5.';
-            }
+            // Actualizar contraseña
+            $hash = password_hash($clave1, PASSWORD_DEFAULT);
+
+            $stmt = $pdo->prepare("UPDATE usuarios_frontend SET clave = ? WHERE id = ?");
+            $stmt->execute([$hash, $data['usuario_id']]);
+
+            // Marcar token como usado
+            $stmt = $pdo->prepare("UPDATE recuperacion_clave SET usado = 1 WHERE id = ?");
+            $stmt->execute([$data['id']]);
+
+            $mensaje = 'Tu contraseña ha sido actualizada correctamente.';
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Acceso | Cromos Mundial 2026</title>
+
+    <title>Nueva contraseña</title>
 
     <!-- FontAwesome 7.0.1 CSS -->
     <link href="<?= asset('/css/fontawesome/css/brands.css') ?>" rel="stylesheet" />
@@ -104,49 +101,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     <link href="<?= asset('/css/fontawesome/css/v4-shims.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/v5-font-face.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/whiteboard-semibold.css') ?>" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="css/frontend-login.css">
+
+    <link rel="stylesheet" href="<?= asset('/css/frontend-login.css') ?>">
 </head>
 
 <body>
-
     <main class="login-container">
-        <form method="post" class="login-form" autocomplete="off" novalidate>
+
+        <form method="post" class="login-form">
 
             <div class="login-links">
                 <a href=<?= asset('/') ?>><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Volver a la página de inicio</a>
             </div>
 
-            <h1 class="login-title">Accede a tu cuenta</h1>
+            <h1 class="login-title">Nueva contraseña</h1>
 
-            <?php if ($expiredMsg): ?>
-                <p class="alert alert-warning"><?= htmlspecialchars($expiredMsg) ?></p>
+            <?php if ($mensaje): ?>
+                <p class="alert alert-success"><?= $mensaje ?></p>
+                <div class="login-links">
+                    <a href="<?= asset('/login') ?>">Iniciar sesión</a>
+                </div>
             <?php endif; ?>
 
             <?php if ($error): ?>
-                <p class="alert alert-error"><?= htmlspecialchars($error) ?></p>
+                <p class="alert alert-error"><?= $error ?></p>
             <?php endif; ?>
 
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required autofocus>
+            <?php if (!$mensaje && !$error): ?>
 
-            <label for="clave">Contraseña</label>
-            <input type="password" id="clave" name="clave" required>
+                <label>Nueva contraseña</label>
+                <input type="password" name="clave1" required>
 
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                <label>Repite la contraseña</label>
+                <input type="password" name="clave2" required>
 
-            <button type="submit" class="btn-login">
-                <i class="fa-sharp fa-light fa-person-to-portal"></i> Entrar
-            </button>
+                <button class="btn-login">
+                    <i class="fa-light fa-key"></i> Guardar nueva contraseña
+                </button>
 
-            <div class="login-links">
-                <a href=<?= asset('/restablecer'); ?>>¿Olvidaste tu contraseña?</a>
-                <a href=<?= asset('/registro'); ?>>Crear una cuenta nueva</a>
-            </div>
+            <?php endif; ?>
 
         </form>
-    </main>
 
+    </main>
 </body>
 
 </html>

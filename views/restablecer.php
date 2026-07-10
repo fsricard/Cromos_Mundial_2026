@@ -1,73 +1,63 @@
 <?php
 require_once __DIR__ . '/../includes/session.php';
-require_once __DIR__ . '/../includes/auth.php';
-require_once(__DIR__ . '/../config/funciones.php');
+require_once __DIR__ . '/../config/funciones.php';
+require_once __DIR__ . '/../includes/database.php';
 
-// Si ya está logueado, redirigir al panel personal
-if (isLoggedIn()) {
-    header("Location: " . asset('/views/panel/panel.php'));
-    exit;
-}
-
-// Generar token CSRF
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
-}
-
+$mensaje = '';
 $error = '';
-$expiredMsg = isset($_GET['expired']) ? 'Tu sesión ha expirado por inactividad. Vuelve a iniciar sesión.' : '';
 
-// Inicializar intentos
-if (!isset($_SESSION['login_attempts'])) {
-    $_SESSION['login_attempts'] = 0;
-}
-if (!isset($_SESSION['lock_until'])) {
-    $_SESSION['lock_until'] = 0;
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-// Bloqueo temporal
-if (time() < $_SESSION['lock_until']) {
-    $error = 'Demasiados intentos fallidos. Espera unos minutos antes de volver a intentarlo.';
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     $email = trim($_POST['email'] ?? '');
-    $clave = $_POST['clave'] ?? '';
-    $csrf  = $_POST['csrf_token'] ?? '';
 
-    if (!hash_equals($_SESSION['csrf_token'], $csrf)) {
-        $error = 'Solicitud no válida. Inténtalo de nuevo.';
-    } elseif ($email === '' || $clave === '') {
-        $error = 'Por favor, introduce tu email y contraseña.';
+    if ($email === '') {
+        $error = 'Introduce tu correo electrónico.';
     } else {
-        if (login($email, $clave)) {
-            secureSessionRegenerate();
-            $_SESSION['login_attempts'] = 0;
-            logSessionEvent("Login correcto (frontend)", $email);
-            header("Location: " . asset('/views/panel/panel.php'));
-            exit;
-        } else {
-            $_SESSION['login_attempts']++;
-            logSessionEvent("Login fallido (frontend)", $email);
 
-            if ($_SESSION['login_attempts'] >= 5) {
-                $_SESSION['lock_until'] = time() + 300;
-                $error = 'Has superado el número máximo de intentos. Espera 5 minutos.';
-            } else {
-                $error = 'Email o contraseña incorrectos. Intento ' . $_SESSION['login_attempts'] . ' de 5.';
-            }
+        // Buscar usuario
+        $stmt = $pdo->prepare("SELECT id FROM usuarios_frontend WHERE email = ?");
+        $stmt->execute([$email]);
+        $usuario = $stmt->fetch();
+
+        if (!$usuario) {
+            $error = 'No existe ninguna cuenta con ese correo.';
+        } else {
+
+            // Generar token
+            $token = bin2hex(random_bytes(32));
+            $expira = date('Y-m-d H:i:s', time() + 3600); // 1 hora
+
+            // Guardar token
+            $stmt = $pdo->prepare("
+                INSERT INTO recuperacion_clave (usuario_id, token, expira_en)
+                VALUES (?, ?, ?)
+            ");
+            $stmt->execute([$usuario['id'], $token, $expira]);
+
+            // Enviar email
+            $enlace = asset("/restablecer-confirmar?token=$token");
+            $contenido = generarContenidoRestablecerClave($enlace);
+
+            enviarCorreo(
+                $email,
+                "Restablecer contraseña",
+                $contenido
+            );
+
+            $mensaje = 'Te hemos enviado un correo con instrucciones para restablecer tu contraseña.';
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Acceso | Cromos Mundial 2026</title>
+
+    <title>Restablecer contraseña</title>
 
     <!-- FontAwesome 7.0.1 CSS -->
     <link href="<?= asset('/css/fontawesome/css/brands.css') ?>" rel="stylesheet" />
@@ -104,49 +94,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$error) {
     <link href="<?= asset('/css/fontawesome/css/v4-shims.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/v5-font-face.css') ?>" rel="stylesheet" />
     <link href="<?= asset('/css/fontawesome/css/whiteboard-semibold.css') ?>" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="css/frontend-login.css">
+
+    <link rel="stylesheet" href="<?= asset('/css/frontend-login.css') ?>">
 </head>
 
 <body>
-
     <main class="login-container">
-        <form method="post" class="login-form" autocomplete="off" novalidate>
+
+        <form method="post" class="login-form">
 
             <div class="login-links">
                 <a href=<?= asset('/') ?>><i class="fa-solid fa-person-walking-arrow-loop-left"></i> Volver a la página de inicio</a>
             </div>
 
-            <h1 class="login-title">Accede a tu cuenta</h1>
+            <h1 class="login-title">Restablecer contraseña</h1>
 
-            <?php if ($expiredMsg): ?>
-                <p class="alert alert-warning"><?= htmlspecialchars($expiredMsg) ?></p>
+            <?php if ($mensaje): ?>
+                <p class="alert alert-success"><?= $mensaje ?></p>
             <?php endif; ?>
 
             <?php if ($error): ?>
-                <p class="alert alert-error"><?= htmlspecialchars($error) ?></p>
+                <p class="alert alert-error"><?= $error ?></p>
             <?php endif; ?>
 
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required autofocus>
+            <label for="email">Introduce tu correo</label>
+            <input type="email" name="email" required>
 
-            <label for="clave">Contraseña</label>
-            <input type="password" id="clave" name="clave" required>
-
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-
-            <button type="submit" class="btn-login">
-                <i class="fa-sharp fa-light fa-person-to-portal"></i> Entrar
+            <button class="btn-login">
+                <i class="fa-light fa-envelope-circle-check"></i> Enviar enlace
             </button>
 
             <div class="login-links">
-                <a href=<?= asset('/restablecer'); ?>>¿Olvidaste tu contraseña?</a>
-                <a href=<?= asset('/registro'); ?>>Crear una cuenta nueva</a>
+                <a href="<?= asset('/login') ?>">
+                    <i class="fa-sharp fa-light fa-person-to-portal"></i> Volver al login
+                </a>
             </div>
 
         </form>
-    </main>
 
+    </main>
 </body>
 
 </html>

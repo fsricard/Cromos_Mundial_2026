@@ -27,7 +27,8 @@ $rutas_validas = [
     'cambiar-clave',
     'logout-confirm',
     'verificar-email',
-    'perfil-actualizar'
+    'perfil-actualizar',
+    'restablecer-confirmar'
 ];
 
 // Si la vista no existe → 404
@@ -54,7 +55,8 @@ $exclusiones_header_footer = [
     'cambiar-clave',
     'logout-confirm',
     'verificar-email',
-    'perfil-actualizar'
+    'perfil-actualizar',
+    'restablecer-confirmar'
 ];
 
 // ==========================================
@@ -105,6 +107,10 @@ switch ($view) {
 
     case 'restablecer':
         require __DIR__ . '/views/restablecer.php';
+        break;
+
+    case 'restablecer-confirmar':
+        require __DIR__ . '/views/restablecer-confirmar.php';
         break;
 
     case 'logout':

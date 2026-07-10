@@ -208,3 +208,141 @@ function cargarDatosUsuarioFrontend($email)
         ];
     }
 }
+
+// Función para crear el archivo "log/restablecer_clave_frontend.log"
+function logCorreo($destinatario, $asunto, $estado)
+{
+    $ruta = __DIR__ . '/../log/restablecer_clave_frontend.log';
+
+    // Crear carpeta si no existe
+    $carpeta = dirname($ruta);
+    if (!is_dir($carpeta)) {
+        mkdir($carpeta, 0777, true);
+    }
+
+    $fecha = date('Y-m-d H:i:s');
+    $ip    = $_SERVER['REMOTE_ADDR'] ?? 'IP desconocida';
+
+    $linea = "[$fecha] [$ip] Destinatario: $destinatario | Asunto: $asunto | Estado: $estado" . PHP_EOL;
+
+    file_put_contents($ruta, $linea, FILE_APPEND);
+}
+
+// Función para enviar correos electrónicos de restablecimiento de contraseña del FrontEnd
+function enviarCorreo($destinatario, $asunto, $mensajeHTML)
+{
+    require_once __DIR__ . '/../includes/PHPMailer/PHPMailer.php';
+    require_once __DIR__ . '/../includes/PHPMailer/SMTP.php';
+    require_once __DIR__ . '/../includes/PHPMailer/Exception.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        // Configuración SMTP
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'ricardofernandezsoriano@gmail.com';
+        $mail->Password   = 'ofnx sluc mtev hzwg';
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        // Remitente
+        $mail->setFrom('ricardofernandezsoriano@gmail.com', 'Cromos Mundial 2026');
+
+        // Destinatario
+        $mail->addAddress($destinatario);
+
+        // Contenido
+        $mail->isHTML(true);
+        $mail->Subject = $asunto;
+
+        // Plantilla elegante
+        $mail->Body = plantillaCorreoHTML($asunto, $mensajeHTML);
+
+        // Alternativa en texto plano
+        $mail->AltBody = strip_tags(str_replace(['<br>', '<br/>'], "\n", $mensajeHTML));
+
+        // Enviar
+        $mail->send();
+
+        logCorreo($destinatario, $asunto, 'OK');
+        return true;
+    } catch (Exception $e) {
+        logCorreo($destinatario, $asunto, 'ERROR: ' . $mail->ErrorInfo);
+        return false;
+    }
+}
+
+// Función para generar una plantilla HTML elegante para los correos electrónicos
+function plantillaCorreoHTML($titulo, $contenido)
+{
+    return '
+    <div style="
+        background: #0e0e0e;
+        padding: 40px;
+        font-family: system-ui, sans-serif;
+        color: #eaeaea;
+    ">
+        <div style="
+            max-width: 600px;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #222;
+        ">
+            <h2 style="
+                margin-top: 0;
+                color: #00b4d8;
+                text-align: center;
+                font-size: 1.6rem;
+            ">
+                ' . htmlspecialchars($titulo) . '
+            </h2>
+
+            <div style="font-size: 1rem; line-height: 1.6;">
+                ' . $contenido . '
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #333; margin: 25px 0;">
+
+            <p style="font-size: 0.85rem; color: #888; text-align: center;">
+                Cromos Mundial 2026<br>
+                Este es un mensaje automático, por favor no respondas.
+            </p>
+        </div>
+    </div>';
+}
+
+// Función para generar el contenido del correo de restablecimiento de contraseña
+function generarContenidoRestablecerClave($enlace)
+{
+    return "
+        <p>Hola,</p>
+
+        <p>Hemos recibido una solicitud para restablecer tu contraseña.</p>
+
+        <p style='margin-top: 25px; text-align: center;'>
+            <a href='$enlace' style='
+                background: #00b4d8;
+                color: #000;
+                padding: 12px 22px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+            '>
+                Restablecer contraseña
+            </a>
+        </p>
+
+        <p style='margin-top: 25px;'>
+            Si no has solicitado este cambio, puedes ignorar este mensaje.
+        </p>
+
+        <p style='margin-top: 15px; font-size: 0.9rem; color: #aaa;'>
+            Este enlace es válido durante 1 hora.
+        </p>
+    ";
+}
