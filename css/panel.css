@@ -6,10 +6,16 @@
     --panel-accent: #00b4d8;
     --panel-danger: #ff4d4d;
     --btn-foto: #333333;
+    --bg-input: #2a2a2a;
 }
 
 /* Layout general */
+html {
+    font-size: 62.5%;
+}
+
 body {
+    font-size: 1.6rem;
     margin: 0;
     background: var(--panel-bg);
     color: var(--panel-text);
@@ -53,6 +59,8 @@ body {
     --panel-text: #eaeaea;
     --panel-accent: #00b4d8;
     --panel-danger: #ff4d4d;
+    --btn-foto: #333333;
+    --bg-input: #2a2a2a;
 }
 
 .tema-claro {
@@ -62,14 +70,16 @@ body {
     --panel-text: #222;
     --panel-accent: #0077aa;
     --panel-danger: #d62828;
+    --btn-foto: #b4b3b3;
+    --bg-input: #e6e6e6;
 }
 
 .fuente-normal {
-    font-size: 16px;
+    font-size: 1.6remrem;
 }
 
 .fuente-grande {
-    font-size: 18px;
+    font-size: 2.0rem;
 }
 
 .animaciones-on * {
@@ -91,7 +101,7 @@ body {
 .panel-nav a {
     color: var(--panel-accent);
     text-decoration: none;
-    font-size: 0.95rem;
+
     font-weight: 500;
 }
 
@@ -107,7 +117,6 @@ body {
     background: none;
     border: none;
     color: var(--panel-text);
-    font-size: 1.3rem;
     cursor: pointer;
 }
 
@@ -119,7 +128,6 @@ body {
 }
 
 .content-title {
-    font-size: 1.6rem;
     margin-bottom: 18px;
 }
 
@@ -129,13 +137,21 @@ body {
     border-radius: 10px;
 }
 
+h3 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--panel-accent);
+}
+
 /* END contenido principal */
 
 /* Footer */
 .panel-footer {
     text-align: center;
     padding: 15px;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: #999;
 }
 
@@ -206,6 +222,37 @@ body {
 
 /* END botones */
 
+/* Formularios */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+    background: var(--bg-input);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: var(--panel-text);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--panel-accent);
+}
+
+/* END formularios */
+
 /* Logout */
 .logout-confirm-container {
     display: flex;
@@ -263,14 +310,6 @@ body {
     gap: 12px;
 }
 
-.perfil-form input {
-    background: #2a2a2a;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    color: var(--panel-text);
-}
-
 /* END perfil */
 
 /* Seguridad */
@@ -296,32 +335,10 @@ body {
     border-radius: 10px;
 }
 
-.seguridad-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--panel-accent);
-}
-
 .seguridad-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
-
-.seguridad-form input {
-    background: #2a2a2a;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    color: var(--panel-text);
-}
-
-.seguridad-text {
-    color: var(--panel-text);
-    font-size: 0.95rem;
 }
 
 /* END seguridad */
@@ -349,34 +366,16 @@ body {
     border-radius: 10px;
 }
 
-.ajustes-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--panel-accent);
-}
-
 .ajustes-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.ajustes-form select {
-    background: #2a2a2a;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    color: var(--panel-text);
-}
-
 .ajustes-checkbox-label {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.95rem;
 }
 
 .ajustes-checkbox-label input[type="checkbox"] {
@@ -408,10 +407,6 @@ body {
         gap: 12px;
         transition: left 0.25s ease;
         z-index: 1000;
-    }
-
-    .panel-nav a {
-        font-size: 1rem;
     }
 
     .panel-nav.is-open {
