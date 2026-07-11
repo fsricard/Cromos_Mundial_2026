@@ -54,7 +54,7 @@ unset($_SESSION['seguridad_mensaje'], $_SESSION['seguridad_error']);
                     <label>Repite la nueva contraseña</label>
                     <input type="password" name="clave_nueva2" required>
 
-                    <button type="submit" class="btn btn-guardar seguridad-btn">
+                    <button type="submit" class="btn btn-guardar">
                         <i class="fa-light fa-floppy-disk"></i> Guardar nueva contraseña
                     </button>
                 </form>
@@ -71,7 +71,7 @@ unset($_SESSION['seguridad_mensaje'], $_SESSION['seguridad_error']);
                 </p>
 
                 <form action="<?= asset('/seguridad-cerrar-sesiones') ?>" method="post">
-                    <button type="submit" class="btn seguridad-btn-danger">
+                    <button type="submit" class="btn btn-danger">
                         <i class="fa-light fa-power-off"></i> Cerrar todas las sesiones
                     </button>
                 </form>

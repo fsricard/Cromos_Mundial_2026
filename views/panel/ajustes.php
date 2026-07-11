@@ -71,7 +71,7 @@ unset($_SESSION['ajustes_mensaje'], $_SESSION['ajustes_error']);
                         Activar animaciones del panel
                     </label>
 
-                    <button type="submit" class="btn ajustes-btn">
+                    <button type="submit" class="btn btn-guardar">
                         <i class="fa-light fa-floppy-disk"></i> Guardar ajustes visuales
                     </button>
                 </form>

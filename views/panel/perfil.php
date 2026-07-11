@@ -40,8 +40,8 @@ $foto = $usuario['foto']
                             <input type="file" name="foto" accept="image/*">
                         </label>
 
-                        <button type="submit" class="btn btn-guardar-foto">
-                            Guardar foto
+                        <button type="submit" class="btn btn-guardar">
+                           <i class="fa-solid fa-floppy-disk"></i> Guardar foto
                         </button>
                     </form>
                 </div>

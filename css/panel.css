@@ -1,15 +1,3 @@
-:root {
-    --panel-bg: #0e0e0e;
-    --panel-header-bg: #111;
-    --panel-card-bg: #1a1a1a;
-    --panel-text: #eaeaea;
-    --panel-accent: #00b4d8;
-    --panel-danger: #ff4d4d;
-    --btn-foto: #333333;
-    --btn-hover: rgba(255, 255, 255, 0.08);
-    --bg-input: #2a2a2a;
-}
-
 /* Layout general */
 html {
     font-size: 62.5%;
@@ -60,8 +48,13 @@ body {
     --panel-text: #eaeaea;
     --panel-accent: #00b4d8;
     --panel-danger: #ff4d4d;
+
+    /* Botnoes */
     --btn-foto: #333333;
-    --btn-hover: rgba(255, 255, 255, 0.08);
+    --btn-guardar: #2aa534;
+    --btn-danger: #f34444;
+
+    /* Formularios */
     --bg-input: #2a2a2a;
 }
 
@@ -72,8 +65,13 @@ body {
     --panel-text: #222;
     --panel-accent: #0077aa;
     --panel-danger: #d62828;
+
+    /* Botones */
     --btn-foto: #b4b3b3;
-    --btn-hover: rgba(255, 255, 255, 0.08);
+    --btn-guardar: #1d8126;
+    --btn-danger: #d33232;
+
+    /* Formularios */
     --bg-input: #e6e6e6;
 }
 
@@ -197,10 +195,6 @@ h3 {
     background: var(--panel-danger);
 }
 
-.ajustes-btn {
-    background: var(--panel-accent);
-}
-
 .btn-foto {
     background: var(--btn-foto);
 }
@@ -209,19 +203,11 @@ h3 {
     display: none;
 }
 
-.btn-guardar-foto {
-    background: var(--panel-accent);
-}
-
 .btn-guardar {
-    background: var(--panel-accent);
+    background: var(--btn-guardar);
 }
 
-.seguridad-btn {
-    background: var(--panel-accent);
-}
-
-.seguridad-btn-danger {
+.btn-danger {
     background: var(--panel-danger);
 }
 
