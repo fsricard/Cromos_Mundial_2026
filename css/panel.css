@@ -1,4 +1,5 @@
 /* Layout general */
+/* Layout general */
 html {
     font-size: 62.5%;
 }
@@ -9,58 +10,6 @@ body {
     background: var(--panel-bg);
     color: var(--panel-text);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.tema-oscuro {
-    --panel-bg: #0e0e0e;
-    --panel-header-bg: #111;
-    --panel-card-bg: #1a1a1a;
-    --panel-text: #eaeaea;
-    --panel-accent: #00b4d8;
-    --panel-danger: #ff4d4d;
-
-    /* Botnoes */
-    --btn-foto: #333333;
-    --btn-guardar: #2aa534;
-    --btn-danger: #f34444;
-    --btn-cancelar:  #a5932a;
-
-    /* Formularios */
-    --bg-input: #2a2a2a;
-}
-
-.tema-claro {
-    --panel-bg: #f5f5f5;
-    --panel-header-bg: #ffffff;
-    --panel-card-bg: #ffffff;
-    --panel-text: #222;
-    --panel-accent: #0077aa;
-    --panel-danger: #d62828;
-
-    /* Botones */
-    --btn-foto: #b4b3b3;
-    --btn-guardar: #1d8126;
-    --btn-danger: #d33232;
-    --btn-cancelar:  #8f7f28;
-
-    /* Formularios */
-    --bg-input: #e6e6e6;
-}
-
-.fuente-normal {
-    font-size: 1.6remrem;
-}
-
-.fuente-grande {
-    font-size: 2.4rem;
-}
-
-.animaciones-on * {
-    transition: all 0.25s ease;
-}
-
-.animaciones-off * {
-    transition: none !important;
 }
 
 /* END layout general */
@@ -147,6 +96,10 @@ h3 {
     display: flex;
     align-items: center;
     gap: 8px;
+    color: var(--panel-accent);
+}
+
+h3 i {
     color: var(--panel-accent);
 }
 
@@ -378,6 +331,81 @@ textarea:focus {
     height: 18px;
 }
 
+.tema-oscuro {
+    --panel-bg: #0e0e0e;
+    --panel-header-bg: #111;
+    --panel-card-bg: #1a1a1a;
+    --panel-text: #eaeaea;
+    --panel-accent: #00b4d8;
+    --panel-danger: #ff4d4d;
+
+    /* Botnoes */
+    --btn-foto: #333333;
+    --btn-guardar: #2aa534;
+    --btn-danger: #f34444;
+    --btn-cancelar: #a5932a;
+
+    /* Formularios */
+    --bg-input: #2a2a2a;
+}
+
+.tema-claro {
+    --panel-bg: #f5f5f5;
+    --panel-header-bg: #ffffff;
+    --panel-card-bg: #ffffff;
+    --panel-text: #222;
+    --panel-accent: #0077aa;
+    --panel-danger: #d62828;
+
+    /* Botones */
+    --btn-foto: #b4b3b3;
+    --btn-guardar: #1d8126;
+    --btn-danger: #d33232;
+    --btn-cancelar: #8f7f28;
+
+    /* Formularios */
+    --bg-input: #e6e6e6;
+}
+
+.fuente-normal {
+    font-size: 1.6remrem;
+}
+
+.fuente-grande {
+    font-size: 2.4rem;
+}
+
+.animaciones-on * {
+    transition: all 0.25s ease;
+}
+
+.animaciones-off * {
+    transition: none !important;
+    transform: none !important;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animaciones-on i {
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+.animaciones-off i {
+    animation: none !important;
+}
+
 /* END ajustes */
 
 /* =========================
@@ -393,10 +421,10 @@ textarea:focus {
     .panel-nav {
         position: fixed;
         top: 0;
-        left: -260px;
+        left: -285px;
         width: 240px;
         height: 100vh;
-        background: #050505;
+        background: var(--panel-bg);
         flex-direction: column;
         padding: 70px 20px 20px;
         gap: 12px;
