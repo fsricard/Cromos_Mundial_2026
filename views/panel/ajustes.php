@@ -40,6 +40,23 @@ if (!$notificaciones) {
     ];
 }
 
+// Cargar ajustes de idioma y región
+$stmt = $pdo->prepare("
+    SELECT idioma, formato_fecha, zona_horaria
+    FROM usuarios_region
+    WHERE usuario_id = ?
+");
+$stmt->execute([$usuario_id]);
+$region = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$region) {
+    $region = [
+        'idioma'        => 'es',
+        'formato_fecha' => 'd/m/Y',
+        'zona_horaria'  => 'Europe/Madrid'
+    ];
+}
+
 $mensaje = $_SESSION['ajustes_mensaje'] ?? '';
 $error   = $_SESSION['ajustes_error'] ?? '';
 
@@ -122,6 +139,40 @@ unset($_SESSION['ajustes_mensaje'], $_SESSION['ajustes_error']);
 
                     <button type="submit" class="btn btn-guardar">
                         <i class="fa-light fa-floppy-disk"></i> Guardar ajustes de notificaciones
+                    </button>
+                </form>
+            </section>
+
+            <!-- Ajustes de idioma y región -->
+            <section class="ajustes-section ajustes-region">
+                <h3 class="ajustes-subtitle">
+                    <i class="fa-light fa-globe"></i> Idioma y región
+                </h3>
+
+                <form action="<?= asset('/ajustes-guardar-region') ?>" method="post" class="ajustes-form">
+
+                    <label>Idioma del panel</label>
+                    <select name="idioma">
+                        <option value="es" <?= $region['idioma'] === 'es' ? 'selected' : '' ?>>Español</option>
+                    </select>
+
+                    <label>Formato de fecha</label>
+                    <select name="formato_fecha">
+                        <option value="d/m/Y" <?= $region['formato_fecha'] === 'd/m/Y' ? 'selected' : '' ?>>DD/MM/YYYY</option>
+                        <option value="Y-m-d" <?= $region['formato_fecha'] === 'Y-m-d' ? 'selected' : '' ?>>YYYY-MM-DD</option>
+                        <option value="m/d/Y" <?= $region['formato_fecha'] === 'm/d/Y' ? 'selected' : '' ?>>MM/DD/YYYY</option>
+                    </select>
+
+                    <label>Zona horaria</label>
+                    <select name="zona_horaria">
+                        <option value="Europe/Madrid" <?= $region['zona_horaria'] === 'Europe/Madrid' ? 'selected' : '' ?>>Europa / Madrid</option>
+                        <option value="Europe/London" <?= $region['zona_horaria'] === 'Europe/London' ? 'selected' : '' ?>>Europa / Londres</option>
+                        <option value="America/New_York" <?= $region['zona_horaria'] === 'America/New_York' ? 'selected' : '' ?>>América / Nueva York</option>
+                        <option value="America/Mexico_City" <?= $region['zona_horaria'] === 'America/Mexico_City' ? 'selected' : '' ?>>América / Ciudad de México</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-guardar">
+                        <i class="fa-light fa-floppy-disk"></i> Guardar ajustes de idioma y región
                     </button>
                 </form>
             </section>

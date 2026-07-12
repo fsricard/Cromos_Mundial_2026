@@ -31,6 +31,7 @@ $rutas_validas = [
     'perfil-actualizar',
     'restablecer-confirmar',
     'ajustes-guardar-visual',
+    'ajustes-guardar-region',
     'seguridad-cerrar-sesiones',
     'seguridad-actualizar-clave',
     'ajustes-guardar-notificaciones'
@@ -64,6 +65,7 @@ $exclusiones_header_footer = [
     'perfil-actualizar',
     'restablecer-confirmar',
     'ajustes-guardar-visual',
+    'ajustes-guardar-region',
     'seguridad-cerrar-sesiones',
     'seguridad-actualizar-clave',
     'ajustes-guardar-notificaciones'
@@ -149,6 +151,10 @@ switch ($view) {
 
     case 'ajustes-guardar-visual':
         require __DIR__ . '/views/ajustes-guardar-visual.php';
+        break;
+
+    case 'ajustes-guardar-region':
+        require __DIR__ . '/views/ajustes-guardar-region.php';
         break;
 
     case 'seguridad-cerrar-sesiones':

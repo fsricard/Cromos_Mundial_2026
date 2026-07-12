@@ -4,6 +4,41 @@ $foto    = $_SESSION['usuario_foto'] ? asset('/' . $_SESSION['usuario_foto']) : 
 
 $usuario_id = $_SESSION['usuario_id'];
 
+// Cargar ajustes de idioma y región
+$stmt = $pdo->prepare("
+    SELECT idioma, formato_fecha, zona_horaria
+    FROM usuarios_region
+    WHERE usuario_id = ?
+");
+$stmt->execute([$usuario_id]);
+$region = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$region) {
+    $region = [
+        'idioma'        => 'es',
+        'formato_fecha' => 'd/m/Y',
+        'zona_horaria'  => 'Europe/Madrid'
+    ];
+}
+
+// Generar hora y fecha según zona horaria y formato
+try {
+    $tz = new DateTimeZone($region['zona_horaria']);
+} catch (Exception $e) {
+    $tz = new DateTimeZone('Europe/Madrid'); // fallback
+}
+
+$fechaHora = new DateTime('now', $tz);
+
+// Hora
+$hora_formateada = $fechaHora->format('H:i');
+
+// Fecha según formato elegido por el usuario
+$fecha_formateada = $fechaHora->format($region['formato_fecha']);
+
+// Zona horaria
+$zona_formateada = $region['zona_horaria'];
+
 // Cargar ajustes visuales
 $stmt = $pdo->prepare("SELECT tema, fuente, animaciones FROM usuarios_ajustes WHERE usuario_id = ?");
 $stmt->execute([$usuario_id]);
@@ -25,6 +60,7 @@ $clase_animaciones = $ajustes['animaciones'] ? 'animaciones-on' : 'animaciones-o
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -69,28 +105,37 @@ $clase_animaciones = $ajustes['animaciones'] ? 'animaciones-on' : 'animaciones-o
 
     <link rel="stylesheet" href="<?= asset('/css/panel.css') ?>">
 </head>
+
 <body class="<?= $clase_tema ?> <?= $clase_fuente ?> <?= $clase_animaciones ?>">
 
-<header class="panel-header">
+    <header class="panel-header">
 
-    <div class="panel-user">
-        <img src="<?= $foto ?>" alt="Foto de perfil" class="panel-avatar">
-        <span class="panel-username"><?= htmlspecialchars($usuario) ?></span>
-    </div>
+        <div class="panel-user">
+            <img src="<?= $foto ?>" alt="Foto de perfil" class="panel-avatar">
+            <span class="panel-username"><?= htmlspecialchars($usuario) ?></span>
+        </div>
 
-    <button class="panel-menu-toggle" aria-label="Abrir menú">
-        <i class="fa-solid fa-bars"></i>
-    </button>
+        <?php if (!esSoloMovil()): ?>
+            <div class="panel-header-center">
+                <span class="panel-hora"><?= $hora_formateada ?></span>
+                <span class="panel-zona"><?= $zona_formateada ?></span>
+                <span class="panel-fecha"><?= $fecha_formateada ?></span>
+            </div>
+        <?php endif; ?>
 
-    <nav class="panel-nav">
-        <a href="<?= asset('/panel?mod=dashboard') ?>">Inicio</a>
-        <a href="<?= asset('/panel?mod=perfil') ?>">Perfil</a>
-        <a href="<?= asset('/panel?mod=mis-cromos') ?>">Mis cromos</a>
-        <a href="<?= asset('/panel?mod=seguridad') ?>">Seguridad</a>
-        <a href="<?= asset('/panel?mod=ajustes') ?>">Ajustes</a>
-        <a href="<?= asset('/logout') ?>" class="logout">Salir</a>
-    </nav>
+        <button class="panel-menu-toggle" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-</header>
+        <nav class="panel-nav">
+            <a href="<?= asset('/panel?mod=dashboard') ?>">Inicio</a>
+            <a href="<?= asset('/panel?mod=perfil') ?>">Perfil</a>
+            <a href="<?= asset('/panel?mod=mis-cromos') ?>">Mis cromos</a>
+            <a href="<?= asset('/panel?mod=seguridad') ?>">Seguridad</a>
+            <a href="<?= asset('/panel?mod=ajustes') ?>">Ajustes</a>
+            <a href="<?= asset('/logout') ?>" class="logout">Salir</a>
+        </nav>
 
-<main class="layout-main">
+    </header>
+
+    <main class="layout-main">
