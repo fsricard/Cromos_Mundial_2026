@@ -32,7 +32,8 @@ $rutas_validas = [
     'restablecer-confirmar',
     'ajustes-guardar-visual',
     'seguridad-cerrar-sesiones',
-    'seguridad-actualizar-clave'
+    'seguridad-actualizar-clave',
+    'ajustes-guardar-notificaciones'
 ];
 
 // Si la vista no existe → 404
@@ -64,7 +65,8 @@ $exclusiones_header_footer = [
     'restablecer-confirmar',
     'ajustes-guardar-visual',
     'seguridad-cerrar-sesiones',
-    'seguridad-actualizar-clave'
+    'seguridad-actualizar-clave',
+    'ajustes-guardar-notificaciones'
 ];
 
 // ==========================================
@@ -155,6 +157,10 @@ switch ($view) {
 
     case 'seguridad-actualizar-clave':
         require __DIR__ . '/views/seguridad-actualizar-clave.php';
+        break;
+
+    case 'ajustes-guardar-notificaciones':
+        require __DIR__ . '/views/ajustes-guardar-notificaciones.php';
         break;
 
     // ============================

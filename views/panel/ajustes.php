@@ -23,6 +23,23 @@ if (!$ajustes) {
     ];
 }
 
+// Cargar ajustes de notificaciones
+$stmt = $pdo->prepare("
+    SELECT email_importante, email_info, panel_alertas
+    FROM usuarios_notificaciones
+    WHERE usuario_id = ?
+");
+$stmt->execute([$usuario_id]);
+$notificaciones = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$notificaciones) {
+    $notificaciones = [
+        'email_importante' => 1,
+        'email_info'       => 0,
+        'panel_alertas'    => 1
+    ];
+}
+
 $mensaje = $_SESSION['ajustes_mensaje'] ?? '';
 $error   = $_SESSION['ajustes_error'] ?? '';
 
@@ -73,6 +90,38 @@ unset($_SESSION['ajustes_mensaje'], $_SESSION['ajustes_error']);
 
                     <button type="submit" class="btn btn-guardar">
                         <i class="fa-light fa-floppy-disk"></i> Guardar ajustes visuales
+                    </button>
+                </form>
+            </section>
+
+            <!-- Ajustes de notificaciones -->
+            <section class="ajustes-section ajustes-notificaciones">
+                <h3 class="ajustes-subtitle">
+                    <i class="fa-light fa-bell"></i> Notificaciones
+                </h3>
+
+                <form action="<?= asset('/ajustes-guardar-notificaciones') ?>" method="post" class="ajustes-form">
+
+                    <label class="ajustes-checkbox-label">
+                        <input type="checkbox" name="email_importante" value="1"
+                            <?= $notificaciones['email_importante'] ? 'checked' : '' ?>>
+                        Recibir emails importantes (seguridad, actividad sospechosa)
+                    </label>
+
+                    <label class="ajustes-checkbox-label">
+                        <input type="checkbox" name="email_info" value="1"
+                            <?= $notificaciones['email_info'] ? 'checked' : '' ?>>
+                        Recibir emails informativos (novedades, avisos generales)
+                    </label>
+
+                    <label class="ajustes-checkbox-label">
+                        <input type="checkbox" name="panel_alertas" value="1"
+                            <?= $notificaciones['panel_alertas'] ? 'checked' : '' ?>>
+                        Mostrar alertas dentro del panel
+                    </label>
+
+                    <button type="submit" class="btn btn-guardar">
+                        <i class="fa-light fa-floppy-disk"></i> Guardar ajustes de notificaciones
                     </button>
                 </form>
             </section>

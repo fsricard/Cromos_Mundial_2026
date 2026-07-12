@@ -301,7 +301,7 @@ textarea:focus {
 .ajustes-block {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 10px;
 }
 
 .ajustes-alert {
@@ -329,6 +329,10 @@ textarea:focus {
 .ajustes-checkbox-label input[type="checkbox"] {
     width: 18px;
     height: 18px;
+}
+
+.ajustes-notificaciones .ajustes-checkbox-label {
+    margin-bottom: 8px;
 }
 
 .tema-oscuro {
