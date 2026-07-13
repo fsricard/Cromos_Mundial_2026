@@ -147,6 +147,7 @@ include('../../includes/header.php');
                 <thead>
                     <tr>
                         <th>ID Venta</th>
+                        <th>Imagen</th>
                         <th>Cromo</th>
                         <th>Selección</th>
                         <th>Rareza</th>
@@ -168,6 +169,18 @@ include('../../includes/header.php');
                         <?php foreach ($cromos as $c): ?>
                             <tr>
                                 <td><?= $c['id_venta'] ?></td>
+
+                                <?php
+                                $img = $c['imagen']
+                                    ? asset($c['imagen'])
+                                    : asset("uploads/cromos/default/Default.png");
+                                ?>
+
+                                <td>
+                                    <img src="<?= $img ?>"
+                                        class="miniatura-cromo"
+                                        onclick="verImagenCompleta('<?= $img ?>')">
+                                </td>
 
                                 <td>
                                     <strong><?= htmlspecialchars($c['nombre']) ?></strong><br>
@@ -221,5 +234,50 @@ include('../../includes/header.php');
 
     </section>
 </main>
+
+<!-- Modal imagen -->
+<div id="modalImagen" class="modal-imagen" onclick="cerrarModal()">
+    <img id="imagenGrande" src="">
+</div>
+
+<style>
+    .miniatura-cromo {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .modal-imagen {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .modal-imagen img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+    }
+</style>
+
+<script>
+    function verImagenCompleta(src) {
+        document.getElementById('imagenGrande').src = src;
+        document.getElementById('modalImagen').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalImagen').style.display = 'none';
+    }
+</script>
 
 <?php include('../../includes/footer.php'); ?>
