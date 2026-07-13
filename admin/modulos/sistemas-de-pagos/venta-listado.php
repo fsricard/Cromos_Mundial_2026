@@ -199,12 +199,11 @@ include('../../includes/header.php');
                                 <td><?= $c['fecha_publicacion'] ?></td>
 
                                 <td>
+                                    <a href="venta-ver.php?id=<?= $c['id_venta'] ?>" class="btn btn-ver">
+                                        <i class="fa-solid fa-eye"></i> Ver
+                                    </a>
+
                                     <?php if (esAdmin()): ?>
-
-                                        <a href="venta-ver.php?id=<?= $c['id_venta'] ?>" class="btn btn-ver">
-                                            <i class="fa-solid fa-eye"></i> Ver
-                                        </a>
-
                                         <a href="venta-editar.php?id=<?= $c['id_venta'] ?>" class="btn btn-ver">
                                             <i class="fa-solid fa-pen"></i> Editar
                                         </a>
@@ -214,7 +213,6 @@ include('../../includes/header.php');
                                             onclick="return confirm('¿Seguro que deseas eliminar esta publicación de venta?');">
                                             <i class="fa-solid fa-trash"></i> Borrar
                                         </a>
-
                                     <?php endif; ?>
                                 </td>
 

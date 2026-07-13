@@ -71,9 +71,11 @@ include('../../includes/header.php');
                 <input type="text" name="valor" value="<?= htmlspecialchars($metodo['valor']) ?>" required>
             </div>
 
-            <button type="submit" class="btn btn-generar">
-                <i class="fa-solid fa-floppy-disk"></i> Actualizar método
-            </button>
+            <?php if (esAdmin()): ?>
+                <button type="submit" class="btn btn-ver">
+                    <i class="fa-solid fa-floppy-disk"></i> Actualizar método
+                </button>
+            <?php endif; ?>
 
             <a href="sistemas_de_pagos.php?id=<?= $metodo['id'] ?>" class="btn btn-volver">
                 <i class="fa-solid fa-arrow-left"></i> Volver al listado
