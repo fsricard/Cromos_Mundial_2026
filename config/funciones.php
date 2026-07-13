@@ -346,3 +346,21 @@ function generarContenidoRestablecerClave($enlace)
         </p>
     ";
 }
+
+// Función para crear las alertas para el panel de usuario del FrontEnd
+function crearAlertaGlobal(string $tipo, string $mensaje): bool
+{
+    global $pdo;
+
+    $tipos_validos = ['info', 'warning', 'error', 'success'];
+    if (!in_array($tipo, $tipos_validos)) {
+        $tipo = 'info';
+    }
+
+    $stmt = $pdo->prepare("
+        INSERT INTO panel_alertas (tipo, mensaje)
+        VALUES (?, ?)
+    ");
+
+    return $stmt->execute([$tipo, $mensaje]);
+}

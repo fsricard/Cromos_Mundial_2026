@@ -29,6 +29,7 @@ $rutas_validas = [
     'logout-confirm',
     'verificar-email',
     'perfil-actualizar',
+    'alerta-marcar-leida',
     'restablecer-confirmar',
     'ajustes-guardar-visual',
     'ajustes-guardar-region',
@@ -63,6 +64,7 @@ $exclusiones_header_footer = [
     'logout-confirm',
     'verificar-email',
     'perfil-actualizar',
+    'alerta-marcar-leida',
     'restablecer-confirmar',
     'ajustes-guardar-visual',
     'ajustes-guardar-region',
@@ -143,6 +145,10 @@ switch ($view) {
 
     case 'perfil-actualizar':
         require __DIR__ . '/views/perfil-actualizar.php';
+        break;
+
+    case 'alerta-marcar-leida':
+        require __DIR__ . '/views/alerta-marcar-leida.php';
         break;
 
     case 'restablecer-confirmar':

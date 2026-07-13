@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/session.php';
 require_once __DIR__ . '/../includes/auth.php';
 require_once(__DIR__ . '/../config/funciones.php');
 
-// Si ya está logueado, redirigir al panel personal
+// Si ya está logueado
 if (isLoggedIn()) {
     header("Location: " . asset('/views/panel/panel.php'));
     exit;

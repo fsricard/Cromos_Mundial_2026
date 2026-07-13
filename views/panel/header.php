@@ -39,6 +39,34 @@ $fecha_formateada = $fechaHora->format($region['formato_fecha']);
 // Zona horaria
 $zona_formateada = $region['zona_horaria'];
 
+// Cargar ajustes de notificaciones
+$stmt = $pdo->prepare("
+    SELECT panel_alertas
+    FROM usuarios_notificaciones
+    WHERE usuario_id = ?
+");
+$stmt->execute([$usuario_id]);
+$notif = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$mostrar_alertas = $notif ? (bool)$notif['panel_alertas'] : true;
+
+// Si el usuario quiere ver alertas, las cargamos
+$alertas = [];
+
+if ($mostrar_alertas) {
+    $stmt = $pdo->prepare("
+        SELECT pa.id, pa.tipo, pa.mensaje
+        FROM panel_alertas pa
+        LEFT JOIN panel_alertas_usuarios pau
+            ON pa.id = pau.alerta_id AND pau.usuario_id = ?
+        WHERE pau.leida IS NULL OR pau.leida = 0
+        ORDER BY pa.creada_en DESC
+        LIMIT 5
+    ");
+    $stmt->execute([$usuario_id]);
+    $alertas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Cargar ajustes visuales
 $stmt = $pdo->prepare("SELECT tema, fuente, animaciones FROM usuarios_ajustes WHERE usuario_id = ?");
 $stmt->execute([$usuario_id]);
@@ -137,5 +165,18 @@ $clase_animaciones = $ajustes['animaciones'] ? 'animaciones-on' : 'animaciones-o
         </nav>
 
     </header>
+
+    <?php if ($mostrar_alertas && !empty($alertas)): ?>
+        <div class="panel-alertas">
+            <?php foreach ($alertas as $alert): ?>
+                <div class="panel-alert panel-alert-<?= $alert['tipo'] ?>">
+                    <span><?= htmlspecialchars($alert['mensaje']) ?></span>
+                    <a href="<?= asset('/alerta-marcar-leida?id=' . $alert['id']) ?>" class="alert-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
     <main class="layout-main">

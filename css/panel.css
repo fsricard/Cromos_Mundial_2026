@@ -363,6 +363,43 @@ textarea:focus {
     margin-bottom: 8px;
 }
 
+.panel-alertas {
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.panel-alert {
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--panel-text);
+}
+
+.panel-alert-info {
+    background: #0077aa33;
+}
+
+.panel-alert-warning {
+    background: #ffaa0033;
+}
+
+.panel-alert-error {
+    background: #ff444433;
+}
+
+.panel-alert-success {
+    background: #22aa4433;
+}
+
+.alert-close {
+    color: var(--panel-text);
+    font-size: 1.6rem;
+}
+
 .tema-oscuro {
     --panel-bg: #0e0e0e;
     --panel-header-bg: #111;

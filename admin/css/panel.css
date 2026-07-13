@@ -62,6 +62,12 @@ body {
     color: var(--topbar-user);
 }
 
+.icon-logout {
+    margin-right: 10px;
+}
+
+.icon-create-alert,
+.icon-alert,
 .icon-csv,
 .icon-queer,
 .icon-cromos-up,
