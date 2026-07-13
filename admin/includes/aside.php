@@ -36,10 +36,19 @@
         </a>
 
         <!-- Sistema de pago -->
-        <a href="<?= asset('/admin/modulos/sistemas-de-pagos/sistemas_de_pagos.php') ?>" class="<?= $pagina === 'sistemas-de-pagos' ? 'active' : '' ?>">
-            <i class="fa-regular fa-coins icon-pay"></i>
-            Sistemas de pago
-        </a>
+        <div class="menu-group">
+            <a href="<?= asset('/admin/modulos/sistemas-de-pagos/sistemas_de_pagos.php') ?>" class="<?= $pagina === 'sistemas de pagos' ? 'active' : '' ?>">
+                <i class="fa-regular fa-coins icon-pay"></i>
+                Sistemas de pago
+            </a>
+
+            <div class="submenu">
+                <a href="<?= asset('/admin/modulos/sistemas-de-pagos/venta-listado.php') ?>" class="<?= $pagina === 'Listado de cromos en venta' ? 'active' : '' ?>">
+                <i class="fa-regular fa-hand-holding-box icon-holy-card"></i>
+                Cromos en venta
+            </a>
+            </div>
+        </div>
 
         <!-- Cromos -->
         <div class="menu-group">
@@ -54,13 +63,11 @@
                     <i class="fa-regular fa-upload icon-cromos-up"></i>
                     Añadir cromos
                 </a>
-
                 <a href="<?= asset('/admin/modulos/cromos/rareza_listado.php') ?>"
                     class="<?= $pagina === 'rareza_listado' ? 'active' : '' ?>">
                     <i class="fa-regular fa-transgender icon-queer"></i>
                     Listado de rarezas
                 </a>
-
                 <a href="<?= asset('/admin/modulos/cromos/importar_csv.php') ?>"
                     class="<?= $pagina === 'cromos_importar_csv' ? 'active' : '' ?>">
                     <i class="fa-regular fa-file-csv icon-csv"></i>

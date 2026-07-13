@@ -15,7 +15,7 @@ $stmt = $pdo->prepare("SELECT * FROM sistemas_pagos ORDER BY fecha_creacion DESC
 $stmt->execute();
 $metodos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$pagina = 'sistemas-de-pagos';
+$pagina = 'sistemas de pagos';
 
 include('../../includes/header.php');
 ?>
