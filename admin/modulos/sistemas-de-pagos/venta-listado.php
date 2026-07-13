@@ -193,7 +193,19 @@ include('../../includes/header.php');
                                 <td><?= number_format($c['precio'], 2) ?> €</td>
 
                                 <td>
-                                    <span class="badge badge-admin"><?= ucfirst($c['estado']) ?></span>
+                                    <?php
+                                    $claseBadge = match ($c['estado']) {
+                                        'disponible' => 'badge-admin',
+                                        'reservado'  => 'badge-reservado',
+                                        'vendido'    => 'badge-vendido',
+                                        'cancelado'  => 'badge-cancelado',
+                                        default      => 'badge-admin'
+                                    };
+                                    ?>
+
+                                    <span class="badge <?= $claseBadge ?>">
+                                        <?= ucfirst($c['estado']) ?>
+                                    </span>
                                 </td>
 
                                 <td><?= $c['fecha_publicacion'] ?></td>

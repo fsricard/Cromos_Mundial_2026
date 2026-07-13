@@ -13,6 +13,13 @@
     --sidebar-icons: #e05959;
     --sidebar-icons-hover: #4F7CFF;
     --sidebar-icons-active: #FFEAFF;
+
+    /* Badgets */
+    --bag-admin: #27ae60;
+    --bag-reservado:  #f1c40f;
+    --bag-vendido:  #e67e22;
+    --bag-cancelado:  #e74c3c;
+    --bag-visitante:  #4F7CFF;
 }
 
 /* General */
@@ -260,12 +267,45 @@ body {
 
 /* END botones */
 
+/* Badgets */
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--bg);
+    text-transform: capitalize;
+}
+
+.badge-admin {
+    background-color: var(--bag-admin);
+}
+
+.badge-reservado {
+    background-color: var(--bag-reservado);
+}
+
+.badge-vendido {
+    background-color: var(--bag-vendido);
+}
+
+.badge-cancelado {
+    background-color: var(--bag-cancelado);
+}
+
+.badge-visitante {
+    background: var(--bag-visitante);
+}
+
+/* END badhets */
+
 /* Tablas */
 .tabla {
     width: 100%;
     border-collapse: collapse;
-    background: #151A21;
-    color: #E5E5E5;
+    background: var(--panel);
+    color: var(--text);
     border-radius: 10px;
     overflow: hidden;
     font-size: 1.5rem;
@@ -669,25 +709,6 @@ body {
 }
 
 /* END módulo logs */
-
-/* Módulo usuarios sistema */
-.badge {
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 1.0rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-.badge-admin {
-    background: #e05959;
-}
-
-.badge-visitante {
-    background: #4F7CFF;
-}
-
-/* END módulo usuarios sistema */
 
 /* Módulo usuarios frontend */
 .ficha-usuario {
