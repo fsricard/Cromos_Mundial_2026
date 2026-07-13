@@ -56,9 +56,9 @@ include('../../includes/header.php');
                             <td>
                                 <?php if (esAdmin()): ?>
                                     <a href="alertas-eliminar.php?id=<?= $a['id'] ?>"
-                                        class="btn btn-small btn-danger"
+                                        class="btn btn-borrar"
                                         onclick="return confirm('¿Eliminar esta alerta?');">
-                                        Eliminar
+                                        <i class="fa-solid fa-trash"></i> Eliminar
                                     </a>
                                 <?php endif; ?>
                             </td>
