@@ -38,15 +38,19 @@
         <!-- Sistema de pago -->
         <div class="menu-group">
             <a href="<?= asset('/admin/modulos/sistemas-de-pagos/sistemas_de_pagos.php') ?>" class="<?= $pagina === 'sistemas de pagos' ? 'active' : '' ?>">
-                <i class="fa-regular fa-coins icon-pay"></i>
+                <i class="fa-regular fa-cart-shopping icon-pay"></i>
                 Sistemas de pago
             </a>
 
             <div class="submenu">
+                <a href="<?= asset('/admin/modulos/sistemas-de-pagos/venta-nueva.php') ?>" class="<?= $pagina === 'Añadir nuevo cromo en venta' ? 'active' : '' ?>">
+                    <i class="fa-regular fa-basket-shopping icon-shopping"></i>
+                    Añadir cromos
+                </a>
                 <a href="<?= asset('/admin/modulos/sistemas-de-pagos/venta-listado.php') ?>" class="<?= $pagina === 'Listado de cromos en venta' ? 'active' : '' ?>">
-                <i class="fa-regular fa-hand-holding-box icon-holy-card"></i>
-                Cromos en venta
-            </a>
+                    <i class="fa-regular fa-money-check icon-holy-card"></i>
+                    Cromos en venta
+                </a>
             </div>
         </div>
 
