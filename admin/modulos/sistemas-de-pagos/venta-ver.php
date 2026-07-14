@@ -23,6 +23,7 @@ $sql = "
     SELECT 
         cv.id AS id_venta,
         cv.precio,
+        cv.cantidad,
         cv.estado,
         cv.fecha_publicacion,
         c.id AS id_cromo,
@@ -41,8 +42,7 @@ $sql = "
 ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $id_venta, PDO::PARAM_INT);
-$stmt->execute();
+$stmt->execute([':id' => $id_venta]);
 $venta = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$venta) {
@@ -89,6 +89,7 @@ include('../../includes/header.php');
             <!-- Datos de la venta -->
             <div class="ficha-bloque">
                 <p><strong>Precio:</strong> <?= number_format($venta['precio'], 2) ?> €</p>
+                <p><strong>Cantidad:</strong> <?= $venta['cantidad'] ?></p>
                 <p><strong>Estado:</strong> <?= ucfirst($venta['estado']) ?></p>
                 <p><strong>Fecha de publicación:</strong> <?= $venta['fecha_publicacion'] ?></p>
             </div>
