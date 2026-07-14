@@ -76,7 +76,9 @@ body {
 }
 
 .content h2 {
+    font-size: 2.6rem;
     font-family: var(--font-titulos);
+    margin: 40px 0;
 }
 
 .content-block {
@@ -208,6 +210,69 @@ body {
 }
 
 /* END iconos */
+
+/* Botones */
+.btn-fav,
+.btn-comprar,
+.btn-intercambiar {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+    margin: 0 4px;
+    transition: background .25s ease;
+}
+
+.btn-fav {
+    background: var(--color-rojo);
+    color: var(--color-blanco);
+}
+
+.btn-fav:hover {
+    background: #ff4d4d;
+}
+
+.btn-comprar {
+    background: var(--boton-form);
+    color: var(--color-negro);
+}
+
+.btn-comprar:hover {
+    background: var(--boton-form-hover);
+    color: var(--color-blanco);
+}
+
+.btn-intercambiar {
+    background: var(--color-acento);
+    color: var(--color-negro);
+}
+
+.btn-intercambiar:hover {
+    background: #3a6fd8;
+    color: var(--color-blanco);
+}
+
+.btn-ver-todos {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.btn-listado {
+    padding: 12px 22px;
+    background: var(--color-gris);
+    color: var(--color-blanco);
+    border-radius: 8px;
+    font-size: 1.6rem;
+    transition: background .25s ease;
+}
+
+.btn-listado:hover {
+    background: var(--color-acento);
+}
+
+/* END botones */
 
 /* Header */
 .header-container {
@@ -417,6 +482,77 @@ body {
 
 /* END menú */
 
+/* Página de inicio */
+.cromos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cromo-card {
+    background: var(--color-negro);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: var(--sombra-suave);
+    transition: transform .25s ease;
+}
+
+.cromo-card:hover {
+    transform: translateY(-6px);
+}
+
+.cromo-img img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.cromo-info {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.cromo-info h3 {
+    font-family: var(--font-titulos);
+    font-size: 2rem;
+}
+
+.cromo-info p {
+    font-size: 1.4rem;
+    color: var(--color-gris-claro);
+}
+
+.precio {
+    font-size: 1.8rem;
+    color: var(--color-acento);
+    font-weight: bold;
+}
+
+.rareza.comun {
+    color: #ccc;
+}
+
+.rareza.raro {
+    color: #4C8BF5;
+}
+
+.rareza.epico {
+    color: #9b59b6;
+}
+
+.rareza.legendario {
+    color: #e0c15a;
+}
+
+.cromo-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+}
+
+/* END pagina de incio */
+
 /* Módulo contacto */
 .contact-wrapper {
     display: grid;
@@ -558,5 +694,9 @@ body {
 
     .footer h4 {
         margin: 10px 10px;
+    }
+
+    .btn-ver-todos a {
+        font-size: 0.95rem;
     }
 }
