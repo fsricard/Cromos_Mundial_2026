@@ -58,6 +58,7 @@ $sql = "
     SELECT 
         cv.id AS id_venta,
         cv.precio,
+        cv.cantidad,
         cv.estado,
         cv.fecha_publicacion,
         c.id AS id_cromo,
@@ -85,7 +86,6 @@ $stmt->bindValue(":por_pagina", $por_pagina, PDO::PARAM_INT);
 
 $stmt->execute();
 $cromos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 $pagina = 'Listado de cromos en venta';
 
@@ -152,6 +152,7 @@ include('../../includes/header.php');
                         <th>Selección</th>
                         <th>Rareza</th>
                         <th>Precio</th>
+                        <th>Cantidad</th>
                         <th>Estado</th>
                         <th>Publicado</th>
                         <th>Acciones</th>
@@ -191,6 +192,7 @@ include('../../includes/header.php');
                                 <td><?= htmlspecialchars($c['rareza']) ?></td>
 
                                 <td><?= number_format($c['precio'], 2) ?> €</td>
+                                <td><?= $c['cantidad'] ?></td>
 
                                 <td>
                                     <?php
