@@ -23,6 +23,7 @@ $sql = "
     SELECT 
         cv.id AS id_venta,
         cv.precio,
+        cv.cantidad,
         cv.estado,
         cv.fecha_publicacion,
         c.id AS id_cromo,
@@ -39,8 +40,7 @@ $sql = "
 ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $id_venta, PDO::PARAM_INT);
-$stmt->execute();
+$stmt->execute([':id' => $id_venta]);
 $venta = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$venta) {
@@ -51,11 +51,14 @@ if (!$venta) {
 // Procesar formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $precio = isset($_POST['precio']) ? floatval($_POST['precio']) : 0;
-    $estado = isset($_POST['estado']) ? $_POST['estado'] : '';
+    $precio = floatval($_POST['precio']);
+    $cantidad = intval($_POST['cantidad']);
+    $estado = $_POST['estado'];
 
     if ($precio <= 0) {
         $error = "El precio debe ser mayor que 0.";
+    } elseif ($cantidad <= 0) {
+        $error = "La cantidad debe ser mayor que 0.";
     } elseif (!in_array($estado, ['disponible', 'reservado', 'vendido', 'cancelado'])) {
         $error = "Estado no válido.";
     } else {
@@ -63,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql_update = "
             UPDATE cromos_venta
             SET precio = :precio,
+                cantidad = :cantidad,
                 estado = :estado
             WHERE id = :id
             LIMIT 1
@@ -71,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_up = $pdo->prepare($sql_update);
         $stmt_up->execute([
             ':precio' => $precio,
+            ':cantidad' => $cantidad,
             ':estado' => $estado,
             ':id' => $id_venta
         ]);
@@ -126,6 +131,12 @@ include('../../includes/header.php');
                         <label>Precio (€)</label>
                         <input type="number" step="0.01" name="precio"
                             value="<?= htmlspecialchars($venta['precio']) ?>" required>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label>Cantidad disponible</label>
+                        <input type="number" name="cantidad" min="1"
+                            value="<?= htmlspecialchars($venta['cantidad']) ?>" required>
                     </div>
 
                     <div class="form-grupo">
