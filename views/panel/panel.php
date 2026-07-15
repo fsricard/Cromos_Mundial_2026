@@ -15,11 +15,13 @@ $modulo = isset($_GET['mod']) ? trim($_GET['mod']) : 'dashboard';
 
 // Lista de módulos permitidos
 $modulos_validos = [
-    'dashboard',
     'perfil',
-    'mis-cromos',
+    'ajustes',
+    'compras',
+    'favoritos',
     'seguridad',
-    'ajustes'
+    'dashboard',
+    'intercambios'
 ];
 
 // Si no existe → dashboard
