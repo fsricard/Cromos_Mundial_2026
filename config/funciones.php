@@ -364,3 +364,39 @@ function crearAlertaGlobal(string $tipo, string $mensaje): bool
 
     return $stmt->execute([$tipo, $mensaje]);
 }
+
+// Función para guardar los cromos como favoritos
+function toggleFavorito(int $idUsuario, int $idCromo): string
+{
+    global $pdo;
+
+    // ¿Ya existe?
+    $stmt = $pdo->prepare("
+        SELECT id 
+        FROM favoritos 
+        WHERE id_usuario = ? AND id_cromo = ?
+        LIMIT 1
+    ");
+    $stmt->execute([$idUsuario, $idCromo]);
+    $existe = $stmt->fetch();
+
+    // Eliminar favorito
+    if ($existe) {
+        $del = $pdo->prepare("
+            DELETE FROM favoritos 
+            WHERE id_usuario = ? AND id_cromo = ?
+            LIMIT 1
+        ");
+        $del->execute([$idUsuario, $idCromo]);
+        return 'eliminado';
+    }
+
+    // Añadir favorito
+    $add = $pdo->prepare("
+        INSERT INTO favoritos (id_usuario, id_cromo)
+        VALUES (?, ?)
+    ");
+    $add->execute([$idUsuario, $idCromo]);
+
+    return 'agregado';
+}

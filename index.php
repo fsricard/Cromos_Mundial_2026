@@ -23,6 +23,7 @@ $rutas_validas = [
     'perfil',
     'logout',
     'registro',
+    'favorito',
     'segyrudad',
     'restablecer',
     'cambiar-clave',
@@ -58,6 +59,7 @@ $exclusiones_header_footer = [
     'perfil',
     'logout',
     'registro',
+    'favorito',
     'segyrudad',
     'restablecer',
     'cambiar-clave',
@@ -113,6 +115,10 @@ switch ($view) {
 
     case 'registro':
         require __DIR__ . '/views/registro.php';
+        break;
+
+    case 'favorito':
+        require __DIR__ . '/views/favorito.php';
         break;
 
     case 'panel':

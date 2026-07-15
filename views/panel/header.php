@@ -156,7 +156,7 @@ $clase_animaciones = $ajustes['animaciones'] ? 'animaciones-on' : 'animaciones-o
         </button>
 
         <nav class="panel-nav">
-            <a href="<?= asset('/panel?mod=dashboard') ?>">Inicio</a>
+            <a href="<?= asset('/inicio') ?>">Página de inicio</a>
             <a href="<?= asset('/panel?mod=perfil') ?>">Perfil</a>
             <a href="<?= asset('/panel?mod=mis-cromos') ?>">Mis cromos</a>
             <a href="<?= asset('/panel?mod=seguridad') ?>">Seguridad</a>
