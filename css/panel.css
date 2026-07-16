@@ -196,6 +196,11 @@ h3 i {
     background: var(--panel-danger);
 }
 
+.btn-fav-remove {
+    width: 100%;
+    margin-top: 8px;
+}
+
 /* END botones */
 
 /* Formularios */
@@ -318,6 +323,87 @@ textarea:focus {
 }
 
 /* END seguridad */
+
+/* Favoritos */
+.favoritos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.favorito-card {
+    background: var(--panel-card-bg);
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.favorito-img img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.favorito-nombre {
+    font-size: 1.5rem;
+    margin: 8px 0;
+    color: var(--panel-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.fav-tipo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.fav-tipo.normal {
+    background: #8883;
+}
+
+.fav-tipo.venta {
+    background: #22aa4433;
+}
+
+.fav-tipo.intercambio {
+    background: #ffaa0033;
+}
+
+.favoritos-paginacion {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.paginacion {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.btn-pag {
+    padding: 8px 12px;
+    background: var(--panel-card-bg);
+    border-radius: 6px;
+    color: var(--panel-text);
+}
+
+.btn-pag.activo {
+    background: var(--panel-accent);
+    color: #fff;
+}
+
+/* END favoritos */
 
 /* Ajustes */
 .ajustes-title {

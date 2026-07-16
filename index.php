@@ -22,12 +22,16 @@ $rutas_validas = [
     'panel',
     'perfil',
     'logout',
+    'compras',
     'registro',
     'favorito',
+    'favoritos',
     'segyrudad',
     'restablecer',
+    'intercambios',
     'cambiar-clave',
     'logout-confirm',
+    'favorito-toggle',
     'verificar-email',
     'perfil-actualizar',
     'alerta-marcar-leida',
@@ -58,12 +62,16 @@ $exclusiones_header_footer = [
     'panel',
     'perfil',
     'logout',
+    'compras',
     'registro',
     'favorito',
+    'favoritos',
     'segyrudad',
     'restablecer',
+    'intercambios',
     'cambiar-clave',
     'logout-confirm',
+    'favorito-toggle',
     'verificar-email',
     'perfil-actualizar',
     'alerta-marcar-leida',
@@ -137,8 +145,20 @@ switch ($view) {
         require __DIR__ . '/views/cambiar-clave.php';
         break;
 
+    case 'compras':
+        require __DIR__ . '/views/panel/compras.php';
+        break;
+
     case 'logout-confirm':
         require __DIR__ . '/views/logout-confirm.php';
+        break;
+
+    case 'favorito-toggle':
+        require __DIR__ . '/views/favorito-toggle.php';
+        break;
+
+    case 'favoritos':
+        require __DIR__ . '/views/panel/favoritos.php';
         break;
 
     case 'seguridad':
@@ -151,6 +171,10 @@ switch ($view) {
 
     case 'perfil-actualizar':
         require __DIR__ . '/views/perfil-actualizar.php';
+        break;
+
+    case 'intercambios':
+        require __DIR__ . '/views/panel/intercambios.php';
         break;
 
     case 'alerta-marcar-leida':
