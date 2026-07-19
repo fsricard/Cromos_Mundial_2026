@@ -77,9 +77,14 @@ require_once(__DIR__ . '/../config/funciones.php');
                     <li><a href="<?= asset('/contacto') ?>"><i class="fa-chisel fa-regular fa-at"></i> Contacto</a></li>
 
                     <li>
-                        <a href="<?= asset('/login') ?>">
-                            <i class="fa-regular fa-user-gear"></i>
-                            <?= isset($_SESSION['usuario_id']) ? htmlspecialchars($_SESSION['usuario_nombre']) : 'Tu espacio' ?>
+                        <?php
+                        $claseLogin = isset($_SESSION['usuario_id']) ? 'user-login-on' : 'user-login-off';
+                        $iconoLogin = isset($_SESSION['usuario_id']) ? 'fa-solid fa-user-check' : 'fa-regular fa-user-gear';
+                        ?>
+
+                        <a href="<?= asset('/login') ?>" class="<?= $claseLogin ?>">
+                            <i class="<?= $iconoLogin ?>"></i>
+                            <?= isset($_SESSION['usuario_nombre']) ? htmlspecialchars($_SESSION['usuario_nombre']) : 'Tu espacio' ?>
                         </a>
                     </li>
                 </ul>
