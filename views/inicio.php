@@ -61,12 +61,12 @@ $cromosInter = $stmtInter->fetchAll();
 
                         <div class="cromo-actions">
                             <a href="<?= asset('/favorito?cromo=' . $cromo['cromo_id']) ?>"
-                                class="btn-fav">
+                                class="btn btn-fav">
                                 <i class="fa-solid fa-heart"></i> Favorito
                             </a>
 
                             <a href="<?= asset('/comprar?venta=' . $cromo['venta_id']) ?>"
-                                class="btn-comprar">
+                                class="btn btn-comprar">
                                 <i class="fa-duotone fa-cart-shopping"></i> Comprar
                             </a>
                         </div>
@@ -77,7 +77,7 @@ $cromosInter = $stmtInter->fetchAll();
             </div>
 
             <div class="btn-ver-todos">
-                <a href="<?= asset('/cromos-venta-listado') ?>" class="btn-listado">
+                <a href="<?= asset('/cromos-venta-listado') ?>" class="btn btn-listado">
                     Ver todos los cromos en venta
                 </a>
             </div>
@@ -119,12 +119,12 @@ $cromosInter = $stmtInter->fetchAll();
 
                         <div class="cromo-actions">
                             <a href="<?= asset('/favorito?cromo=' . $cromo['cromo_id']) ?>"
-                                class="btn-fav">
+                                class="btn btn-fav">
                                 <i class="fa-solid fa-heart"></i> Favorito
                             </a>
 
                             <a href="<?= asset('/intercambiar?cromo=' . $cromo['cromo_id']) ?>"
-                                class="btn-intercambiar">
+                                class="btn btn-intercambiar">
                                 <i class="fa-regular fa-people-arrows"></i> Intercambiar
                             </a>
                         </div>
@@ -135,7 +135,7 @@ $cromosInter = $stmtInter->fetchAll();
             </div>
 
             <div class="btn-ver-todos">
-                <a href="<?= asset('/cromos-intercambio-listado') ?>" class="btn-listado">
+                <a href="<?= asset('/cromos-intercambio-listado') ?>" class="btn btn-listado">
                     Ver todos los cromos para intercambio
                 </a>
             </div>

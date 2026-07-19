@@ -45,7 +45,9 @@
                                         <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
                                     </div>
 
-                                    <button type="submit" class="btn-enviar">Enviar mensaje</button>
+                                    <button type="submit" class="btn btn-enviar">
+                                        <i class="fa-light fa-envelope-circle-user"></i> Enviar mensaje
+                                    </button>
 
                                     <div id="ajax-respuesta" class="ajax-respuesta"></div>
 

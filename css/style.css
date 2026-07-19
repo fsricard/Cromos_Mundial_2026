@@ -214,17 +214,20 @@ body {
 /* END iconos */
 
 /* Botones */
-.btn-fav,
-.btn-comprar,
-.btn-intercambiar {
+button.btn,
+.btn {
   padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 1.4rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  flex: 1;
   margin: 0 4px;
+  cursor: pointer;
   transition: background 0.25s ease;
+}
+
+.filtros-botones {
+  display: block;
 }
 
 .btn-fav {
@@ -233,7 +236,8 @@ body {
 }
 
 .btn-fav:hover {
-  background: #ff4d4d;
+  color: var(--color-negro);
+  background: var(--boton-form);
 }
 
 .btn-comprar {
@@ -261,17 +265,45 @@ body {
   margin: 40px 0;
 }
 
+.btn-enviar {
+  background: var(--boton-form);
+  color: var(--color-negro);
+}
+
+.btn-enviar:hover {
+  color: var(--color-blanco);
+  background: var(--boton-form-hover);
+}
+
 .btn-listado {
   padding: 12px 22px;
-  background: var(--color-gris);
-  color: var(--color-blanco);
-  border-radius: 8px;
+  background: var(--color-acento-suave);
+  color: var(--color-negro);
   font-size: 1.6rem;
   transition: background 0.25s ease;
 }
 
 .btn-listado:hover {
+  color: var(--color-blanco);
   background: var(--color-acento);
+}
+
+.btn-buscar {
+  background: var(--color-acento);
+  color: var(--color-negro);
+}
+
+.btn-buscar:hover {
+  background: var(--color-acento-suave);
+}
+
+.btn-limpiar {
+  background: var(--color-gris);
+  color: var(--color-blanco);
+}
+
+.btn-limpiar:hover {
+  background: var(--color-rojo);
 }
 
 /* END botones */
@@ -616,24 +648,6 @@ body {
   border-color: var(--color-acento);
 }
 
-.btn-enviar {
-  width: 100%;
-  padding: 14px;
-  background: var(--boton-form);
-  border: none;
-  border-radius: 6px;
-  color: var(--color-negro);
-  font-size: 1.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.btn-enviar:hover {
-  color: var(--color-blanco);
-  background: var(--boton-form-hover);
-}
-
 .ajax-respuesta {
   margin-top: 20px;
 }
@@ -655,6 +669,84 @@ body {
 }
 
 /* RND módulo contacto */
+
+/* Listado de cromos en venta */
+.filtros-busqueda {
+  background: var(--color-negro);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--sombra-suave);
+  margin-bottom: 30px;
+  display: grid;
+  gap: 20px;
+}
+
+.filtro-item label {
+  font-size: 1.4rem;
+  color: var(--color-gris-claro);
+}
+
+.filtro-item input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 6px;
+  background: var(--color-gris);
+  color: var(--color-blanco);
+}
+
+.cromos-listado {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cromo-item {
+  background: var(--color-negro);
+  padding: 16px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 120px 1fr 250px;
+  gap: 20px;
+  align-items: center;
+  box-shadow: var(--sombra-suave);
+}
+
+.cromo-thumb img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.cromo-data h3 {
+  font-family: var(--font-titulos);
+  font-size: 2rem;
+}
+
+.cromo-data p {
+  font-size: 1.4rem;
+  color: var(--color-gris-claro);
+}
+
+.paginacion-wrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.paginacion .btn-pag {
+  padding: 10px 16px;
+  margin: 4px;
+  background: var(--color-gris);
+  color: var(--color-blanco);
+  border-radius: 6px;
+}
+
+.paginacion .btn-pag.activo {
+  background: var(--color-acento);
+  font-weight: bold;
+}
+
+/* END listado de cromos en venta */
 
 /* ============================
    RESPONSIVE
@@ -713,5 +805,34 @@ body {
 
   .btn-ver-todos a {
     font-size: 0.95rem;
+  }
+
+  .cromo-item {
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .cromo-actions {
+    grid-column: span 2;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .cromo-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cromo-thumb img {
+    margin: 0 auto;
+    width: 70%;
+  }
+
+  .cromo-actions {
+    flex-direction: column;
+    gap: 10px;
   }
 }

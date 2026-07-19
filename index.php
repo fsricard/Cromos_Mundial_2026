@@ -15,6 +15,7 @@ $extra = isset($_GET['extra']) ? trim($_GET['extra']) : null;
 $rutas_validas = [
     'inicio',
     'contacto',
+    'cromos-venta-listado',
     'politica-de-privacidad',
 
     // Autenticación frontend
@@ -103,6 +104,10 @@ switch ($view) {
 
     case 'contacto':
         require __DIR__ . '/views/contacto.php';
+        break;
+
+    case 'cromos-venta-listado':
+        require __DIR__ . '/views/cromos-venta-listado.php';
         break;
 
     case 'politica-de-privacidad':
