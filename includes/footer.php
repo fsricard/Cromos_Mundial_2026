@@ -12,10 +12,9 @@
                     <div class="sections-footer-center">
                         <h3>Vuestro espacio</h3>
                         <ul>
-                            <li><a href="<?= asset('/') ?>">Danos tu opinión</a></li>
-                            <li><a href="<?= asset('/') ?>">Adopta un bichi</a></li>
-                            <li><a href="<?= asset('/') ?>">Apadrina un bichi</a></li>
-                            <li><a href="<?= asset('/') ?>">Colabora con El Arca</a></li>
+                            <li><a href="<?= asset('/panel?mod=perfil') ?>">Tu perfil</a></li>
+                            <li><a href="<?= asset('/panel?mod=favoritos') ?>">Tus favoritos</a></li>
+                            <li><a href="<?= asset('/panel?mod=intercambios') ?>">Tus intercambios</a></li>
                         </ul>
                     </div>
 
