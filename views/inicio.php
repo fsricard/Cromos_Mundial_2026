@@ -1,28 +1,55 @@
 <?php
-// Cromos en venta (solo disponibles)
-$stmtVenta = $pdo->prepare("
-    SELECT cv.id AS venta_id, cv.precio, cv.estado,
-           c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
-    FROM cromos_venta cv
-    INNER JOIN cromos c ON c.id = cv.id_cromo
-    WHERE cv.estado = 'disponible'
-    ORDER BY cv.fecha_publicacion DESC
-    LIMIT 10
-");
-$stmtVenta->execute();
-$cromosVenta = $stmtVenta->fetchAll();
+if (esSoloMovil()) {
+    // Cromos en venta (solo disponibles)
+    $stmtVenta = $pdo->prepare("
+        SELECT cv.id AS venta_id, cv.precio, cv.estado,
+            c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
+        FROM cromos_venta cv
+        INNER JOIN cromos c ON c.id = cv.id_cromo
+        WHERE cv.estado = 'disponible'
+        ORDER BY cv.fecha_publicacion DESC
+        LIMIT 3
+    ");
+    $stmtVenta->execute();
+    $cromosVenta = $stmtVenta->fetchAll();
 
-// Cromos para intercambio (últimos doce)
-$stmtInter = $pdo->prepare("
-    SELECT i.id AS intercambio_id, i.estado,
-           c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
-    FROM intercambios i
-    INNER JOIN cromos c ON c.id = i.id_cromo_ofrecido
-    ORDER BY i.fecha DESC
-    LIMIT 10
-");
-$stmtInter->execute();
-$cromosInter = $stmtInter->fetchAll();
+    // Cromos para intercambio (últimos doce)
+    $stmtInter = $pdo->prepare("
+        SELECT i.id AS intercambio_id, i.estado,
+            c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
+        FROM intercambios i
+        INNER JOIN cromos c ON c.id = i.id_cromo_ofrecido
+        ORDER BY i.fecha DESC
+        LIMIT 3
+    ");
+    $stmtInter->execute();
+    $cromosInter = $stmtInter->fetchAll();
+} else {
+    // Cromos en venta (solo disponibles)
+    $stmtVenta = $pdo->prepare("
+        SELECT cv.id AS venta_id, cv.precio, cv.estado,
+            c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
+        FROM cromos_venta cv
+        INNER JOIN cromos c ON c.id = cv.id_cromo
+        WHERE cv.estado = 'disponible'
+        ORDER BY cv.fecha_publicacion DESC
+        LIMIT 10
+    ");
+    $stmtVenta->execute();
+    $cromosVenta = $stmtVenta->fetchAll();
+
+    // Cromos para intercambio (últimos doce)
+    $stmtInter = $pdo->prepare("
+        SELECT i.id AS intercambio_id, i.estado,
+            c.id AS cromo_id, c.codigo, c.nombre, c.seleccion, c.posicion, c.rareza, c.imagen
+        FROM intercambios i
+        INNER JOIN cromos c ON c.id = i.id_cromo_ofrecido
+        ORDER BY i.fecha DESC
+        LIMIT 10
+    ");
+    $stmtInter->execute();
+    $cromosInter = $stmtInter->fetchAll();
+}
 ?>
 
 <main class="layout-main">
@@ -136,7 +163,7 @@ $cromosInter = $stmtInter->fetchAll();
 
             <div class="btn-ver-todos">
                 <a href="<?= asset('/cromos-intercambio-listado') ?>" class="btn btn-listado">
-                    Ver todos los cromos para intercambio
+                    Ver todos los cromos en intercambio
                 </a>
             </div>
 
