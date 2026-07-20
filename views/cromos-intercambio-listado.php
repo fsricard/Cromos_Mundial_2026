@@ -1,15 +1,15 @@
 <?php
 // Filtros
-$nombre     = $_GET['nombre']     ?? '';
-$seleccion  = $_GET['seleccion']  ?? '';
-$precio_max = $_GET['precio_max'] ?? '';
-$pagina     = isset($_GET['p']) ? max(1, intval($_GET['p'])) : 1;
+$nombre    = $_GET['nombre']    ?? '';
+$seleccion = $_GET['seleccion'] ?? '';
+$rareza    = $_GET['rareza']    ?? '';
+$pagina    = isset($_GET['p']) ? max(1, intval($_GET['p'])) : 1;
 
 $por_pagina = 18;
 $offset     = ($pagina - 1) * $por_pagina;
 
-// Construcción dinámica del WHERE
-$where = "WHERE cv.estado = 'disponible'";
+// Construcción del WHERE
+$where = "WHERE 1";
 $params = [];
 
 if (!empty($nombre)) {
@@ -22,16 +22,15 @@ if (!empty($seleccion)) {
     $params[':seleccion'] = "%$seleccion%";
 }
 
-if (!empty($precio_max)) {
-    $where .= " AND cv.precio <= :precio_max";
-    $params[':precio_max'] = $precio_max;
+if (!empty($rareza)) {
+    $where .= " AND c.rareza = :rareza";
+    $params[':rareza'] = $rareza;
 }
 
-// Paginación
+// Total
 $stmtTotal = $pdo->prepare("
     SELECT COUNT(*) AS total
-    FROM cromos_venta cv
-    INNER JOIN cromos c ON c.id = cv.id_cromo
+    FROM cromos c
     $where
 ");
 $stmtTotal->execute($params);
@@ -39,13 +38,11 @@ $total_registros = $stmtTotal->fetchColumn();
 
 // Consulta principal
 $stmt = $pdo->prepare("
-    SELECT cv.id AS venta_id, cv.precio, cv.estado,
-           c.id AS cromo_id, c.codigo, c.nombre, c.seleccion,
+    SELECT c.id AS cromo_id, c.codigo, c.nombre, c.seleccion,
            c.posicion, c.rareza, c.imagen
-    FROM cromos_venta cv
-    INNER JOIN cromos c ON c.id = cv.id_cromo
+    FROM cromos c
     $where
-    ORDER BY cv.fecha_publicacion DESC
+    ORDER BY c.nombre ASC
     LIMIT $offset, $por_pagina
 ");
 $stmt->execute($params);
@@ -58,12 +55,13 @@ $cromos = $stmt->fetchAll();
         <article>
 
             <h2 class="content-title">
-                <i class="fa-duotone fa-cart-shopping"></i>
-                Listado de cromos en venta
+                <i class="fa-regular fa-people-arrows"></i>
+                Cromos disponibles para intercambio
             </h2>
 
             <!-- Filtros -->
             <form class="filtros-busqueda" method="GET">
+
                 <div class="filtro-item">
                     <label>Nombre del jugador</label>
                     <input type="text" name="nombre"
@@ -79,10 +77,14 @@ $cromos = $stmt->fetchAll();
                 </div>
 
                 <div class="filtro-item">
-                    <label>Precio máximo</label>
-                    <input type="number" name="precio_max" step="0.01"
-                        value="<?= htmlspecialchars($precio_max) ?>"
-                        placeholder="Ej: 10.00">
+                    <label>Rareza</label>
+                    <select name="rareza" class="select-rareza">
+                        <option value="">Todas</option>
+                        <option value="comun" <?= $rareza == 'comun' ? 'selected' : '' ?>>Común</option>
+                        <option value="raro" <?= $rareza == 'raro' ? 'selected' : '' ?>>Raro</option>
+                        <option value="epico" <?= $rareza == 'epico' ? 'selected' : '' ?>>Épico</option>
+                        <option value="legendario" <?= $rareza == 'legendario' ? 'selected' : '' ?>>Legendario</option>
+                    </select>
                 </div>
 
                 <div class="filtros-botones">
@@ -90,13 +92,13 @@ $cromos = $stmt->fetchAll();
                         <i class="fa-jelly fa-regular fa-magnifying-glass"></i> Buscar
                     </button>
 
-                    <a href="<?= asset('/cromos-venta-listado') ?>" class="btn btn-limpiar">
+                    <a href="<?= asset('/cromos-intercambio-listado') ?>" class="btn btn-limpiar">
                         <i class="fa-regular fa-broom-wide"></i> Limpiar filtros
                     </a>
                 </div>
             </form>
 
-            <!-- Listado de cromos -->
+            <!-- Listado -->
             <div class="intercambio-grid">
                 <?php if (empty($cromos)): ?>
                     <p>No se encontraron cromos con los filtros aplicados.</p>
@@ -123,7 +125,6 @@ $cromos = $stmt->fetchAll();
                             <p class="rareza <?= $cromo['rareza'] ?>">
                                 <?= ucfirst($cromo['rareza']) ?>
                             </p>
-                            <p class="precio"><?= number_format($cromo['precio'], 2) ?> €</p>
                         </div>
 
                         <div class="card-actions">
@@ -132,9 +133,9 @@ $cromos = $stmt->fetchAll();
                                 <i class="fa-solid fa-heart"></i> Favorito
                             </a>
 
-                            <a href="<?= asset('/comprar?venta=' . $cromo['venta_id']) ?>"
-                                class="btn btn-comprar">
-                                <i class="fa-duotone fa-cart-shopping"></i> Comprar
+                            <a href="<?= asset('/intercambiar?cromo=' . $cromo['cromo_id']) ?>"
+                                class="btn btn-intercambiar">
+                                <i class="fa-regular fa-people-arrows"></i> Intercambiar
                             </a>
                         </div>
 

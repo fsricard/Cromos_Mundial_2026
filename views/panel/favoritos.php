@@ -11,7 +11,7 @@ if (!isLoggedIn()) {
 $usuario_id = $_SESSION['usuario_id'];
 
 // Paginación
-$por_pagina = 250;
+$por_pagina = 200;
 $pagina = isset($_GET['p']) ? max(1, intval($_GET['p'])) : 1;
 $offset = ($pagina - 1) * $por_pagina;
 
@@ -115,7 +115,7 @@ function tipoCromo(PDO $pdo, int $idCromo): string
                             <div class="favorito-info">
                                 <h4 class="favorito-nombre">
                                     <i class="fa-light fa-user"></i>
-                                    <?= htmlspecialchars($fav['nombre']) ?>
+                                    <?= htmlspecialchars(str_replace(['-', '_'], ' ', $fav['nombre'])) ?>
                                 </h4>
 
                                 <?= $tipo_label ?>
@@ -128,6 +128,13 @@ function tipoCromo(PDO $pdo, int $idCromo): string
 
                         </div>
                     <?php endforeach; ?>
+                </div>
+
+                <!-- Paginación -->
+                <div class="favoritos-paginacion">
+                    <?php
+                    //paginador($total_favoritos, $por_pagina, $pagina)
+                    ?>
                 </div>
 
             <?php endif; ?>

@@ -17,6 +17,7 @@ $rutas_validas = [
     'contacto',
     'cromos-venta-listado',
     'politica-de-privacidad',
+    'cromos-intercambio-listado',
 
     // Autenticación frontend
     'login',
@@ -112,6 +113,10 @@ switch ($view) {
 
     case 'politica-de-privacidad':
         require __DIR__ . '/views/politica-de-privacidad.php';
+        break;
+
+    case 'cromos-intercambio-listado':
+        require __DIR__ . '/views/cromos-intercambio-listado.php';
         break;
 
     // ============================

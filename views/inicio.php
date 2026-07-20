@@ -53,7 +53,7 @@ $cromosInter = $stmtInter->fetchAll();
                         </div>
 
                         <div class="cromo-info">
-                            <h3><?= htmlspecialchars($cromo['nombre']) ?></h3>
+                            <h3><?= htmlspecialchars(str_replace(['-', '_'], ' ', $cromo['nombre'])) ?></h3>
                             <p><?= htmlspecialchars($cromo['seleccion']) ?></p>
                             <p class="rareza <?= $cromo['rareza'] ?>"><?= ucfirst($cromo['rareza']) ?></p>
                             <p class="precio"><?= number_format($cromo['precio'], 2) ?> €</p>
@@ -112,7 +112,7 @@ $cromosInter = $stmtInter->fetchAll();
                         </div>
 
                         <div class="cromo-info">
-                            <h3><?= htmlspecialchars($cromo['nombre']) ?></h3>
+                            <h3><?= htmlspecialchars(str_replace(['-', '_'], ' ', $cromo['nombre'])) ?></h3>
                             <p><?= htmlspecialchars($cromo['seleccion']) ?></p>
                             <p class="rareza <?= $cromo['rareza'] ?>"><?= ucfirst($cromo['rareza']) ?></p>
                         </div>

@@ -748,6 +748,60 @@ button.btn,
 
 /* END listado de cromos en venta */
 
+/* Listado de cromos para intercambio */
+.intercambio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.intercambio-card {
+  background: var(--color-negro);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-img img {
+  width: 70%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.card-info h3 {
+  font-family: var(--font-titulos);
+  font-size: 1.4rem;
+}
+
+.card-info p {
+  font-size: 1.4rem;
+  color: var(--color-gris-claro);
+}
+
+.card-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.select-rareza {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  background: var(--color-gris);
+  color: var(--color-blanco);
+  border: none;
+}
+
+/* END listado de cromos para intercambio */
+
 /* ============================
    RESPONSIVE
 ============================ */
@@ -834,5 +888,22 @@ button.btn,
   .cromo-actions {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .intercambio-card {
+    padding: 20px;
+  }
+
+  .card-img img {
+    width: 85%;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card-actions .btn {
+    width: 100%;
   }
 }
